@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "access-bank",
+    "name": "Access Bank Plc",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://www.accessbankplc.com",
+    "about": "One of Nigeria's largest commercial banks, offering retail personal lending including payroll and quick digital loans.",
+    "claimed": true
+  },
+  {
+    "slug": "gtbank",
+    "name": "Guaranty Trust Bank",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://www.gtbank.com",
+    "about": "Major Nigerian commercial bank with the popular Quick Credit personal loan product.",
+    "claimed": false
+  },
+  {
+    "slug": "sterling-bank",
+    "name": "Sterling Bank",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://sterling.ng",
+    "about": "Commercial bank behind Specta, a fast digital personal loan platform.",
+    "claimed": true
+  },
+  {
+    "slug": "stanbic-ibtc",
+    "name": "Stanbic IBTC Bank",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://www.stanbicibtcbank.com",
+    "about": "Member of Standard Bank Group offering salary-backed personal loans.",
+    "claimed": true
+  },
+  {
+    "slug": "fidelity-bank",
+    "name": "Fidelity Bank Plc",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://www.fidelitybank.ng",
+    "about": "Nigerian commercial bank offering fast personal and salary loans.",
+    "claimed": false
+  },
+  {
+    "slug": "uba",
+    "name": "United Bank for Africa",
+    "type": "BANK",
+    "country": "ng",
+    "website": "https://www.ubagroup.com",
+    "about": "Pan-African bank offering Click Credit salary-based personal loans.",
+    "claimed": true
+  },
+  {
+    "slug": "renmoney",
+    "name": "Renmoney Microfinance Bank",
+    "type": "MICROFINANCE",
+    "country": "ng",
+    "website": "https://renmoney.com",
+    "about": "Licensed microfinance bank specialising in unsecured personal loans with flexible tenures.",
+    "claimed": true
+  },
+  {
+    "slug": "fairmoney",
+    "name": "FairMoney Microfinance Bank",
+    "type": "MICROFINANCE",
+    "country": "ng",
+    "website": "https://fairmoney.io",
+    "about": "Digital microfinance bank offering instant app-based personal loans.",
+    "claimed": true
+  },
+  {
+    "slug": "carbon",
+    "name": "Carbon (One Finance & Investments)",
+    "type": "FINTECH",
+    "country": "ng",
+    "website": "https://getcarbon.co",
+    "about": "Digital lender offering instant personal loans, licensed as a microfinance bank.",
+    "claimed": true
+  },
+  {
+    "slug": "kuda",
+    "name": "Kuda Microfinance Bank",
+    "type": "MICROFINANCE",
+    "country": "ng",
+    "website": "https://kuda.com",
+    "about": "Digital-only microfinance bank offering overdraft-style personal credit.",
+    "claimed": false
+  },
+  {
+    "slug": "page-financials",
+    "name": "Page Financials",
+    "type": "MICROFINANCE",
+    "country": "ng",
+    "website": "https://pagefinancials.com",
+    "about": "Microfinance lender focused on salary-earner personal loans.",
+    "claimed": true
+  },
+  {
+    "slug": "lendigo",
+    "name": "Lendigo Nigeria",
+    "type": "FINTECH",
+    "country": "ng",
+    "website": "https://lendigo.com.ng",
+    "about": "Finance company offering personal and small-business loans.",
+    "claimed": false
+  },
+  {
+    "slug": "quicknaira",
+    "name": "QuickNaira",
+    "type": "FINTECH",
+    "country": "ng",
+    "website": "https://example.com/quicknaira",
+    "about": "SEED example of an UNLICENSED lender — used to demonstrate that providers not on the CBN register never receive the gold Verified badge.",
+    "claimed": false
+  },
+  {
+    "slug": "swiftcash-lenders",
+    "name": "SwiftCash Lenders",
+    "type": "OTHER",
+    "country": "ng",
+    "website": "https://example.com/swiftcash",
+    "about": "SEED example of an UNLICENSED lender — present to show the licensing filter in action.",
+    "claimed": false
+  }
+]

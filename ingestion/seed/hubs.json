@@ -1,0 +1,34 @@
+[
+  {
+    "country": "ng",
+    "productType": "PERSONAL_LOAN",
+    "title": "Best personal loans in Nigeria (2026)",
+    "intro": "Personal loans in Nigeria range from instant app-based credit of a few thousand naira to multi-million-naira salary loans repaid over three years. The right choice depends on how fast you need the money, whether you bank where you're borrowing, and — above all — the true cost once management fees and monthly interest are added in. Headline 'monthly interest' figures can look small but compound into very high annual rates, so we convert every product to a comparable basis and show the fees alongside the rate. We list only products from institutions licensed by the Central Bank of Nigeria, and we mark which providers have been licence-checked and have claimed their listing. Use the filters to sort by interest rate, fees or loan amount, and always confirm the exact terms with the provider before you apply — the figures here are indicative and change frequently.",
+    "faq": [
+      {
+        "question": "How were these personal loans ranked?",
+        "answer": "By default we sort by customer rating, with sponsored placements clearly labelled and shown first. You can re-sort by lowest interest, lowest fees or smallest minimum amount. Ranking never affects whether a provider is shown as licence-verified — that is a separate, factual check against the CBN register."
+      },
+      {
+        "question": "What does the gold Verified badge mean?",
+        "answer": "It means the provider has been matched to the Central Bank of Nigeria's register of licensed institutions AND has claimed and confirmed its listing with us. Unlicensed or unclaimed lenders never receive the gold badge, even if they are popular."
+      },
+      {
+        "question": "Are these interest rates and fees guaranteed?",
+        "answer": "No. All rates, fees and terms shown are indicative only and can change at any time. Each product shows the date we last verified its figures. Always confirm the exact terms directly with the provider before applying."
+      },
+      {
+        "question": "What do I usually need to apply for a personal loan in Nigeria?",
+        "answer": "Most lenders require your Bank Verification Number (BVN) and a valid ID. Salary loans typically also need recent bank statements and proof of employment. Each product page lists the specific required documents."
+      },
+      {
+        "question": "How can I reduce the cost of a personal loan?",
+        "answer": "Compare the all-in cost, not just the headline rate: a loan with a low monthly interest but a high management fee can cost more than one with a slightly higher rate and no fee. Shorter tenures usually mean less total interest. Use our loan repayment calculator to estimate the total you'll repay."
+      }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  }
+]

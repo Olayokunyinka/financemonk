@@ -1,0 +1,62 @@
+[
+  {
+    "productSlug": "gtbank-quick-credit",
+    "authorName": "Chidi O.",
+    "overall": 5,
+    "transparency": 5, "customerService": 4, "ease": 5, "value": 5,
+    "title": "Fast and genuinely cheap",
+    "body": "Got it on *737# in under five minutes and the 1.33% monthly rate is the best I've found. Repaid over 12 months with no hidden charges.",
+    "reviewerType": "VERIFIED_CUSTOMER",
+    "status": "PUBLISHED"
+  },
+  {
+    "productSlug": "gtbank-quick-credit",
+    "authorName": "Aisha B.",
+    "overall": 4,
+    "transparency": 4, "customerService": 4, "ease": 5, "value": 4,
+    "title": "Reliable",
+    "body": "Used it twice now. Approval is instant if your salary comes through GTBank. Wish the limit were higher for me.",
+    "reviewerType": "CUSTOMER",
+    "status": "PUBLISHED"
+  },
+  {
+    "productSlug": "renmoney-personal-loan",
+    "authorName": "Tunde A.",
+    "overall": 4,
+    "transparency": 4, "customerService": 5, "ease": 4, "value": 3,
+    "title": "Good for non-customers",
+    "body": "I don't bank with them but still got ₦1.2m over 18 months. The management fee is on the high side but service was excellent.",
+    "reviewerType": "VERIFIED_CUSTOMER",
+    "status": "PUBLISHED"
+  },
+  {
+    "productSlug": "fairmoney-instant-loan",
+    "authorName": "Grace E.",
+    "overall": 3,
+    "transparency": 2, "customerService": 3, "ease": 5, "value": 3,
+    "title": "Convenient but watch the rate",
+    "body": "Super easy in the app, but the short-term rate is steep. Fine for emergencies if you repay quickly.",
+    "reviewerType": "CUSTOMER",
+    "status": "PUBLISHED"
+  },
+  {
+    "productSlug": "sterling-specta",
+    "authorName": "Emeka N.",
+    "overall": 4,
+    "transparency": 4, "customerService": 4, "ease": 5, "value": 4,
+    "title": "Money in minutes",
+    "body": "Specta really does disburse fast and I'm not even a Sterling customer. Clear terms upfront.",
+    "reviewerType": "CUSTOMER",
+    "status": "PUBLISHED"
+  },
+  {
+    "productSlug": "access-payday-loan",
+    "authorName": "Pending Example",
+    "overall": 2,
+    "transparency": 2, "customerService": 2, "ease": 3, "value": 2,
+    "title": "SEED: awaiting moderation",
+    "body": "This review is seeded with PENDING status to demonstrate the moderation queue in a later milestone — it should NOT appear on the public product page.",
+    "reviewerType": "CUSTOMER",
+    "status": "PENDING"
+  }
+]

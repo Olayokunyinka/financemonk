@@ -1,0 +1,377 @@
+// FinCompare Africa — canonical data model.
+//
+// Designed multi-country / multi-product-family from day one (Phase 0 only
+// SEEDS Nigeria personal loans, but the schema needs no changes to add Kenya,
+// South Africa, savings accounts, insurance, etc. later — those are content
+// drops). See PROJECT-SPEC.md for the full data-model rationale and the
+// canonical schema in the PRD (§6).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum ProviderType {
+  BANK
+  MICROFINANCE
+  FINTECH
+  INSURER
+  FUND_MANAGER
+  OTHER
+}
+
+// Product families. Broad on purpose so later phases (savings, cards,
+// insurance, investment) need no migration — only seed data.
+enum ProductType {
+  PERSONAL_LOAN
+  BUSINESS_LOAN
+  PAYDAY_LOAN
+  SAVINGS
+  CURRENT_ACCOUNT
+  FIXED_DEPOSIT
+  CREDIT_CARD
+  DEBIT_CARD
+  HEALTH_INSURANCE
+  AUTO_INSURANCE
+  LIFE_INSURANCE
+  MUTUAL_FUND
+  MONEY_MARKET
+  OTHER
+}
+
+// Trust badge tiers. PROVIDER_VERIFIED (gold) is ONLY granted when a provider
+// is matched to the licensed-institution register AND has claimed the listing.
+enum VerificationBadge {
+  UNVERIFIED
+  POPULARITY_VERIFIED
+  PROVIDER_VERIFIED
+}
+
+// Whether the displayed terms are our best-effort indicative figures or have
+// been confirmed by the (claimed) provider.
+enum DisclaimerState {
+  INDICATIVE
+  PROVIDER_CONFIRMED
+}
+
+enum UserRole {
+  USER
+  BUSINESS
+  ADMIN
+}
+
+enum ReviewerType {
+  CUSTOMER
+  VERIFIED_CUSTOMER
+}
+
+enum ReviewStatus {
+  PENDING
+  PUBLISHED
+  REJECTED
+}
+
+enum ClaimMethod {
+  DOMAIN_EMAIL
+  DOCUMENT
+}
+
+enum ClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LeadStatus {
+  NEW
+  HANDED_OFF
+  CONVERTED
+  REJECTED
+}
+
+// ---------------------------------------------------------------------------
+// Provider — a licensed (or not) institution offering products.
+// ---------------------------------------------------------------------------
+
+model Provider {
+  id      String       @id @default(cuid())
+  slug    String       @unique
+  name    String
+  type    ProviderType @default(BANK)
+  country String // ISO-2 lowercase, e.g. "ng"
+  logoUrl String?
+  website String?
+  about   String?
+
+  // Licensing / verification backbone (the source of truth is
+  // LicensedInstitution; these denormalised fields cache the match result).
+  licensed          Boolean   @default(false)
+  licenseRef        String? // licence number on the register
+  licenseSource     String? // e.g. "Central Bank of Nigeria"
+  licenseVerifiedAt DateTime?
+
+  // Claim state
+  claimed   Boolean @default(false)
+  claimedBy String?
+
+  products Product[]
+  claims   Claim[]
+  leads    Lead[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([country])
+  @@index([type])
+}
+
+// ---------------------------------------------------------------------------
+// Product — the atomic listed unit (a specific financial product + its terms).
+// ---------------------------------------------------------------------------
+
+model Product {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  name        String
+  productType ProductType
+  country     String // ISO-2 lowercase
+
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  summary  String? // one-line summary used in result rows
+  features String[] @default([])
+
+  // --- Comparable key terms ---------------------------------------------
+  // Rates stored as percentages (e.g. 24.5 = 24.5% p.a.). Either a single
+  // representative rate or a min/max range.
+  aprMin       Float?
+  aprMax       Float?
+  interestRate Float? // for deposit products (savings interest p.a.)
+
+  // Itemised fees: [{ label: "Management fee", amount: 1, unit: "%/yr" }, ...]
+  fees Json @default("[]")
+
+  minAmount Float?
+  maxAmount Float?
+  currency  String @default("NGN")
+
+  minTenureMonths Int?
+  maxTenureMonths Int?
+
+  eligibility  String[] @default([])
+  requiredDocs String[] @default([])
+
+  // --- Trust / freshness -------------------------------------------------
+  verificationBadge VerificationBadge @default(UNVERIFIED)
+  disclaimerState   DisclaimerState   @default(INDICATIVE)
+  sourceRefs        Json              @default("[]") // [{ label, url }]
+  lastVerifiedAt    DateTime          @default(now())
+
+  // --- Ratings (denormalised aggregate) ---------------------------------
+  ratingAggregate Float @default(0)
+  reviewCount     Int   @default(0)
+
+  // --- Listing / monetisation state -------------------------------------
+  live      Boolean @default(true) // counts toward thin-content threshold
+  sponsored Boolean @default(false) // featured row — MUST be labelled in UI
+
+  reviews Review[]
+  leads   Lead[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Full-text search vector is added via a raw-SQL migration (Postgres
+  // generated tsvector column + GIN index) in a later milestone (search).
+  @@index([country, productType])
+  @@index([productType])
+  @@index([sponsored])
+}
+
+// ---------------------------------------------------------------------------
+// LicensedInstitution — the verification source of truth (seeded regulator
+// register, e.g. CBN). Gold badge requires a Provider matched to a row here.
+// ---------------------------------------------------------------------------
+
+model LicensedInstitution {
+  id             String  @id @default(cuid())
+  name           String
+  normalisedName String // lowercased/trimmed for matching
+  country        String // ISO-2 lowercase
+  regulator      String // e.g. "Central Bank of Nigeria"
+  licenceNo      String?
+  category       String? // e.g. "Commercial Bank", "Microfinance Bank"
+  status         String  @default("active")
+
+  createdAt DateTime @default(now())
+
+  @@index([country, normalisedName])
+}
+
+// ---------------------------------------------------------------------------
+// Editorial hub content — drives the unique-intro thin-content rule and the
+// FAQ block for each country × product-family comparison page.
+// ---------------------------------------------------------------------------
+
+model Hub {
+  id          String      @id @default(cuid())
+  country     String // ISO-2 lowercase
+  productType ProductType
+
+  title String // H1, e.g. "Best personal loans in Nigeria (2026)"
+  intro String // UNIQUE editorial intro (markdown/plain). Required to index.
+  faq   Json   @default("[]") // [{ question, answer }]
+
+  // Names for neighbouring/related hubs to build the internal-linking mesh.
+  relatedSlugs Json @default("[]") // [{ label, href }]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([country, productType])
+}
+
+// ---------------------------------------------------------------------------
+// Auth.js models (wired up in Milestone 3) + app user role.
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          UserRole  @default(USER)
+
+  accounts Account[]
+  sessions Session[]
+  reviews  Review[]
+  claims   Claim[]
+
+  createdAt DateTime @default(now())
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------------------------------------------------------------------------
+// Review — structured + written, moderated before publish.
+// ---------------------------------------------------------------------------
+
+model Review {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  authorName String? // display name snapshot
+
+  overall Int // 1..5
+  // Sub-ratings (1..5)
+  transparency    Int?
+  customerService Int?
+  ease            Int?
+  value           Int?
+
+  title String
+  body  String
+
+  reviewerType ReviewerType @default(CUSTOMER)
+  status       ReviewStatus @default(PENDING)
+  helpfulCount Int          @default(0)
+
+  ownerResponse    String?
+  ownerRespondedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([productId, status])
+}
+
+// ---------------------------------------------------------------------------
+// Claim — provider claims a listing (Milestone 4).
+// ---------------------------------------------------------------------------
+
+model Claim {
+  id         String      @id @default(cuid())
+  providerId String
+  provider   Provider    @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  method     ClaimMethod
+  status     ClaimStatus @default(PENDING)
+  evidence   String? // domain email used, or document reference
+
+  createdAt DateTime @default(now())
+
+  @@index([providerId, status])
+}
+
+// ---------------------------------------------------------------------------
+// Lead / Application — captured at Apply (Milestone 5). Recorded even when
+// CPA_ENABLED is off (event is logged but not billed/handed off).
+// ---------------------------------------------------------------------------
+
+model Lead {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  fullName   String
+  email      String
+  phone      String?
+  amount     Float?
+  income     Float?
+  consent    Boolean    @default(false)
+  status     LeadStatus @default(NEW)
+  cpaEventAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([providerId, status])
+}

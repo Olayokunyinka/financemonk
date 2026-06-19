@@ -1,0 +1,22 @@
+[
+  { "name": "Access Bank Plc", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/001" },
+  { "name": "Zenith Bank Plc", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/002" },
+  { "name": "Guaranty Trust Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/003" },
+  { "name": "First Bank of Nigeria", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/004" },
+  { "name": "United Bank for Africa", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/005" },
+  { "name": "Fidelity Bank Plc", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/006" },
+  { "name": "Stanbic IBTC Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/007" },
+  { "name": "Sterling Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/008" },
+  { "name": "Wema Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/009" },
+  { "name": "First City Monument Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/010" },
+  { "name": "Union Bank of Nigeria", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/011" },
+  { "name": "Polaris Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/012" },
+  { "name": "Providus Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank", "licenceNo": "CBN/CB/013" },
+  { "name": "Kuda Microfinance Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/101" },
+  { "name": "Renmoney Microfinance Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/102" },
+  { "name": "FairMoney Microfinance Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/103" },
+  { "name": "Carbon (One Finance & Investments)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/104" },
+  { "name": "Page Financials", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/105" },
+  { "name": "Lendigo Nigeria", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Finance Company", "licenceNo": "CBN/FC/201" },
+  { "name": "Specta (Sterling)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank Product", "licenceNo": "CBN/CB/008-P" }
+]

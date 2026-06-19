@@ -1,0 +1,396 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ExternalLink, FileText, CheckCircle2 } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import {
+  getProductBySlug,
+  getAlternatives,
+  getPublishedReviews,
+} from "@/lib/queries";
+import { familyByType, getCountry, COUNTRIES } from "@/lib/taxonomy";
+import { CPA_ENABLED } from "@/lib/site";
+import {
+  productJsonLd,
+  reviewsJsonLd,
+  breadcrumbJsonLd,
+} from "@/lib/jsonld";
+import {
+  formatApr,
+  formatAmountRange,
+  formatTenure,
+  formatCurrency,
+  feesSummary,
+  type FeeItem,
+} from "@/lib/format";
+import { representativeExample } from "@/lib/loan";
+import { JsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { Disclaimer, LastVerified } from "@/components/disclaimer";
+import { VerifiedBadge } from "@/components/verified-badge";
+import { RatingStars } from "@/components/rating-stars";
+import { ProductCard } from "@/components/product-card";
+import { Button, ButtonLink } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+export const revalidate = 3600; // ISR
+
+export async function generateStaticParams() {
+  const products = await prisma.product.findMany({ select: { slug: true } });
+  return products.map((p) => ({ slug: p.slug }));
+}
+
+type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata(props: {
+  params: Params;
+}): Promise<Metadata> {
+  const { slug } = await props.params;
+  const product = await getProductBySlug(slug);
+  if (!product) return {};
+  return {
+    title: `${product.name} — review, rates & terms`,
+    description:
+      product.summary ??
+      `Terms, fees, eligibility and reviews for ${product.name}.`,
+    alternates: { canonical: `/product/${product.slug}` },
+  };
+}
+
+export default async function ProductPage(props: { params: Params }) {
+  const { slug } = await props.params;
+  const product = await getProductBySlug(slug);
+  if (!product) notFound();
+
+  const family = familyByType(product.productType);
+  const country = getCountry(product.country) ?? COUNTRIES.ng;
+  const reviews = await getPublishedReviews(product.id);
+  const alternatives = family
+    ? await getAlternatives(product.country, product.productType, product.slug, 4)
+    : [];
+
+  const fees = (product.fees as FeeItem[]) ?? [];
+  const sources =
+    (product.sourceRefs as { label: string; url: string }[]) ?? [];
+  const example = representativeExample(product);
+
+  const hubHref = family ? `/${country.code}/${family.slug}` : "/";
+  const crumbs = [
+    { name: "Home", href: "/" },
+    { name: country.name, href: hubHref },
+    { name: family?.labelTitle ?? "Products", href: hubHref },
+    { name: product.name, href: `/product/${product.slug}` },
+  ];
+
+  return (
+    <div className="mx-auto max-w-5xl px-4 py-8">
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(crumbs),
+          productJsonLd(product, {
+            lending: family?.lending ?? true,
+            country,
+          }),
+          reviewsJsonLd(product, reviews),
+        ]}
+      />
+
+      <Breadcrumbs crumbs={crumbs} />
+
+      {/* Header */}
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Link href={hubHref} className="hover:text-brand">
+              {product.provider.name}
+            </Link>
+            {product.sponsored ? (
+              <Badge variant="sponsored" title="Paid placement">
+                Sponsored
+              </Badge>
+            ) : null}
+          </div>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight">
+            {product.name}
+          </h1>
+          <div className="mt-2 flex flex-wrap items-center gap-3">
+            <VerifiedBadge
+              input={{
+                verificationBadge: product.verificationBadge,
+                licensed: product.provider.licensed,
+                claimed: product.provider.claimed,
+                licenseSource: product.provider.licenseSource,
+              }}
+              showUnverified
+            />
+            <RatingStars
+              value={product.ratingAggregate}
+              count={product.reviewCount}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-start gap-2">
+          <ButtonLink href="#apply" size="lg" variant="accent">
+            Apply / Get this product
+          </ButtonLink>
+          <Link
+            href="#"
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            Claim this listing
+          </Link>
+        </div>
+      </div>
+
+      {product.summary ? (
+        <p className="mt-4 max-w-3xl text-muted-foreground">{product.summary}</p>
+      ) : null}
+
+      {/* Licence line (E-E-A-T trust signal) */}
+      {product.provider.licensed ? (
+        <p className="mt-4 inline-flex items-center gap-2 rounded-lg bg-gold-bg/50 px-3 py-2 text-sm text-gold">
+          <CheckCircle2 className="h-4 w-4" />
+          Provider licensed — {product.provider.licenseSource}
+          {product.provider.licenseRef
+            ? ` (${product.provider.licenseRef})`
+            : ""}
+        </p>
+      ) : (
+        <p className="mt-4 inline-flex items-center gap-2 rounded-lg bg-muted px-3 py-2 text-sm text-muted-foreground">
+          We have not matched this provider to the {country.regulator} licence
+          register. It cannot show the gold Verified badge.
+        </p>
+      )}
+
+      {/* Terms table */}
+      <section className="mt-8">
+        <h2 className="text-xl font-semibold">Terms</h2>
+        <div className="mt-3 overflow-hidden rounded-xl border border-border">
+          <table className="w-full text-sm">
+            <tbody className="divide-y divide-border">
+              <Row label="Interest / APR (p.a.)">
+                {formatApr(product.aprMin, product.aprMax)}
+              </Row>
+              <Row label="Fees">{feesSummary(fees)}</Row>
+              <Row label="Amount">
+                {formatAmountRange(product.minAmount, product.maxAmount)}
+              </Row>
+              <Row label="Tenure">
+                {formatTenure(product.minTenureMonths, product.maxTenureMonths)}
+              </Row>
+              <Row label="Eligibility">
+                {product.eligibility.length ? (
+                  <ul className="list-disc pl-4">
+                    {product.eligibility.map((e) => (
+                      <li key={e}>{e}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  "—"
+                )}
+              </Row>
+              <Row label="Required documents">
+                {product.requiredDocs.length ? (
+                  <ul className="flex flex-wrap gap-2">
+                    {product.requiredDocs.map((d) => (
+                      <li
+                        key={d}
+                        className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs"
+                      >
+                        <FileText className="h-3 w-3" />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  "—"
+                )}
+              </Row>
+            </tbody>
+          </table>
+        </div>
+        <Disclaimer className="mt-3" lastVerifiedAt={product.lastVerifiedAt} />
+      </section>
+
+      {/* Total-cost illustration */}
+      <section className="mt-8 rounded-xl border border-border bg-muted/30 p-5">
+        <h2 className="text-lg font-semibold">What you&apos;d actually pay</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Representative example (reducing-balance, interest only — excludes
+          fees):
+        </p>
+        <p className="mt-3 text-sm">
+          Borrow{" "}
+          <strong>{formatCurrency(example.principal, product.currency)}</strong>{" "}
+          over <strong>{example.months} months</strong> at{" "}
+          <strong>{formatApr(product.aprMin, product.aprMax)}</strong> →{" "}
+          about{" "}
+          <strong>{formatCurrency(example.monthly, product.currency)}</strong>{" "}
+          per month, total repayment about{" "}
+          <strong>{formatCurrency(example.total, product.currency)}</strong>{" "}
+          (≈ {formatCurrency(example.interest, product.currency)} interest).
+        </p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Illustrative only — your actual rate, fees and repayments depend on the
+          provider&apos;s assessment.{" "}
+          <Link
+            href="/calculators/loan-repayment"
+            className="text-brand hover:underline"
+          >
+            Try the calculator
+          </Link>
+          .
+        </p>
+      </section>
+
+      {/* Apply / CPA */}
+      <section
+        id="apply"
+        className="mt-8 rounded-xl border border-accent/40 bg-accent/5 p-5"
+      >
+        <h2 className="text-lg font-semibold">Apply for {product.name}</h2>
+        {CPA_ENABLED ? (
+          <>
+            <p className="mt-1 text-sm text-muted-foreground">
+              We&apos;ll capture a few details and hand off to the provider.
+            </p>
+            <ButtonLink
+              href={`/apply/${product.slug}`}
+              className="mt-3"
+              variant="accent"
+            >
+              Start application
+            </ButtonLink>
+          </>
+        ) : (
+          <>
+            <p className="mt-1 text-sm text-muted-foreground">
+              You&apos;ll continue on the provider&apos;s own website. (Our
+              guided referral flow is not enabled in this country yet.)
+            </p>
+            {product.provider.website ? (
+              <ButtonLink
+                href={product.provider.website}
+                className="mt-3"
+                variant="accent"
+                target="_blank"
+                rel="nofollow noopener"
+              >
+                Apply with {product.provider.name}
+                <ExternalLink className="h-4 w-4" />
+              </ButtonLink>
+            ) : (
+              <Button className="mt-3" variant="accent" disabled>
+                Provider site unavailable
+              </Button>
+            )}
+          </>
+        )}
+      </section>
+
+      {/* Reviews */}
+      <section className="mt-10">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold">Reviews</h2>
+          <ButtonLink
+            href={`/product/${product.slug}/review`}
+            size="sm"
+            variant="outline"
+          >
+            Write a review
+          </ButtonLink>
+        </div>
+        {reviews.length === 0 ? (
+          <p className="mt-3 text-sm text-muted-foreground">
+            No published reviews yet.
+          </p>
+        ) : (
+          <div className="mt-4 space-y-4">
+            {reviews.map((r) => (
+              <div key={r.id} className="rounded-xl border border-border p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <RatingStars value={r.overall} />
+                  {r.reviewerType === "VERIFIED_CUSTOMER" ? (
+                    <Badge variant="brand">Verified customer</Badge>
+                  ) : (
+                    <Badge variant="neutral">Customer</Badge>
+                  )}
+                </div>
+                <div className="mt-2 font-medium">{r.title}</div>
+                <p className="mt-1 text-sm text-muted-foreground">{r.body}</p>
+                <div className="mt-2 text-xs text-muted-foreground">
+                  {r.authorName ?? "Anonymous"}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Alternatives (mandatory) */}
+      {alternatives.length > 0 ? (
+        <section className="mt-12">
+          <h2 className="text-xl font-semibold">Alternatives</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Other {family?.label} in {country.name}, ranked by rating.
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {alternatives.map((a) => (
+              <ProductCard key={a.slug} product={a} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {/* Sources + freshness */}
+      <section className="mt-12 border-t border-border pt-6 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-4">
+          <LastVerified date={product.lastVerifiedAt} />
+          {sources.length > 0 ? (
+            <span>
+              Source:{" "}
+              {sources.map((s, i) => (
+                <span key={s.url}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="nofollow noopener"
+                    className="text-brand hover:underline"
+                  >
+                    {s.label}
+                  </a>
+                  {i < sources.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </span>
+          ) : null}
+        </div>
+        <p className="mt-3">
+          Indicative only — confirm exact terms with the provider before
+          applying. See our{" "}
+          <Link href="/methodology" className="text-brand hover:underline">
+            methodology
+          </Link>
+          .
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function Row({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <tr className="align-top">
+      <th className="w-48 bg-muted/40 px-4 py-3 text-left font-medium">
+        {label}
+      </th>
+      <td className="px-4 py-3">{children}</td>
+    </tr>
+  );
+}
