@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { RatingStars } from "@/components/rating-stars";
 import { LastVerified } from "@/components/disclaimer";
+import { CompareToggle } from "@/components/compare/compare-tray";
 
 type SortKey = "rating" | "apr" | "fees" | "amount";
 
@@ -152,6 +153,7 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
                     <ButtonLink href={`/product/${r.slug}`} size="sm" variant="outline">
                       View
                     </ButtonLink>
+                    <CompareToggle slug={r.slug} name={r.providerName} />
                   </div>
                 </td>
               </tr>
@@ -202,6 +204,9 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
               <ButtonLink href={`/product/${r.slug}`} size="sm" variant="outline" className="flex-1">
                 View
               </ButtonLink>
+            </div>
+            <div className="mt-2">
+              <CompareToggle slug={r.slug} name={r.providerName} />
             </div>
           </div>
         ))}

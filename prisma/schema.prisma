@@ -190,11 +190,18 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Full-text search vector is added via a raw-SQL migration (Postgres
-  // generated tsvector column + GIN index) in a later milestone (search).
+  // Postgres full-text search. This is a STORED GENERATED column built from
+  // name + summary + features; the migration replaces the plain ADD COLUMN
+  // Prisma emits with a `GENERATED ALWAYS AS (...) STORED` expression so it
+  // stays in sync automatically. Queried via websearch_to_tsquery (see
+  // src/lib/search.ts). Unsupported so Prisma tracks it without trying to
+  // read/write it.
+  searchVector Unsupported("tsvector")?
+
   @@index([country, productType])
   @@index([productType])
   @@index([sponsored])
+  @@index([searchVector], type: Gin)
 }
 
 // ---------------------------------------------------------------------------

@@ -110,9 +110,10 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 ## Milestones
 
 1. **Foundation + public SEO slice** ✅ — scaffold, DB, seed, homepage, hub,
-   product detail, methodology, schema.org, guardrails, docs. *(current)*
-2. **Discovery tools** — faceted `/search` (Postgres FTS), compare tray +
+   product detail, methodology, schema.org, guardrails, docs.
+2. **Discovery tools** ✅ — faceted `/search` (Postgres FTS), compare tray +
    `/compare`, loan repayment calculator. (Sitemap/robots already in place.)
+   *(current)*
 3. **Accounts & reviews** — Auth.js (Google + email), write-a-review + moderation
    queue, verified-customer flag.
 4. **Provider side** — claim flow, verification vs register (gold badge),
@@ -122,7 +123,16 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 
 ## Conventions
 
-- DB reads for pages live in `src/lib/queries.ts`; pages stay thin.
+- DB reads for pages live in `src/lib/queries.ts`; faceted search in
+  `src/lib/search.ts`. Pages stay thin.
+- **Full-text search**: `Product.searchVector` is a STORED GENERATED `tsvector`
+  (over name + summary) with a GIN index, added in migration `*_product_fts`.
+  Only IMMUTABLE functions are allowed in a generated column, so `features` (which
+  needs the STABLE `array_to_string`) is excluded from FTS and searched via the
+  use-case facet instead. Queried with `websearch_to_tsquery` via `$queryRaw`.
+- **Compare tray** is client-side (`localStorage`, `src/components/compare/`),
+  surfaced as a global `<CompareBar>` in the layout; `/compare?ids=` renders the
+  side-by-side view.
 - Plain serializable data crosses into client components via `src/lib/rows.ts`.
 - Money/percent/date formatting in `src/lib/format.ts`; loan maths in
   `src/lib/loan.ts`.

@@ -123,6 +123,18 @@ Once deployed to a public URL, validate it in
   does and shows a "not matched to the register" note.
 - Sponsored sample rows are labelled **Sponsored**.
 
+## What to look at (Milestone 2 — discovery tools)
+
+- **http://localhost:3000/search** — faceted search. Try a keyword (e.g.
+  `salary`), then narrow by provider type, amount, tenure, max interest,
+  use-case or "no fees", and re-sort. Text search uses Postgres full-text search.
+- **http://localhost:3000/calculators/loan-repayment** — enter an amount, rate
+  and tenure to see the monthly repayment and total cost instantly, then press
+  **Find matching products** to see personal loans that fit, cheapest first.
+- **Compare:** on the hub or search results, click **+ Compare** on 2–4 products
+  — a bar appears at the bottom; click **Compare now** to see them side by side
+  at **http://localhost:3000/compare**.
+
 ---
 
 ## Other commands
