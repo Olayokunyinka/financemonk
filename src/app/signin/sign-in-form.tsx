@@ -10,10 +10,12 @@ import { Landmark } from "lucide-react";
 export function SignInForm({
   googleEnabled,
   devLoginEnabled,
+  resendEnabled,
   callbackUrl,
 }: {
   googleEnabled: boolean;
   devLoginEnabled: boolean;
+  resendEnabled: boolean;
   callbackUrl: string;
 }) {
   const [email, setEmail] = useState("");
@@ -21,11 +23,20 @@ export function SignInForm({
   const [role, setRole] = useState<"USER" | "BUSINESS">("USER");
   const [submitting, setSubmitting] = useState(false);
 
-  async function onDevSubmit(e: React.FormEvent) {
+  // Show the email form if either method is available. Dev login takes
+  // precedence locally (instant); otherwise we use the Resend magic-link.
+  const emailEnabled = devLoginEnabled || resendEnabled;
+
+  async function onEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes("@")) return;
     setSubmitting(true);
-    await signIn("dev", { email, name, role, callbackUrl });
+    if (devLoginEnabled) {
+      await signIn("dev", { email, name, role, callbackUrl });
+    } else {
+      // Resend magic-link: sends an email; Auth.js shows the verify-request page.
+      await signIn("resend", { email, callbackUrl });
+    }
   }
 
   return (
@@ -76,8 +87,8 @@ export function SignInForm({
           </button>
         ) : null}
 
-        {devLoginEnabled ? (
-          <form onSubmit={onDevSubmit} className="mt-4 space-y-3">
+        {emailEnabled ? (
+          <form onSubmit={onEmailSubmit} className="mt-4 space-y-3">
             {googleEnabled ? (
               <div className="text-center text-xs text-muted-foreground">or</div>
             ) : null}
@@ -92,36 +103,47 @@ export function SignInForm({
                 className="h-11 w-full rounded-lg border border-border bg-background px-3"
               />
             </div>
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                Display name <span className="text-muted-foreground">(optional)</span>
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Chidi O."
-                className="h-11 w-full rounded-lg border border-border bg-background px-3"
-              />
-            </div>
+            {devLoginEnabled ? (
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  Display name{" "}
+                  <span className="text-muted-foreground">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Chidi O."
+                  className="h-11 w-full rounded-lg border border-border bg-background px-3"
+                />
+              </div>
+            ) : null}
             <button
               type="submit"
               disabled={submitting}
               className="h-11 w-full rounded-lg bg-brand font-medium text-brand-foreground hover:bg-brand/90 disabled:opacity-60"
             >
-              {submitting ? "Signing in…" : "Continue with email"}
+              {submitting
+                ? devLoginEnabled
+                  ? "Signing in…"
+                  : "Sending link…"
+                : devLoginEnabled
+                  ? "Continue with email"
+                  : "Email me a sign-in link"}
             </button>
             <p className="text-xs text-muted-foreground">
-              Dev sign-in: no password needed for local testing. In production
-              this is a secure email magic-link.
+              {devLoginEnabled
+                ? "Dev sign-in: no password needed for local testing. In production this is a secure email magic-link."
+                : "We'll email you a secure one-time sign-in link."}
             </p>
           </form>
         ) : null}
 
-        {!googleEnabled && !devLoginEnabled ? (
+        {!googleEnabled && !emailEnabled ? (
           <p className="mt-4 rounded-lg bg-muted p-3 text-sm text-muted-foreground">
-            No sign-in method is configured. Set <code>AUTH_DEV_LOGIN=true</code>{" "}
-            or add Google credentials in <code>.env</code>.
+            No sign-in method is configured. Set <code>AUTH_DEV_LOGIN=true</code>,
+            add Resend (<code>RESEND_API_KEY</code> + <code>EMAIL_FROM</code>), or
+            add Google credentials in <code>.env</code>.
           </p>
         ) : null}
       </div>

@@ -101,7 +101,11 @@ export default function MethodologyPage() {
           </a>
           .
         </p>
-        <p className="mt-2 text-xs text-muted-foreground">{SITE.editorial.note}</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          We correct errors promptly and date every figure. If you believe a rate
+          or term is wrong, contact us and we&apos;ll re-verify it with the
+          provider.
+        </p>
       </section>
 
       <p className="mt-8 text-sm">

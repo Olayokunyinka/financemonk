@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { googleEnabled, devLoginEnabled } from "@/auth";
+import { googleEnabled, devLoginEnabled, resendEnabled } from "@/auth";
 import { SignInForm } from "./sign-in-form";
 
 export const metadata: Metadata = {
@@ -17,6 +17,7 @@ export default async function SignInPage(props: {
     <SignInForm
       googleEnabled={googleEnabled}
       devLoginEnabled={devLoginEnabled}
+      resendEnabled={resendEnabled}
       callbackUrl={callbackUrl ?? "/"}
     />
   );

@@ -14,6 +14,7 @@ import NextAuth, { type NextAuthConfig } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
 import { prisma } from "@/lib/prisma";
 import { UserRole } from "@/generated/prisma/enums";
 
@@ -27,6 +28,9 @@ const providers: NextAuthConfig["providers"] = [];
 export const googleEnabled = !!(
   process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
 );
+export const resendEnabled = !!(
+  process.env.RESEND_API_KEY && process.env.EMAIL_FROM
+);
 export const devLoginEnabled = process.env.AUTH_DEV_LOGIN === "true";
 
 if (googleEnabled) {
@@ -35,6 +39,17 @@ if (googleEnabled) {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
+    }),
+  );
+}
+
+// Production email magic-link. The verification token is stored via the Prisma
+// adapter; works alongside JWT sessions.
+if (resendEnabled) {
+  providers.push(
+    Resend({
+      apiKey: process.env.RESEND_API_KEY,
+      from: process.env.EMAIL_FROM,
     }),
   );
 }

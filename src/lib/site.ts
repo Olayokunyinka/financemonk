@@ -14,13 +14,16 @@ export const SITE = {
   // in production (Vercel) so it points at the live domain.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
-  // Named editorial responsibility (required for YMYL/E-E-A-T).
+  // Named editorial responsibility (required for YMYL/E-E-A-T). Real,
+  // accountable person; overridable via env for different deployments.
   editorial: {
-    responsibleName: "The FinCompare Africa Editorial Team",
-    responsibleTitle: "Editorial & Data Standards",
-    contactEmail: "editorial@fincompare.africa",
-    // SEED placeholder — replace with the real accountable editor before launch.
-    note: "SEED placeholder editorial identity — replace with the real named, accountable editor before public launch.",
+    responsibleName:
+      process.env.NEXT_PUBLIC_EDITORIAL_NAME ?? "Olayinka Olayokun",
+    responsibleTitle:
+      process.env.NEXT_PUBLIC_EDITORIAL_TITLE ??
+      "Editor & Data Standards Lead",
+    contactEmail:
+      process.env.NEXT_PUBLIC_EDITORIAL_EMAIL ?? "mrolayokun@gmail.com",
   },
 } as const;
 
