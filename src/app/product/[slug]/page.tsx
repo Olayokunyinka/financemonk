@@ -20,10 +20,12 @@ import {
   formatAmountRange,
   formatTenure,
   formatCurrency,
+  formatPercent,
   feesSummary,
   type FeeItem,
 } from "@/lib/format";
 import { representativeExample } from "@/lib/loan";
+import { representativeSavingsExample } from "@/lib/savings";
 import { JsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer, LastVerified } from "@/components/disclaimer";
@@ -69,10 +71,12 @@ export default async function ProductPage(props: { params: Params }) {
     ? await getAlternatives(product.country, product.productType, product.slug, 4)
     : [];
 
+  const lending = family?.lending ?? true;
   const fees = (product.fees as FeeItem[]) ?? [];
   const sources =
     (product.sourceRefs as { label: string; url: string }[]) ?? [];
   const example = representativeExample(product);
+  const savingsExample = representativeSavingsExample(product);
 
   const hubHref = family ? `/${country.code}/${family.slug}` : "/";
   const crumbs = [
@@ -168,16 +172,27 @@ export default async function ProductPage(props: { params: Params }) {
         <div className="mt-3 overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <tbody className="divide-y divide-border">
-              <Row label="Interest / APR (p.a.)">
-                {formatApr(product.aprMin, product.aprMax)}
+              <Row label={lending ? "Interest / APR (p.a.)" : "Interest (p.a.)"}>
+                {lending
+                  ? formatApr(product.aprMin, product.aprMax)
+                  : formatPercent(product.interestRate)}
               </Row>
               <Row label="Fees">{feesSummary(fees)}</Row>
-              <Row label="Amount">
-                {formatAmountRange(product.minAmount, product.maxAmount)}
+              <Row label={lending ? "Amount" : "Min. balance"}>
+                {formatAmountRange(
+                  product.minAmount,
+                  product.maxAmount,
+                  country.currencySymbol,
+                )}
               </Row>
-              <Row label="Tenure">
-                {formatTenure(product.minTenureMonths, product.maxTenureMonths)}
-              </Row>
+              {lending ? (
+                <Row label="Tenure">
+                  {formatTenure(
+                    product.minTenureMonths,
+                    product.maxTenureMonths,
+                  )}
+                </Row>
+              ) : null}
               <Row label="Eligibility">
                 {product.eligibility.length ? (
                   <ul className="list-disc pl-4">
@@ -212,35 +227,71 @@ export default async function ProductPage(props: { params: Params }) {
         <Disclaimer className="mt-3" lastVerifiedAt={product.lastVerifiedAt} />
       </section>
 
-      {/* Total-cost illustration */}
+      {/* Total-cost / growth illustration */}
       <section className="mt-8 rounded-xl border border-border bg-muted/30 p-5">
-        <h2 className="text-lg font-semibold">What you&apos;d actually pay</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Representative example (reducing-balance, interest only — excludes
-          fees):
-        </p>
-        <p className="mt-3 text-sm">
-          Borrow{" "}
-          <strong>{formatCurrency(example.principal, product.currency)}</strong>{" "}
-          over <strong>{example.months} months</strong> at{" "}
-          <strong>{formatApr(product.aprMin, product.aprMax)}</strong> →{" "}
-          about{" "}
-          <strong>{formatCurrency(example.monthly, product.currency)}</strong>{" "}
-          per month, total repayment about{" "}
-          <strong>{formatCurrency(example.total, product.currency)}</strong>{" "}
-          (≈ {formatCurrency(example.interest, product.currency)} interest).
-        </p>
-        <p className="mt-2 text-xs text-muted-foreground">
-          Illustrative only — your actual rate, fees and repayments depend on the
-          provider&apos;s assessment.{" "}
-          <Link
-            href="/calculators/loan-repayment"
-            className="text-brand hover:underline"
-          >
-            Try the calculator
-          </Link>
-          .
-        </p>
+        {lending ? (
+          <>
+            <h2 className="text-lg font-semibold">What you&apos;d actually pay</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Representative example (reducing-balance, interest only — excludes
+              fees):
+            </p>
+            <p className="mt-3 text-sm">
+              Borrow{" "}
+              <strong>
+                {formatCurrency(example.principal, product.currency)}
+              </strong>{" "}
+              over <strong>{example.months} months</strong> at{" "}
+              <strong>{formatApr(product.aprMin, product.aprMax)}</strong> →
+              about{" "}
+              <strong>
+                {formatCurrency(example.monthly, product.currency)}
+              </strong>{" "}
+              per month, total repayment about{" "}
+              <strong>{formatCurrency(example.total, product.currency)}</strong>{" "}
+              (≈ {formatCurrency(example.interest, product.currency)} interest).
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Illustrative only — your actual rate, fees and repayments depend on
+              the provider&apos;s assessment.{" "}
+              <Link href="/calculators/loan-repayment" className="text-brand hover:underline">
+                Try the calculator
+              </Link>
+              .
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 className="text-lg font-semibold">What you&apos;d earn</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Representative example (compound interest, before tax):
+            </p>
+            <p className="mt-3 text-sm">
+              Save{" "}
+              <strong>
+                {formatCurrency(savingsExample.principal, product.currency)}
+              </strong>{" "}
+              for <strong>{savingsExample.years} year</strong> at{" "}
+              <strong>{formatPercent(product.interestRate)}</strong> → about{" "}
+              <strong>
+                {formatCurrency(savingsExample.futureValue, product.currency)}
+              </strong>{" "}
+              (≈ {formatCurrency(savingsExample.interest, product.currency)}{" "}
+              interest earned).
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Illustrative only — actual returns depend on tiers, tax and the
+              provider&apos;s terms.{" "}
+              <Link
+                href={`/calculators/savings-growth?country=${country.code}`}
+                className="text-brand hover:underline"
+              >
+                Try the calculator
+              </Link>
+              .
+            </p>
+          </>
+        )}
       </section>
 
       {/* Apply / CPA */}

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCountry, getFamily, allHubParams } from "@/lib/taxonomy";
+import { getCountry, getFamily, calculatorFor } from "@/lib/taxonomy";
 import {
   getHub,
   getHubProducts,
   hubIsIndexable,
+  listHubs,
 } from "@/lib/queries";
 import { toRow } from "@/lib/rows";
 import { HUB_MIN_PRODUCTS } from "@/lib/site";
@@ -24,9 +25,10 @@ import { JsonLd } from "@/components/json-ld";
 
 export const revalidate = 3600; // ISR
 
-// Statically generate every published country × family hub.
+// Statically generate every published hub (those with editorial content).
 export async function generateStaticParams() {
-  return allHubParams();
+  const hubs = await listHubs();
+  return hubs.map((h) => ({ country: h.country.code, family: h.family.slug }));
 }
 
 type Params = Promise<{ country: string; family: string }>;
@@ -105,10 +107,16 @@ export default async function HubPage(props: { params: Params }) {
           How we compare →
         </Link>
         <Link
-          href="/calculators/loan-repayment"
+          href={
+            family.lending
+              ? calculatorFor(family)
+              : `${calculatorFor(family)}?country=${country.code}`
+          }
           className="text-brand hover:underline"
         >
-          Loan repayment calculator →
+          {family.lending
+            ? "Loan repayment calculator →"
+            : "Savings growth calculator →"}
         </Link>
       </div>
 

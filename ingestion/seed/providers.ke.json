@@ -1,0 +1,12 @@
+[
+  { "slug": "equity-bank-ke", "name": "Equity Bank Kenya", "type": "BANK", "country": "ke", "website": "https://equitygroupholdings.com", "about": "Kenya's largest bank by customers, with retail personal lending.", "claimed": true },
+  { "slug": "kcb-ke", "name": "KCB Bank Kenya", "type": "BANK", "country": "ke", "website": "https://ke.kcbgroup.com", "about": "Leading Kenyan commercial bank offering salary and check-off loans.", "claimed": true },
+  { "slug": "coop-bank-ke", "name": "Co-operative Bank of Kenya", "type": "BANK", "country": "ke", "website": "https://www.co-opbank.co.ke", "about": "Major Kenyan bank with personal and check-off loans.", "claimed": false },
+  { "slug": "ncba-ke", "name": "NCBA Bank Kenya", "type": "BANK", "country": "ke", "website": "https://ke.ncbagroup.com", "about": "Bank behind M-Shwari and Loop digital lending.", "claimed": true },
+  { "slug": "absa-ke", "name": "Absa Bank Kenya", "type": "BANK", "country": "ke", "website": "https://www.absabank.co.ke", "about": "Commercial bank offering personal and salary loans.", "claimed": false },
+  { "slug": "stanbic-ke", "name": "Stanbic Bank Kenya", "type": "BANK", "country": "ke", "website": "https://www.stanbicbank.co.ke", "about": "Member of Standard Bank Group offering personal lending.", "claimed": true },
+  { "slug": "family-bank-ke", "name": "Family Bank", "type": "BANK", "country": "ke", "website": "https://familybank.co.ke", "about": "Kenyan commercial bank with personal and digital loans.", "claimed": false },
+  { "slug": "tala-ke", "name": "Tala (Inventure Mobile)", "type": "FINTECH", "country": "ke", "website": "https://tala.co.ke", "about": "Licensed digital credit provider offering instant mobile loans.", "claimed": true },
+  { "slug": "branch-ke", "name": "Branch International", "type": "FINTECH", "country": "ke", "website": "https://branch.co.ke", "about": "Licensed digital credit provider with app-based personal loans.", "claimed": false },
+  { "slug": "quickkes", "name": "QuickKES Loans", "type": "OTHER", "country": "ke", "website": "https://example.com/quickkes", "about": "SEED unlicensed-lender example for Kenya — never receives the gold badge.", "claimed": false }
+]

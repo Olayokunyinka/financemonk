@@ -1,0 +1,12 @@
+[
+  { "name": "Standard Bank South Africa", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/001" },
+  { "name": "First National Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/002" },
+  { "name": "Absa Bank South Africa", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/003" },
+  { "name": "Nedbank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/004" },
+  { "name": "Capitec Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/005" },
+  { "name": "Investec Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/006" },
+  { "name": "African Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/007" },
+  { "name": "TymeBank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/008" },
+  { "name": "Discovery Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/009" },
+  { "name": "Bidvest Bank", "country": "za", "regulator": "Prudential Authority (SARB)", "category": "Commercial Bank", "licenceNo": "PA/CB/010" }
+]

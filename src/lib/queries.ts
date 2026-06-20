@@ -3,7 +3,24 @@
 
 import { prisma } from "@/lib/prisma";
 import { HUB_MIN_PRODUCTS } from "@/lib/site";
+import { getCountry, familyByType, type Country, type Family } from "@/lib/taxonomy";
 import type { ProductType } from "@/generated/prisma/enums";
+
+// All editorial hubs that resolve to a known country + family. Drives the
+// homepage link mesh, footer, sitemap and hub static generation — so only real
+// slices are linked/indexed (no empty cartesian combos).
+export async function listHubs(): Promise<
+  { country: Country; family: Family; title: string }[]
+> {
+  const hubs = await prisma.hub.findMany({ orderBy: { country: "asc" } });
+  const out: { country: Country; family: Family; title: string }[] = [];
+  for (const h of hubs) {
+    const country = getCountry(h.country);
+    const family = familyByType(h.productType);
+    if (country && family) out.push({ country, family, title: h.title });
+  }
+  return out;
+}
 
 // Product shape with its provider joined — used everywhere a row/card renders.
 export async function getProductBySlug(slug: string) {

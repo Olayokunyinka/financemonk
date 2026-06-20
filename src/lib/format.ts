@@ -1,5 +1,15 @@
 // Display formatting helpers.
 
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  NGN: "₦",
+  KES: "KSh",
+  ZAR: "R",
+};
+
+export function currencySymbol(code: string | null | undefined): string {
+  return CURRENCY_SYMBOLS[code ?? "NGN"] ?? code ?? "₦";
+}
+
 export function formatCurrency(
   amount: number | null | undefined,
   currency = "NGN",
@@ -91,6 +101,6 @@ export function feesSummary(fees: unknown): string {
   const arr = Array.isArray(fees) ? (fees as FeeItem[]) : [];
   if (arr.length === 0) return "No fees";
   const hasZeroOnly = arr.every((f) => !f.amount);
-  if (hasZeroOnly) return "₦0";
+  if (hasZeroOnly) return "No fees";
   return arr.map(formatFee).join(" · ");
 }

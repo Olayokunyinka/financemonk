@@ -1,0 +1,12 @@
+[
+  { "slug": "standard-bank-za", "name": "Standard Bank South Africa", "type": "BANK", "country": "za", "website": "https://www.standardbank.co.za", "about": "One of South Africa's largest banks, with savings and investment accounts.", "claimed": true },
+  { "slug": "fnb-za", "name": "First National Bank", "type": "BANK", "country": "za", "website": "https://www.fnb.co.za", "about": "Major SA bank offering savings pockets and notice deposits.", "claimed": true },
+  { "slug": "absa-za", "name": "Absa Bank South Africa", "type": "BANK", "country": "za", "website": "https://www.absa.co.za", "about": "Commercial bank with savings and notice accounts.", "claimed": false },
+  { "slug": "nedbank-za", "name": "Nedbank", "type": "BANK", "country": "za", "website": "https://www.nedbank.co.za", "about": "SA commercial bank offering savings and fixed deposits.", "claimed": false },
+  { "slug": "capitec-za", "name": "Capitec Bank", "type": "BANK", "country": "za", "website": "https://www.capitecbank.co.za", "about": "Retail bank known for simple, high-interest savings.", "claimed": true },
+  { "slug": "investec-za", "name": "Investec Bank", "type": "BANK", "country": "za", "website": "https://www.investec.com", "about": "Specialist bank with competitive notice and fixed deposits.", "claimed": false },
+  { "slug": "african-bank-za", "name": "African Bank", "type": "BANK", "country": "za", "website": "https://www.africanbank.co.za", "about": "Bank offering market-leading fixed deposit rates.", "claimed": true },
+  { "slug": "tymebank-za", "name": "TymeBank", "type": "BANK", "country": "za", "website": "https://www.tymebank.co.za", "about": "Digital bank with GoalSave high-interest savings.", "claimed": true },
+  { "slug": "discovery-bank-za", "name": "Discovery Bank", "type": "BANK", "country": "za", "website": "https://www.discovery.co.za", "about": "Behavioural bank with rewards-linked savings.", "claimed": false },
+  { "slug": "quickrand", "name": "QuickRand Savings Club", "type": "OTHER", "country": "za", "website": "https://example.com/quickrand", "about": "SEED unlicensed example for South Africa — never receives the gold badge.", "claimed": false }
+]

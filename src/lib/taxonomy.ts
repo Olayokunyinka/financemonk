@@ -22,10 +22,26 @@ export const COUNTRIES: Record<string, Country> = {
     currencySymbol: "₦",
     regulator: "Central Bank of Nigeria",
   },
-  // Later phases (content drops, no code change):
-  // ke: { code: "ke", name: "Kenya", currency: "KES", currencySymbol: "KSh", regulator: "Central Bank of Kenya" },
-  // za: { code: "za", name: "South Africa", currency: "ZAR", currencySymbol: "R", regulator: "Prudential Authority (SARB)" },
+  ke: {
+    code: "ke",
+    name: "Kenya",
+    currency: "KES",
+    currencySymbol: "KSh",
+    regulator: "Central Bank of Kenya",
+  },
+  za: {
+    code: "za",
+    name: "South Africa",
+    currency: "ZAR",
+    currencySymbol: "R",
+    regulator: "Prudential Authority (SARB)",
+  },
 };
+
+// Convenience: currency lookup by country code (used by the seed script).
+export function currencyOf(countryCode: string): string {
+  return COUNTRIES[countryCode]?.currency ?? "NGN";
+}
 
 export type Family = {
   slug: string; // used in URLs
@@ -46,10 +62,23 @@ export const FAMILIES: Record<string, Family> = {
     labelTitle: "Personal Loans",
     lending: true,
   },
+  "savings-accounts": {
+    slug: "savings-accounts",
+    type: ProductType.SAVINGS,
+    label: "savings accounts",
+    labelTitle: "Savings Accounts",
+    lending: false,
+  },
   // Later phases (content drops, no code change):
-  // "savings-accounts": { slug: "savings-accounts", type: ProductType.SAVINGS, label: "savings accounts", labelTitle: "Savings Accounts", lending: false },
   // "business-loans": { slug: "business-loans", type: ProductType.BUSINESS_LOAN, label: "business loans", labelTitle: "Business Loans", lending: true },
 };
+
+// The calculator a family funnels into.
+export function calculatorFor(family: Family): string {
+  return family.lending
+    ? "/calculators/loan-repayment"
+    : "/calculators/savings-growth";
+}
 
 export function getCountry(code: string): Country | undefined {
   return COUNTRIES[code.toLowerCase()];

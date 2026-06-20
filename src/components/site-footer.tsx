@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
-import { COUNTRIES, FAMILIES, hubHref } from "@/lib/taxonomy";
+import { hubHref } from "@/lib/taxonomy";
+import { listHubs } from "@/lib/queries";
 
 // The footer is a primary SEO surface: the country × family link mesh feeds
-// crawl equity into the deep hub pages. It also carries the named editorial
-// responsibility (E-E-A-T) and the standing disclaimer.
-export function SiteFooter() {
+// crawl equity into the deep hub pages. It is driven by real published hubs so
+// we never link to empty pages. Also carries the named editorial responsibility
+// (E-E-A-T) and the standing disclaimer.
+export async function SiteFooter() {
+  const hubs = await listHubs();
+  const countries = Array.from(
+    new Map(hubs.map((h) => [h.country.code, h.country])).values(),
+  );
+
   return (
     <footer className="mt-16 border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -25,34 +32,35 @@ export function SiteFooter() {
         <div>
           <div className="text-sm font-semibold">Compare by country</div>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            {Object.values(COUNTRIES).map((c) => (
-              <li key={c.code}>
-                <Link
-                  href={hubHref(c.code, Object.values(FAMILIES)[0].slug)}
-                  className="hover:text-foreground"
-                >
-                  {c.name}
-                </Link>
-              </li>
-            ))}
+            {countries.map((c) => {
+              const first = hubs.find((h) => h.country.code === c.code)!;
+              return (
+                <li key={c.code}>
+                  <Link
+                    href={hubHref(c.code, first.family.slug)}
+                    className="hover:text-foreground"
+                  >
+                    {c.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <div>
           <div className="text-sm font-semibold">Popular comparisons</div>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            {Object.values(COUNTRIES).flatMap((c) =>
-              Object.values(FAMILIES).map((f) => (
-                <li key={`${c.code}-${f.slug}`}>
-                  <Link
-                    href={hubHref(c.code, f.slug)}
-                    className="hover:text-foreground"
-                  >
-                    Best {f.label} in {c.name}
-                  </Link>
-                </li>
-              )),
-            )}
+            {hubs.map((h) => (
+              <li key={`${h.country.code}-${h.family.slug}`}>
+                <Link
+                  href={hubHref(h.country.code, h.family.slug)}
+                  className="hover:text-foreground"
+                >
+                  Best {h.family.label} in {h.country.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -66,7 +74,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/methodology#editorial" className="hover:text-foreground">
-                Editorial & data standards
+                Editorial &amp; data standards
               </Link>
             </li>
           </ul>

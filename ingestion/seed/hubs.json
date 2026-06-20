@@ -30,5 +30,54 @@
       { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
       { "label": "How we compare", "href": "/methodology" }
     ]
+  },
+  {
+    "country": "ng",
+    "productType": "SAVINGS",
+    "title": "Best savings accounts in Nigeria (2026)",
+    "intro": "Savings accounts in Nigeria range from everyday accounts you can dip into anytime to fixed deposits that lock your money for a higher, guaranteed rate. With inflation a real concern, the headline interest rate matters — but so do the conditions: whether interest is paid on every balance or only above a threshold, whether there's a monthly maintenance fee, and how easily you can withdraw. We convert every product to a comparable annual rate and show fees and minimum balances side by side. We list only deposit products from institutions licensed by the Central Bank of Nigeria, and we mark which providers are licence-checked and have claimed their listing. Sort by interest rate, fees or minimum balance, and confirm the exact terms with the provider — figures are indicative and change often.",
+    "faq": [
+      { "question": "How were these savings accounts ranked?", "answer": "By default we sort by customer rating, with clearly labelled sponsored placements shown first. You can re-sort by highest interest, lowest fees or smallest opening balance. Ranking never affects the licence-verified badge." },
+      { "question": "Is a fixed deposit better than a regular savings account?", "answer": "Fixed deposits usually pay a higher, guaranteed rate but lock your money for a set term, with a penalty for early withdrawal. Regular savings pay less but let you access funds anytime. Match the choice to when you'll need the money." },
+      { "question": "Are these interest rates guaranteed?", "answer": "No. Savings rates are indicative and can change, and many are tiered by balance. Each product shows when we last verified it. Always confirm with the provider before opening an account." },
+      { "question": "What do I need to open a savings account in Nigeria?", "answer": "Typically your BVN, a valid ID and a passport photograph; some accounts also ask for a utility bill. Each product lists its required documents." }
+    ],
+    "relatedSlugs": [
+      { "label": "Savings growth calculator", "href": "/calculators/savings-growth?country=ng" },
+      { "label": "Best personal loans in Nigeria", "href": "/ng/personal-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ke",
+    "productType": "PERSONAL_LOAN",
+    "title": "Best personal loans in Kenya (2026)",
+    "intro": "Personal loans in Kenya span instant mobile loans of a few hundred shillings to multi-year check-off loans repaid straight from your salary. Mobile lenders are fast but can be expensive once facility fees are annualised, while bank check-off loans offer much lower rates if your employer participates. We convert every product to a comparable annual basis and show the fees alongside the rate. We list only providers licensed by the Central Bank of Kenya — including digital credit providers, which now require a CBK licence — and we mark which have been licence-checked and have claimed their listing. Sort by interest, fees or amount, and always confirm the exact terms with the provider, as figures are indicative and change frequently.",
+    "faq": [
+      { "question": "How were these loans ranked?", "answer": "By default we sort by customer rating, with labelled sponsored rows first. You can re-sort by lowest interest, lowest fees or smallest amount. Ranking is separate from the licence check." },
+      { "question": "What does the gold Verified badge mean?", "answer": "The provider is matched to the Central Bank of Kenya's register of licensed institutions (including licensed digital credit providers) and has claimed its listing. Unlicensed lenders never receive it." },
+      { "question": "Are mobile loans cheaper than bank loans?", "answer": "Not usually. Mobile loans are convenient and fast, but their facility fees translate to high annual rates. If you qualify for a bank check-off loan, it's typically much cheaper." },
+      { "question": "What do I need to apply?", "answer": "Most lenders require your National ID and a KRA PIN; salary and check-off loans also need payslips. Each product lists the specifics." }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "za",
+    "productType": "SAVINGS",
+    "title": "Best savings accounts in South Africa (2026)",
+    "intro": "South African savers can choose between flexible accounts with instant access, notice deposits that pay more in exchange for a waiting period, and fixed deposits that lock in the highest guaranteed rates. Digital banks have pushed everyday savings rates up sharply, while specialist and challenger banks often lead on fixed deposits. We convert every product to a comparable annual rate and show fees, notice periods and minimum balances side by side. We list only deposit-taking institutions registered with the Prudential Authority (SARB), and we mark which providers are licence-checked and have claimed their listing. Sort by interest, fees or minimum balance, and confirm exact terms with the provider — rates are indicative and change often.",
+    "faq": [
+      { "question": "How were these accounts ranked?", "answer": "By default we sort by customer rating, with labelled sponsored placements first. You can re-sort by highest interest, lowest fees or smallest opening balance. Ranking is separate from the licence check." },
+      { "question": "What's the difference between notice and fixed deposits?", "answer": "A notice deposit needs you to give advance notice (e.g. 32 days) before withdrawing and pays more than instant-access savings. A fixed deposit locks your money for a set term at the highest guaranteed rate, with penalties for breaking early." },
+      { "question": "Are these rates guaranteed?", "answer": "No. Savings rates are indicative, often tiered by balance, and can change. Each product shows when we last verified it. Always confirm with the provider." },
+      { "question": "What do I need to open an account?", "answer": "Generally your South African ID and sometimes proof of address. Each product lists its required documents." }
+    ],
+    "relatedSlugs": [
+      { "label": "Savings growth calculator", "href": "/calculators/savings-growth?country=za" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
   }
 ]

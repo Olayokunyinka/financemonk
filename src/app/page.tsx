@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Search, Calculator, ShieldCheck, BadgeCheck } from "lucide-react";
-import { getFeaturedProducts } from "@/lib/queries";
-import { COUNTRIES, FAMILIES, hubHref } from "@/lib/taxonomy";
+import { getFeaturedProducts, listHubs } from "@/lib/queries";
+import { hubHref } from "@/lib/taxonomy";
 import { ProductCard } from "@/components/product-card";
 import { ButtonLink } from "@/components/ui/button";
 import { Disclaimer } from "@/components/disclaimer";
@@ -11,9 +11,21 @@ import { Disclaimer } from "@/components/disclaimer";
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const featured = await getFeaturedProducts(4);
-  const families = Object.values(FAMILIES);
-  const countries = Object.values(COUNTRIES);
+  const [featured, hubs] = await Promise.all([
+    getFeaturedProducts(4),
+    listHubs(),
+  ]);
+  // Derive the live countries/families from real hubs (no empty links).
+  const countries = Array.from(
+    new Map(hubs.map((h) => [h.country.code, h.country])).values(),
+  );
+  const families = Array.from(
+    new Map(hubs.map((h) => [h.family.slug, h.family])).values(),
+  );
+  const firstHubForCountry = (code: string) =>
+    hubs.find((h) => h.country.code === code)!;
+  const firstHubForFamily = (slug: string) =>
+    hubs.find((h) => h.family.slug === slug)!;
 
   return (
     <div>
@@ -50,17 +62,15 @@ export default async function HomePage() {
 
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm">
             <span className="text-muted-foreground">Popular:</span>
-            {countries.flatMap((c) =>
-              families.map((f) => (
-                <Link
-                  key={`${c.code}-${f.slug}`}
-                  href={hubHref(c.code, f.slug)}
-                  className="rounded-full border border-border bg-background px-3 py-1 hover:border-brand hover:text-brand"
-                >
-                  Best {f.label} in {c.name}
-                </Link>
-              )),
-            )}
+            {hubs.map((h) => (
+              <Link
+                key={`${h.country.code}-${h.family.slug}`}
+                href={hubHref(h.country.code, h.family.slug)}
+                className="rounded-full border border-border bg-background px-3 py-1 hover:border-brand hover:text-brand"
+              >
+                Best {h.family.label} in {h.country.name}
+              </Link>
+            ))}
             <Link
               href="/calculators/loan-repayment"
               className="rounded-full border border-border bg-background px-3 py-1 hover:border-brand hover:text-brand"
@@ -96,15 +106,18 @@ export default async function HomePage() {
           <div>
             <h2 className="text-lg font-semibold">Browse by country</h2>
             <div className="mt-3 flex flex-wrap gap-2">
-              {countries.map((c) => (
-                <Link
-                  key={c.code}
-                  href={hubHref(c.code, families[0].slug)}
-                  className="rounded-lg border border-border px-4 py-2 text-sm hover:border-brand hover:text-brand"
-                >
-                  {c.name}
-                </Link>
-              ))}
+              {countries.map((c) => {
+                const h = firstHubForCountry(c.code);
+                return (
+                  <Link
+                    key={c.code}
+                    href={hubHref(c.code, h.family.slug)}
+                    className="rounded-lg border border-border px-4 py-2 text-sm hover:border-brand hover:text-brand"
+                  >
+                    {c.name}
+                  </Link>
+                );
+              })}
               <span className="rounded-lg border border-dashed border-border px-4 py-2 text-sm text-muted-foreground">
                 More countries soon
               </span>
@@ -113,17 +126,20 @@ export default async function HomePage() {
           <div>
             <h2 className="text-lg font-semibold">Browse by product</h2>
             <div className="mt-3 flex flex-wrap gap-2">
-              {families.map((f) => (
-                <Link
-                  key={f.slug}
-                  href={hubHref(countries[0].code, f.slug)}
-                  className="rounded-lg border border-border px-4 py-2 text-sm hover:border-brand hover:text-brand"
-                >
-                  {f.labelTitle}
-                </Link>
-              ))}
+              {families.map((f) => {
+                const h = firstHubForFamily(f.slug);
+                return (
+                  <Link
+                    key={f.slug}
+                    href={hubHref(h.country.code, f.slug)}
+                    className="rounded-lg border border-border px-4 py-2 text-sm hover:border-brand hover:text-brand"
+                  >
+                    {f.labelTitle}
+                  </Link>
+                );
+              })}
               <span className="rounded-lg border border-dashed border-border px-4 py-2 text-sm text-muted-foreground">
-                Savings, cards, insurance soon
+                Cards &amp; insurance soon
               </span>
             </div>
           </div>
@@ -178,18 +194,16 @@ export default async function HomePage() {
         <section>
           <h2 className="text-lg font-semibold">Popular comparisons</h2>
           <ul className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
-            {countries.flatMap((c) =>
-              families.map((f) => (
-                <li key={`${c.code}-${f.slug}`}>
-                  <Link
-                    href={hubHref(c.code, f.slug)}
-                    className="text-brand hover:underline"
-                  >
-                    Best {f.label} in {c.name} (2026)
-                  </Link>
-                </li>
-              )),
-            )}
+            {hubs.map((h) => (
+              <li key={`${h.country.code}-${h.family.slug}`}>
+                <Link
+                  href={hubHref(h.country.code, h.family.slug)}
+                  className="text-brand hover:underline"
+                >
+                  Best {h.family.label} in {h.country.name} (2026)
+                </Link>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

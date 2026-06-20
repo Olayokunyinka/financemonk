@@ -117,114 +117,147 @@ async function main() {
   await prisma.licensedInstitution.deleteMany();
   await prisma.hub.deleteMany();
 
-  // --- Licensed-institution register (verification source of truth) --------
-  const licensed = load<LicensedSeed[]>("licensed-institutions.ng.json");
-  await prisma.licensedInstitution.createMany({
-    data: licensed.map((l) => ({
-      name: l.name,
-      normalisedName: norm(l.name),
-      country: l.country,
-      regulator: l.regulator,
-      category: l.category ?? null,
-      licenceNo: l.licenceNo ?? null,
-    })),
-  });
-  const registerByNorm = new Map(licensed.map((l) => [norm(l.name), l]));
-  console.log(`  • ${licensed.length} licensed institutions`);
-
-  // --- Providers (with licence match) --------------------------------------
-  const providers = load<ProviderSeed[]>("providers.ng.json");
-  const providerIdBySlug = new Map<string, string>();
-  for (const p of providers) {
-    const match = registerByNorm.get(norm(p.name));
-    const created = await prisma.provider.create({
-      data: {
-        slug: p.slug,
-        name: p.name,
-        type: ProviderType[p.type],
-        country: p.country,
-        website: p.website ?? null,
-        about: p.about ?? null,
-        claimed: p.claimed ?? false,
-        licensed: !!match,
-        licenseRef: match?.licenceNo ?? null,
-        licenseSource: match?.regulator ?? null,
-        licenseVerifiedAt: match ? new Date() : null,
-      },
+  // --- Licensed-institution registers (verification source of truth) -------
+  // Keyed by `${country}:${normalisedName}` so matching is country-aware.
+  const registerFiles = [
+    "licensed-institutions.ng.json",
+    "licensed-institutions.ke.json",
+    "licensed-institutions.za.json",
+  ];
+  const registerByKey = new Map<string, LicensedSeed>();
+  let registerCount = 0;
+  for (const file of registerFiles) {
+    const licensed = load<LicensedSeed[]>(file);
+    await prisma.licensedInstitution.createMany({
+      data: licensed.map((l) => ({
+        name: l.name,
+        normalisedName: norm(l.name),
+        country: l.country,
+        regulator: l.regulator,
+        category: l.category ?? null,
+        licenceNo: l.licenceNo ?? null,
+      })),
     });
-    providerIdBySlug.set(p.slug, created.id);
+    for (const l of licensed) registerByKey.set(`${l.country}:${norm(l.name)}`, l);
+    registerCount += licensed.length;
   }
-  const licensedCount = providers.filter((p) =>
-    registerByNorm.has(norm(p.name)),
-  ).length;
+  console.log(`  • ${registerCount} licensed institutions (3 registers)`);
+
+  // --- Providers (with country-aware licence match) ------------------------
+  const providerFiles = ["providers.ng.json", "providers.ke.json", "providers.za.json"];
+  type ProviderInfo = { id: string; licensed: boolean; claimed: boolean };
+  const providerBySlug = new Map<string, ProviderInfo>();
+  let providerCount = 0;
+  let licensedCount = 0;
+  for (const file of providerFiles) {
+    const providers = load<ProviderSeed[]>(file);
+    for (const p of providers) {
+      const match = registerByKey.get(`${p.country}:${norm(p.name)}`);
+      const created = await prisma.provider.create({
+        data: {
+          slug: p.slug,
+          name: p.name,
+          type: ProviderType[p.type],
+          country: p.country,
+          website: p.website ?? null,
+          about: p.about ?? null,
+          claimed: p.claimed ?? false,
+          licensed: !!match,
+          licenseRef: match?.licenceNo ?? null,
+          licenseSource: match?.regulator ?? null,
+          licenseVerifiedAt: match ? new Date() : null,
+        },
+      });
+      providerBySlug.set(p.slug, {
+        id: created.id,
+        licensed: !!match,
+        claimed: p.claimed ?? false,
+      });
+      providerCount++;
+      if (match) licensedCount++;
+    }
+  }
   console.log(
-    `  • ${providers.length} providers (${licensedCount} licence-matched, ${
-      providers.length - licensedCount
+    `  • ${providerCount} providers (${licensedCount} licence-matched, ${
+      providerCount - licensedCount
     } unlicensed)`,
   );
 
-  // --- Products (with computed verification badge) -------------------------
-  const products = load<ProductSeed[]>("products.ng.personal-loans.json");
+  // --- Products, per country × family slice (with computed badge) ----------
+  const currencyByCountry: Record<string, string> = {
+    ng: "NGN",
+    ke: "KES",
+    za: "ZAR",
+  };
+  const slices: { file: string; country: string; productType: keyof typeof ProductType }[] = [
+    { file: "products.ng.personal-loans.json", country: "ng", productType: "PERSONAL_LOAN" },
+    { file: "products.ng.savings-accounts.json", country: "ng", productType: "SAVINGS" },
+    { file: "products.ke.personal-loans.json", country: "ke", productType: "PERSONAL_LOAN" },
+    { file: "products.za.savings-accounts.json", country: "za", productType: "SAVINGS" },
+  ];
+
+  let productCount = 0;
   let goldCount = 0;
-  for (const pr of products) {
-    const providerId = providerIdBySlug.get(pr.providerSlug);
-    if (!providerId) {
-      console.warn(`  ! product ${pr.slug} references unknown provider`);
-      continue;
-    }
-    const provider = providers.find((p) => p.slug === pr.providerSlug)!;
-    const isLicensed = registerByNorm.has(norm(provider.name));
-    const isClaimed = provider.claimed ?? false;
-    const rating = pr.ratingAggregate ?? 0;
-    const reviews = pr.reviewCount ?? 0;
+  for (const slice of slices) {
+    const products = load<ProductSeed[]>(slice.file);
+    for (const pr of products) {
+      const provider = providerBySlug.get(pr.providerSlug);
+      if (!provider) {
+        console.warn(`  ! product ${pr.slug} references unknown provider`);
+        continue;
+      }
+      const rating = pr.ratingAggregate ?? 0;
+      const reviews = pr.reviewCount ?? 0;
 
-    // Badge logic (mirrors src/lib/verification.ts):
-    // gold = licensed AND claimed; grey = popular & well-rated; else none.
-    let badge: VerificationBadge = VerificationBadge.UNVERIFIED;
-    if (isLicensed && isClaimed) {
-      badge = VerificationBadge.PROVIDER_VERIFIED;
-      goldCount++;
-    } else if (reviews >= 100 && rating >= 4.0) {
-      badge = VerificationBadge.POPULARITY_VERIFIED;
-    }
+      // Badge logic (mirrors src/lib/verification.ts):
+      // gold = licensed AND claimed; grey = popular & well-rated; else none.
+      let badge: VerificationBadge = VerificationBadge.UNVERIFIED;
+      if (provider.licensed && provider.claimed) {
+        badge = VerificationBadge.PROVIDER_VERIFIED;
+        goldCount++;
+      } else if (reviews >= 100 && rating >= 4.0) {
+        badge = VerificationBadge.POPULARITY_VERIFIED;
+      }
 
-    await prisma.product.create({
-      data: {
-        slug: pr.slug,
-        name: pr.name,
-        productType: ProductType.PERSONAL_LOAN,
-        country: "ng",
-        providerId,
-        summary: pr.summary ?? null,
-        features: pr.features ?? [],
-        aprMin: pr.aprMin ?? null,
-        aprMax: pr.aprMax ?? null,
-        interestRate: pr.interestRate ?? null,
-        fees: (pr.fees ?? []) as object,
-        minAmount: pr.minAmount ?? null,
-        maxAmount: pr.maxAmount ?? null,
-        currency: pr.currency ?? "NGN",
-        minTenureMonths: pr.minTenureMonths ?? null,
-        maxTenureMonths: pr.maxTenureMonths ?? null,
-        eligibility: pr.eligibility ?? [],
-        requiredDocs: pr.requiredDocs ?? [],
-        sourceRefs: (pr.sourceRefs ?? []) as object,
-        lastVerifiedAt: pr.lastVerifiedAt
-          ? new Date(pr.lastVerifiedAt)
-          : new Date(),
-        sponsored: pr.sponsored ?? false,
-        verificationBadge: badge,
-        disclaimerState: isClaimed
-          ? DisclaimerState.PROVIDER_CONFIRMED
-          : DisclaimerState.INDICATIVE,
-        ratingAggregate: rating,
-        reviewCount: reviews,
-        live: true,
-      },
-    });
+      await prisma.product.create({
+        data: {
+          slug: pr.slug,
+          name: pr.name,
+          productType: ProductType[slice.productType],
+          country: slice.country,
+          providerId: provider.id,
+          summary: pr.summary ?? null,
+          features: pr.features ?? [],
+          aprMin: pr.aprMin ?? null,
+          aprMax: pr.aprMax ?? null,
+          interestRate: pr.interestRate ?? null,
+          fees: (pr.fees ?? []) as object,
+          minAmount: pr.minAmount ?? null,
+          maxAmount: pr.maxAmount ?? null,
+          currency: pr.currency ?? currencyByCountry[slice.country] ?? "NGN",
+          minTenureMonths: pr.minTenureMonths ?? null,
+          maxTenureMonths: pr.maxTenureMonths ?? null,
+          eligibility: pr.eligibility ?? [],
+          requiredDocs: pr.requiredDocs ?? [],
+          sourceRefs: (pr.sourceRefs ?? []) as object,
+          lastVerifiedAt: pr.lastVerifiedAt
+            ? new Date(pr.lastVerifiedAt)
+            : new Date(),
+          sponsored: pr.sponsored ?? false,
+          verificationBadge: badge,
+          disclaimerState: provider.claimed
+            ? DisclaimerState.PROVIDER_CONFIRMED
+            : DisclaimerState.INDICATIVE,
+          ratingAggregate: rating,
+          reviewCount: reviews,
+          live: true,
+        },
+      });
+      productCount++;
+    }
   }
   console.log(
-    `  • ${products.length} products (${goldCount} gold-verified, rest grey/unverified)`,
+    `  • ${productCount} products across ${slices.length} slices (${goldCount} gold-verified)`,
   );
 
   // --- Reviews (moderation status preserved) -------------------------------

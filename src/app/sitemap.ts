@@ -1,8 +1,13 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { prisma } from "@/lib/prisma";
-import { allHubParams, getCountry, getFamily } from "@/lib/taxonomy";
-import { getHub, getHubProducts, hubIsIndexable } from "@/lib/queries";
+import {
+  getHub,
+  getHubProducts,
+  hubIsIndexable,
+  listHubs,
+} from "@/lib/queries";
+import { calculatorFor } from "@/lib/taxonomy";
 
 export const revalidate = 3600;
 
@@ -23,10 +28,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Hubs — only those that pass the thin-content (indexable) rule.
   const hubEntries: MetadataRoute.Sitemap = [];
-  for (const { country, family } of allHubParams()) {
-    const c = getCountry(country);
-    const f = getFamily(family);
-    if (!c || !f) continue;
+  const calculators = new Set<string>();
+  for (const { country: c, family: f } of await listHubs()) {
+    calculators.add(calculatorFor(f));
     const hub = await getHub(c.code, f.type);
     const products = await getHubProducts(c.code, f.type);
     if (!hubIsIndexable(hub, products.length)) continue;
@@ -37,6 +41,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     });
   }
+
+  // Calculators that are in use.
+  const calcEntries: MetadataRoute.Sitemap = [...calculators].map((path) => ({
+    url: `${SITE.url}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
 
   // Products (live only).
   const products = await prisma.product.findMany({
@@ -50,5 +62,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...hubEntries, ...productEntries];
+  return [...staticEntries, ...hubEntries, ...calcEntries, ...productEntries];
 }

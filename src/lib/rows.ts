@@ -8,6 +8,7 @@ import {
   formatTenure,
   formatAmountRange,
   feesSummary,
+  currencySymbol,
   type FeeItem,
 } from "@/lib/format";
 
@@ -86,11 +87,21 @@ export function toRow(p: ProductWithProvider): ProductRow {
     badgeTier: badge.tier,
     badgeLabel: badge.label,
     badgeBasis: badge.basis,
-    aprText: formatApr(p.aprMin, p.aprMax),
+    // Loans show APR; deposit products (no APR) show their interest rate.
+    aprText:
+      p.aprMin != null || p.aprMax != null
+        ? formatApr(p.aprMin, p.aprMax)
+        : p.interestRate != null
+          ? `${p.interestRate}%`
+          : "—",
     aprSort: p.aprMin ?? p.aprMax ?? p.interestRate ?? Number.POSITIVE_INFINITY,
     feesText: feesSummary(p.fees),
     feesSort: minFee(p.fees),
-    amountText: formatAmountRange(p.minAmount, p.maxAmount),
+    amountText: formatAmountRange(
+      p.minAmount,
+      p.maxAmount,
+      currencySymbol(p.currency),
+    ),
     minAmountSort: p.minAmount ?? Number.POSITIVE_INFINITY,
     tenureText: formatTenure(p.minTenureMonths, p.maxTenureMonths),
     rating: p.ratingAggregate,

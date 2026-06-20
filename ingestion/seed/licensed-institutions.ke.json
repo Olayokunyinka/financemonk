@@ -1,0 +1,14 @@
+[
+  { "name": "Equity Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/001" },
+  { "name": "KCB Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/002" },
+  { "name": "Co-operative Bank of Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/003" },
+  { "name": "NCBA Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/004" },
+  { "name": "Absa Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/005" },
+  { "name": "Standard Chartered Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/006" },
+  { "name": "Stanbic Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/007" },
+  { "name": "Diamond Trust Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/008" },
+  { "name": "Family Bank", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/009" },
+  { "name": "I&M Bank Kenya", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Commercial Bank", "licenceNo": "CBK/CB/010" },
+  { "name": "Tala (Inventure Mobile)", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Digital Credit Provider", "licenceNo": "CBK/DCP/101" },
+  { "name": "Branch International", "country": "ke", "regulator": "Central Bank of Kenya", "category": "Digital Credit Provider", "licenceNo": "CBK/DCP/102" }
+]
