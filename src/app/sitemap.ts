@@ -26,10 +26,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const hubs = await listHubs();
+
+  // Country landing pages (one per country that has hubs).
+  const countryEntries: MetadataRoute.Sitemap = Array.from(
+    new Map(hubs.map((h) => [h.country.code, h.country])).values(),
+  ).map((c) => ({
+    url: `${SITE.url}/${c.code}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   // Hubs — only those that pass the thin-content (indexable) rule.
   const hubEntries: MetadataRoute.Sitemap = [];
   const calculators = new Set<string>();
-  for (const { country: c, family: f } of await listHubs()) {
+  for (const { country: c, family: f } of hubs) {
     calculators.add(calculatorFor(f));
     const hub = await getHub(c.code, f.type);
     const products = await getHubProducts(c.code, f.type);
@@ -79,6 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticEntries,
+    ...countryEntries,
     ...hubEntries,
     ...calcEntries,
     ...useCaseEntries,

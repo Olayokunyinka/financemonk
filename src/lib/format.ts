@@ -1,5 +1,7 @@
 // Display formatting helpers.
 
+import { localeForCurrency } from "@/lib/taxonomy";
+
 const CURRENCY_SYMBOLS: Record<string, string> = {
   NGN: "₦",
   KES: "KSh",
@@ -13,10 +15,11 @@ export function currencySymbol(code: string | null | undefined): string {
 export function formatCurrency(
   amount: number | null | undefined,
   currency = "NGN",
+  locale?: string,
 ): string {
   if (amount === null || amount === undefined) return "—";
   try {
-    return new Intl.NumberFormat("en-NG", {
+    return new Intl.NumberFormat(locale ?? localeForCurrency(currency), {
       style: "currency",
       currency,
       maximumFractionDigits: 0,

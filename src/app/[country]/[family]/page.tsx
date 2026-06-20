@@ -52,10 +52,24 @@ export async function generateMetadata(props: {
   const { country, family, hub, products } = data;
   const title = hub?.title ?? hubTitleFor(country, family);
   const indexable = hubIsIndexable(hub, products.length);
+
+  // hreflang: link the same family across the countries that publish it, so
+  // Google understands the per-country variants (i18n/geo scaffolding).
+  const sameFamily = (await listHubs()).filter(
+    (h) => h.family.slug === family.slug,
+  );
+  const languages: Record<string, string> = {};
+  for (const h of sameFamily) {
+    languages[h.country.locale] = `/${h.country.code}/${h.family.slug}`;
+  }
+
   return {
     title,
     description: `Compare ${products.length} ${family.label} in ${country.name} by interest rate, fees, amount and customer rating. Indicative terms, last-verified dates and licence-checked providers.`,
-    alternates: { canonical: `/${country.code}/${family.slug}` },
+    alternates: {
+      canonical: `/${country.code}/${family.slug}`,
+      ...(Object.keys(languages).length > 1 ? { languages } : {}),
+    },
     // THIN-CONTENT RULE: pages below threshold or without a unique intro are
     // marked noindex so we never pollute the index with empty hubs.
     robots: indexable ? undefined : { index: false, follow: true },

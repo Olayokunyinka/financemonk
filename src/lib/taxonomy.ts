@@ -11,6 +11,7 @@ export type Country = {
   name: string;
   currency: string; // ISO currency code
   currencySymbol: string;
+  locale: string; // BCP-47, for Intl formatting + hreflang
   regulator: string; // licence register source of truth
 };
 
@@ -20,6 +21,7 @@ export const COUNTRIES: Record<string, Country> = {
     name: "Nigeria",
     currency: "NGN",
     currencySymbol: "₦",
+    locale: "en-NG",
     regulator: "Central Bank of Nigeria",
   },
   ke: {
@@ -27,6 +29,7 @@ export const COUNTRIES: Record<string, Country> = {
     name: "Kenya",
     currency: "KES",
     currencySymbol: "KSh",
+    locale: "en-KE",
     regulator: "Central Bank of Kenya",
   },
   za: {
@@ -34,13 +37,21 @@ export const COUNTRIES: Record<string, Country> = {
     name: "South Africa",
     currency: "ZAR",
     currencySymbol: "R",
+    locale: "en-ZA",
     regulator: "Prudential Authority (SARB)",
   },
 };
 
-// Convenience: currency lookup by country code (used by the seed script).
+// Convenience lookups (used by the seed script + formatting).
 export function currencyOf(countryCode: string): string {
   return COUNTRIES[countryCode]?.currency ?? "NGN";
+}
+
+// Locale for a currency code (so formatting is correct without threading the
+// country through every call site).
+export function localeForCurrency(currency: string): string {
+  const c = Object.values(COUNTRIES).find((x) => x.currency === currency);
+  return c?.locale ?? "en-NG";
 }
 
 // Product "kind" drives rate wording, the product-page illustration, the

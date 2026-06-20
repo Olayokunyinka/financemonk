@@ -174,6 +174,14 @@ unique intro, the thin-content noindex rule, ItemList/Breadcrumb JSON-LD, and th
 shared `<ComparisonTable>`. Linked from each slice's hub ("Popular searches") and
 the sitemap.
 
+**M18 — country-replication / i18n scaffolding:** `Country` gains a `locale`
+(BCP-47); `formatCurrency` derives the locale from the currency (no call-site
+churn). Country landing pages at `/{country}` list that country's hubs.
+Hub pages emit **hreflang** alternates linking the same family across countries.
+Sitemap includes country pages. A repeatable **COUNTRY-LAUNCH.md** checklist
+captures the legal/data/code/SEO steps (each country resets the legal gate). The
+engine is already country-agnostic, so a new country is taxonomy + seed only.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows
