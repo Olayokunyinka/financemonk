@@ -135,6 +135,46 @@ Once deployed to a public URL, validate it in
   — a bar appears at the bottom; click **Compare now** to see them side by side
   at **http://localhost:3000/compare**.
 
+## What to look at (Milestone 3 — accounts & reviews)
+
+Sign-in is only needed to **contribute** (write a review, later claim a listing).
+Browsing stays completely open.
+
+**Sign in (works locally with no setup):**
+1. Click **Sign in** (top right) → choose "I'm a user" or "I represent a
+   business" → type any email → **Continue with email**. (Locally this is a
+   passwordless dev login; in production it becomes a secure email magic-link.)
+2. To get **admin / moderation** access, sign in with the email listed in
+   `ADMIN_EMAILS` in your `.env` (currently your own email).
+
+**Write a review:** open any product → **Write a review** → rate it, add a
+title/body, tick the confirmation → submit. It is saved as **pending** and does
+**not** appear publicly yet.
+
+**Moderate:** as an admin, click **Moderation** in the header (or visit
+`/admin/reviews`) → **Approve & publish**. The review then appears on the product
+page and the product's star rating updates.
+
+> Tip: run `npm run seed` any time to reset the sample data to its original state.
+
+### Enabling Google sign-in (optional)
+
+1. Go to **https://console.cloud.google.com** → create a project.
+2. **APIs & Services → OAuth consent screen** → set it up (External, add your
+   email as a test user).
+3. **APIs & Services → Credentials → Create credentials → OAuth client ID** →
+   type **Web application**.
+4. Add an **Authorized redirect URI**:
+   `http://localhost:3000/api/auth/callback/google`
+   (and your production URL's equivalent when you deploy).
+5. Copy the **Client ID** and **Client secret** into `.env`:
+   ```
+   GOOGLE_CLIENT_ID="...apps.googleusercontent.com"
+   GOOGLE_CLIENT_SECRET="..."
+   ```
+6. Restart `npm run dev`. A **Continue with Google** button now appears on
+   `/signin`.
+
 ---
 
 ## Other commands

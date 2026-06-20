@@ -25,6 +25,10 @@ multi-country/family so new slices are seed-data drops, not code.
   comes from `.env` via `prisma.config.ts`. Use the singleton in
   `src/lib/prisma.ts`.
 - shadcn-style UI primitives are hand-built in `src/components/ui` (no CLI).
+- **Auth.js v5** (`src/auth.ts`): JWT sessions, role on token, admins via
+  `ADMIN_EMAILS`. **Never call `auth()` in the root layout/header** — it forces
+  every SEO page dynamic and kills SSG. Use the `<AuthNav>` client island +
+  `SessionProvider`. Local dev sign-in is passwordless (`AUTH_DEV_LOGIN`).
 
 ## HARD guardrails (never weaken — see PROJECT-SPEC for detail)
 

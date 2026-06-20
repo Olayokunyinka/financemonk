@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { organisationJsonLd } from "@/lib/jsonld";
 import { CompareBar } from "@/components/compare/compare-tray";
+import { Providers } from "@/components/providers";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -34,10 +35,12 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <JsonLd data={organisationJsonLd()} />
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
-        <CompareBar />
+        <Providers>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+          <CompareBar />
+        </Providers>
       </body>
     </html>
   );

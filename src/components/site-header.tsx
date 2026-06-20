@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Landmark } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { ButtonLink } from "@/components/ui/button";
+import { AuthNav } from "@/components/auth-nav";
 
+// Static server component (no auth() call) so all directory/SEO pages remain
+// statically generated. Auth state is rendered by the <AuthNav> client island.
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur">
@@ -26,9 +28,7 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <ButtonLink href="/methodology" variant="outline" size="sm">
-          For business
-        </ButtonLink>
+        <AuthNav />
       </div>
     </header>
   );

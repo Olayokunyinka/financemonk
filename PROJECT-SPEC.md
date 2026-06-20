@@ -113,9 +113,10 @@ AdSense, advanced analytics, mobile apps, email campaigns.
    product detail, methodology, schema.org, guardrails, docs.
 2. **Discovery tools** ✅ — faceted `/search` (Postgres FTS), compare tray +
    `/compare`, loan repayment calculator. (Sitemap/robots already in place.)
-   *(current)*
-3. **Accounts & reviews** — Auth.js (Google + email), write-a-review + moderation
-   queue, verified-customer flag.
+3. **Accounts & reviews** ✅ — Auth.js (Google env-gated + dev email login),
+   user/business role toggle, auth-gated write-a-review with sub-ratings +
+   verified-customer flag, admin moderation queue, aggregate recompute on
+   publish. *(current)*
 4. **Provider side** — claim flow, verification vs register (gold badge),
    provider dashboard (edit products, confirm-current, respond to reviews, leads).
 5. **Monetisation gate + ship** — Apply/referral + CPA event (CPA_ENABLED),
@@ -133,6 +134,18 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 - **Compare tray** is client-side (`localStorage`, `src/components/compare/`),
   surfaced as a global `<CompareBar>` in the layout; `/compare?ids=` renders the
   side-by-side view.
+- **Auth** (`src/auth.ts`, Auth.js v5): JWT sessions; Prisma adapter persists
+  users/links OAuth. Providers: Google (env-gated) + a dev passwordless email
+  login (`AUTH_DEV_LOGIN`, local only). Role lives on the JWT; admins via
+  `ADMIN_EMAILS`. **Critical SSG rule:** never call `auth()` in the root layout
+  or header — it would force every SEO page dynamic. Auth state renders in a
+  client island (`<AuthNav>` via `SessionProvider` in `<Providers>`); only the
+  contribution routes (`/product/[slug]/review`, `/admin/reviews`, `/signin`)
+  are dynamic.
+- **Reviews**: auth-gated submission creates `PENDING`; admin `/admin/reviews`
+  approves → `PUBLISHED`; `recomputeProductRating` (`src/lib/ratings.ts`)
+  refreshes the product aggregate from PUBLISHED reviews and `revalidatePath`
+  refreshes the (ISR) product page.
 - Plain serializable data crosses into client components via `src/lib/rows.ts`.
 - Money/percent/date formatting in `src/lib/format.ts`; loan maths in
   `src/lib/loan.ts`.
