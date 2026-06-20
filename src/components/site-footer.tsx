@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE } from "@/lib/site";
 import { hubHref } from "@/lib/taxonomy";
 import { listHubs } from "@/lib/queries";
@@ -17,8 +18,14 @@ export async function SiteFooter() {
     <footer className="mt-16 border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="font-semibold">{SITE.name}</div>
-          <p className="mt-2 text-sm text-muted-foreground">{SITE.tagline}</p>
+          <Image
+            src="/logo.png"
+            alt={SITE.name}
+            width={180}
+            height={43}
+            className="h-9 w-auto"
+          />
+          <p className="mt-3 text-sm text-muted-foreground">{SITE.tagline}</p>
           <p className="mt-4 text-xs text-muted-foreground">
             Editorial responsibility:{" "}
             <span className="font-medium text-foreground">
