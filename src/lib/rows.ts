@@ -11,6 +11,7 @@ import {
   currencySymbol,
   type FeeItem,
 } from "@/lib/format";
+import { buildMetrics, kindOfType } from "@/lib/families/registry";
 
 type ProductWithProvider = {
   slug: string;
@@ -26,6 +27,7 @@ type ProductWithProvider = {
   currency: string;
   minTenureMonths: number | null;
   maxTenureMonths: number | null;
+  terms?: unknown;
   ratingAggregate: number;
   reviewCount: number;
   lastVerifiedAt: Date;
@@ -62,6 +64,9 @@ export type ProductRow = {
   lastVerifiedISO: string;
   sponsored: boolean;
   keyFeature: string;
+  // Family-specific comparable metrics (label/value), driving the comparison
+  // table columns + product term rows. A hub is one family so labels are shared.
+  metrics: { label: string; value: string }[];
 };
 
 function minFee(fees: unknown): number {
@@ -109,5 +114,17 @@ export function toRow(p: ProductWithProvider): ProductRow {
     lastVerifiedISO: p.lastVerifiedAt.toISOString(),
     sponsored: p.sponsored,
     keyFeature: p.features[0] ?? "",
+    metrics: buildMetrics(kindOfType(p.productType), {
+      aprMin: p.aprMin,
+      aprMax: p.aprMax,
+      interestRate: p.interestRate,
+      fees: p.fees,
+      minAmount: p.minAmount,
+      maxAmount: p.maxAmount,
+      minTenureMonths: p.minTenureMonths,
+      maxTenureMonths: p.maxTenureMonths,
+      currency: p.currency,
+      terms: p.terms ?? {},
+    }),
   };
 }

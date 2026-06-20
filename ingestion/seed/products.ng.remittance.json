@@ -1,0 +1,55 @@
+[
+  {
+    "slug": "lemfi-remittance",
+    "name": "LemFi Remittance",
+    "providerSlug": "lemfi",
+    "summary": "Low-cost transfers to Nigeria from the UK, US, Canada and Europe.",
+    "features": ["Low FX margin", "No transfer fee on many corridors", "App-based"],
+    "eligibility": ["Diaspora sender", "Recipient bank/wallet"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "LemFi", "url": "https://www.lemfi.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.3, "reviewCount": 207,
+    "terms": { "transferFee": "Free (many corridors)", "fxMargin": 1.0, "speed": "Minutes", "corridors": "UK, US, CA, EU → NG" }
+  },
+  {
+    "slug": "chipper-remittance",
+    "name": "Chipper Cash Remittance",
+    "providerSlug": "chipper-cash",
+    "summary": "Cross-border transfers to Nigeria with competitive rates.",
+    "features": ["App-based", "Multi-country"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "Chipper Cash", "url": "https://chippercash.com" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 3.9, "reviewCount": 134,
+    "terms": { "transferFee": "Free P2P", "fxMargin": 2.0, "speed": "Minutes", "corridors": "US, UK → NG" }
+  },
+  {
+    "slug": "flutterwave-send-app",
+    "name": "Send by Flutterwave",
+    "providerSlug": "flutterwave",
+    "summary": "Diaspora remittance app delivering to Nigerian bank accounts.",
+    "features": ["Bank delivery", "Transparent fees"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "Flutterwave", "url": "https://flutterwave.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "ratingAggregate": 4.0, "reviewCount": 76,
+    "terms": { "transferFee": "₦0–low", "fxMargin": 1.8, "speed": "Same day", "corridors": "US, UK, EU → NG" }
+  },
+  {
+    "slug": "quickfx-remittance",
+    "name": "QuickFX Express Remittance",
+    "providerSlug": "quickfx-bureau",
+    "summary": "SEED unlicensed example — listed to show it can never be gold-verified.",
+    "features": ["Too-good-to-be-true rate"],
+    "eligibility": ["Sender"],
+    "requiredDocs": ["ID"],
+    "sourceRefs": [],
+    "lastVerifiedAt": "2026-05-28",
+    "ratingAggregate": 2.2, "reviewCount": 38,
+    "terms": { "transferFee": "High", "fxMargin": 6.0, "speed": "1-3 days", "corridors": "Various → NG" }
+  }
+]

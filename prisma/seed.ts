@@ -80,6 +80,7 @@ type ProductSeed = {
   sponsored?: boolean;
   ratingAggregate?: number;
   reviewCount?: number;
+  terms?: Record<string, unknown>;
 };
 
 type HubSeed = {
@@ -195,6 +196,14 @@ async function main() {
     { file: "products.ng.savings-accounts.json", country: "ng", productType: "SAVINGS" },
     { file: "products.ng.business-loans.json", country: "ng", productType: "BUSINESS_LOAN" },
     { file: "products.ng.credit-cards.json", country: "ng", productType: "CREDIT_CARD" },
+    // Insurance / investment / payments (terms-driven families)
+    { file: "products.ng.health-insurance.json", country: "ng", productType: "HEALTH_INSURANCE" },
+    { file: "products.ng.life-insurance.json", country: "ng", productType: "LIFE_INSURANCE" },
+    { file: "products.ng.mutual-funds.json", country: "ng", productType: "MUTUAL_FUND" },
+    { file: "products.ng.money-market-funds.json", country: "ng", productType: "MONEY_MARKET" },
+    { file: "products.ng.pensions.json", country: "ng", productType: "PENSION" },
+    { file: "products.ng.money-transfer.json", country: "ng", productType: "MONEY_TRANSFER" },
+    { file: "products.ng.remittance.json", country: "ng", productType: "REMITTANCE" },
     { file: "products.ke.personal-loans.json", country: "ke", productType: "PERSONAL_LOAN" },
     { file: "products.za.savings-accounts.json", country: "za", productType: "SAVINGS" },
   ];
@@ -206,6 +215,13 @@ async function main() {
     SAVINGS: { ng: 2000, ke: 600, za: 150 },
     BUSINESS_LOAN: { ng: 12000, ke: 4000, za: 1200 },
     CREDIT_CARD: { ng: 4000, ke: 1200, za: 400 },
+    HEALTH_INSURANCE: { ng: 3000, ke: 900, za: 300 },
+    LIFE_INSURANCE: { ng: 4000, ke: 1200, za: 400 },
+    MUTUAL_FUND: { ng: 2500, ke: 800, za: 250 },
+    MONEY_MARKET: { ng: 2000, ke: 600, za: 200 },
+    PENSION: { ng: 3000, ke: 900, za: 300 },
+    MONEY_TRANSFER: { ng: 800, ke: 250, za: 80 },
+    REMITTANCE: { ng: 1000, ke: 300, za: 100 },
   };
 
   let productCount = 0;
@@ -251,6 +267,7 @@ async function main() {
           maxTenureMonths: pr.maxTenureMonths ?? null,
           eligibility: pr.eligibility ?? [],
           requiredDocs: pr.requiredDocs ?? [],
+          terms: (pr.terms ?? {}) as object,
           sourceRefs: (pr.sourceRefs ?? []) as object,
           lastVerifiedAt: pr.lastVerifiedAt
             ? new Date(pr.lastVerifiedAt)

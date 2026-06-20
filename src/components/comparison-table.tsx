@@ -50,6 +50,9 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
     return out;
   }, [rows, sort, providerType, verifiedOnly]);
 
+  // A hub is one family, so all rows share the same metric labels (columns).
+  const columns = (rows[0]?.metrics ?? []).map((m) => m.label);
+
   return (
     <div>
       {/* Controls */}
@@ -104,9 +107,11 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
           <thead className="bg-muted/60 text-left text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
               <th className="px-4 py-3 font-medium">Provider &amp; product</th>
-              <th className="px-4 py-3 font-medium">Interest (p.a.)</th>
-              <th className="px-4 py-3 font-medium">Fees</th>
-              <th className="px-4 py-3 font-medium">Amount</th>
+              {columns.map((label) => (
+                <th key={label} className="px-4 py-3 font-medium">
+                  {label}
+                </th>
+              ))}
               <th className="px-4 py-3 font-medium">Rating</th>
               <th className="px-4 py-3 font-medium" />
             </tr>
@@ -139,9 +144,14 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
                     <LastVerified date={r.lastVerifiedISO} />
                   </div>
                 </td>
-                <td className="px-4 py-4 font-medium">{r.aprText}</td>
-                <td className="px-4 py-4">{r.feesText}</td>
-                <td className="px-4 py-4">{r.amountText}</td>
+                {r.metrics.map((m, i) => (
+                  <td
+                    key={m.label}
+                    className={`px-4 py-4 ${i === 0 ? "font-medium" : ""}`}
+                  >
+                    {m.value}
+                  </td>
+                ))}
                 <td className="px-4 py-4">
                   <RatingStars value={r.rating} count={r.reviewCount} />
                 </td>
@@ -175,18 +185,12 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
             </div>
             <div className="text-sm text-muted-foreground">{r.name}</div>
             <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
-              <div>
-                <dt className="text-xs text-muted-foreground">Interest p.a.</dt>
-                <dd className="font-medium">{r.aprText}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-muted-foreground">Fees</dt>
-                <dd>{r.feesText}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-muted-foreground">Amount</dt>
-                <dd>{r.amountText}</dd>
-              </div>
+              {r.metrics.map((m) => (
+                <div key={m.label}>
+                  <dt className="text-xs text-muted-foreground">{m.label}</dt>
+                  <dd className="font-medium">{m.value}</dd>
+                </div>
+              ))}
               <div>
                 <dt className="text-xs text-muted-foreground">Rating</dt>
                 <dd>

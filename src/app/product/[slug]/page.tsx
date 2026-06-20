@@ -17,15 +17,12 @@ import {
 } from "@/lib/jsonld";
 import {
   formatApr,
-  formatAmountRange,
-  formatTenure,
   formatCurrency,
   formatPercent,
-  feesSummary,
-  type FeeItem,
 } from "@/lib/format";
 import { representativeExample } from "@/lib/loan";
 import { representativeSavingsExample } from "@/lib/savings";
+import { buildMetrics } from "@/lib/families/registry";
 import { JsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer, LastVerified } from "@/components/disclaimer";
@@ -74,7 +71,19 @@ export default async function ProductPage(props: { params: Params }) {
 
   const kind = family?.kind ?? "loan";
   const lending = kind === "loan";
-  const fees = (product.fees as FeeItem[]) ?? [];
+  // Comparable terms for this family, from the registry (drives the Terms table).
+  const termMetrics = buildMetrics(kind, {
+    aprMin: product.aprMin,
+    aprMax: product.aprMax,
+    interestRate: product.interestRate,
+    fees: product.fees,
+    minAmount: product.minAmount,
+    maxAmount: product.maxAmount,
+    minTenureMonths: product.minTenureMonths,
+    maxTenureMonths: product.maxTenureMonths,
+    currency: product.currency,
+    terms: product.terms,
+  });
   const sources =
     (product.sourceRefs as { label: string; url: string }[]) ?? [];
   const example = representativeExample(product);
@@ -178,43 +187,11 @@ export default async function ProductPage(props: { params: Params }) {
         <div className="mt-3 overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <tbody className="divide-y divide-border">
-              <Row
-                label={
-                  kind === "card"
-                    ? "Purchase APR (p.a.)"
-                    : kind === "deposit"
-                      ? "Interest (p.a.)"
-                      : "Interest / APR (p.a.)"
-                }
-              >
-                {kind === "deposit"
-                  ? formatPercent(product.interestRate)
-                  : formatApr(product.aprMin, product.aprMax)}
-              </Row>
-              <Row label="Fees">{feesSummary(fees)}</Row>
-              <Row
-                label={
-                  kind === "card"
-                    ? "Credit limit"
-                    : kind === "deposit"
-                      ? "Min. balance"
-                      : "Amount"
-                }
-              >
-                {formatAmountRange(
-                  product.minAmount,
-                  product.maxAmount,
-                  country.currencySymbol,
-                )}
-              </Row>
-              {kind === "loan" ? (
-                <Row label="Tenure">
-                  {formatTenure(
-                    product.minTenureMonths,
-                    product.maxTenureMonths,
-                  )}
+              {termMetrics.map((m) => (
+                <Row key={m.label} label={m.label}>
+                  {m.value}
                 </Row>
-              ) : null}
+              ))}
               <Row label="Eligibility">
                 {product.eligibility.length ? (
                   <ul className="list-disc pl-4">
@@ -249,7 +226,8 @@ export default async function ProductPage(props: { params: Params }) {
         <Disclaimer className="mt-3" lastVerifiedAt={product.lastVerifiedAt} />
       </section>
 
-      {/* Total-cost / growth illustration */}
+      {/* Total-cost / growth illustration (loan/deposit/card only) */}
+      {kind === "card" || kind === "loan" || kind === "deposit" ? (
       <section className="mt-8 rounded-xl border border-border bg-muted/30 p-5">
         {kind === "card" ? (
           <>
@@ -345,6 +323,7 @@ export default async function ProductPage(props: { params: Params }) {
           </>
         )}
       </section>
+      ) : null}
 
       {/* Apply / CPA */}
       <section

@@ -124,5 +124,24 @@
     "website": "https://example.com/swiftcash",
     "about": "SEED example of an UNLICENSED lender — present to show the licensing filter in action.",
     "claimed": false
-  }
+  },
+
+  { "slug": "leadway-assurance", "name": "Leadway Assurance", "type": "INSURER", "country": "ng", "website": "https://www.leadway.com", "about": "One of Nigeria's largest insurers (life, health, general), regulated by NAICOM.", "claimed": true },
+  { "slug": "axa-mansard", "name": "AXA Mansard Insurance", "type": "INSURER", "country": "ng", "website": "https://www.axamansard.com", "about": "Composite insurer and HMO offering health, life and general cover.", "claimed": true },
+  { "slug": "aiico-insurance", "name": "AIICO Insurance", "type": "INSURER", "country": "ng", "website": "https://www.aiicoplc.com", "about": "Leading life and health insurer in Nigeria.", "claimed": false },
+  { "slug": "cornerstone-insurance", "name": "Cornerstone Insurance", "type": "INSURER", "country": "ng", "website": "https://cornerstone.com.ng", "about": "General and life insurer regulated by NAICOM.", "claimed": false },
+  { "slug": "hygeia-hmo", "name": "Hygeia HMO", "type": "INSURER", "country": "ng", "website": "https://www.hygeiahmo.com", "about": "Health maintenance organisation offering health insurance plans.", "claimed": true },
+
+  { "slug": "stanbic-asset-mgmt", "name": "Stanbic IBTC Asset Management", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.stanbicibtcassetmanagement.com", "about": "SEC-registered asset manager running mutual and money-market funds.", "claimed": true },
+  { "slug": "arm-investment", "name": "ARM Investment Managers", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.arm.com.ng", "about": "Asset manager with mutual funds and money-market funds.", "claimed": true },
+  { "slug": "united-capital-asset", "name": "United Capital Asset Management", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.unitedcapitalplcgroup.com", "about": "SEC-registered fund manager.", "claimed": false },
+  { "slug": "cordros-asset", "name": "Cordros Asset Management", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.cordros.com", "about": "Asset manager with money-market and fixed-income funds.", "claimed": false },
+  { "slug": "stanbic-pension", "name": "Stanbic IBTC Pension Managers", "type": "FUND_MANAGER", "country": "ng", "website": "https://stanbicibtcpension.com", "about": "Pension fund administrator (PFA) regulated by PenCom.", "claimed": true },
+  { "slug": "arm-pension", "name": "ARM Pension Managers", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.armpension.com", "about": "Pension fund administrator regulated by PenCom.", "claimed": false },
+
+  { "slug": "flutterwave", "name": "Flutterwave", "type": "FINTECH", "country": "ng", "website": "https://flutterwave.com", "about": "CBN-licensed payment service provider for transfers and collections.", "claimed": true },
+  { "slug": "paystack", "name": "Paystack", "type": "FINTECH", "country": "ng", "website": "https://paystack.com", "about": "CBN-licensed payment processor.", "claimed": true },
+  { "slug": "lemfi", "name": "LemFi", "type": "FINTECH", "country": "ng", "website": "https://www.lemfi.com", "about": "Cross-border remittance provider for the diaspora.", "claimed": false },
+  { "slug": "chipper-cash", "name": "Chipper Cash", "type": "FINTECH", "country": "ng", "website": "https://chippercash.com", "about": "App-based transfers and cross-border remittance.", "claimed": false },
+  { "slug": "quickfx-bureau", "name": "QuickFX Bureau", "type": "OTHER", "country": "ng", "website": "https://example.com/quickfx", "about": "SEED unlicensed example for payments — never receives the gold badge.", "claimed": false }
 ]

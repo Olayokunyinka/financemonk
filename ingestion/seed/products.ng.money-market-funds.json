@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "stanbic-money-market-fund",
+    "name": "Stanbic IBTC Money Market Fund",
+    "providerSlug": "stanbic-asset-mgmt",
+    "summary": "Low-risk fund investing in treasury bills and short-term instruments.",
+    "features": ["Low risk", "Daily liquidity", "Stable returns"],
+    "minAmount": 5000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Stanbic IBTC AM", "url": "https://www.stanbicibtcassetmanagement.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.4, "reviewCount": 213,
+    "terms": { "returnPa": 19, "risk": "Low", "minInvestment": 5000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "arm-money-market-fund",
+    "name": "ARM Money Market Fund",
+    "providerSlug": "arm-investment",
+    "summary": "Capital-preserving fund with competitive yields and easy access.",
+    "features": ["Capital preservation", "Easy access"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM", "url": "https://www.arm.com.ng" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.2, "reviewCount": 142,
+    "terms": { "returnPa": 18.5, "risk": "Low", "minInvestment": 10000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "cordros-money-market-fund",
+    "name": "Cordros Money Market Fund",
+    "providerSlug": "cordros-asset",
+    "summary": "Short-term naira fund with daily liquidity.",
+    "features": ["Daily liquidity", "Low risk"],
+    "minAmount": 5000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Cordros", "url": "https://www.cordros.com" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 4.1, "reviewCount": 76,
+    "terms": { "returnPa": 19.2, "risk": "Low", "minInvestment": 5000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "united-capital-money-market-fund",
+    "name": "United Capital Money Market Fund",
+    "providerSlug": "united-capital-asset",
+    "summary": "Treasury-focused fund for parking cash at competitive yields.",
+    "features": ["Treasury bills", "Stable yield"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "United Capital", "url": "https://www.unitedcapitalplcgroup.com" }],
+    "lastVerifiedAt": "2026-06-06",
+    "ratingAggregate": 3.9, "reviewCount": 51,
+    "terms": { "returnPa": 18, "risk": "Low", "minInvestment": 10000, "mgmtFee": 1.0 }
+  }
+]

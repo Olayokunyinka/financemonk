@@ -132,11 +132,16 @@ export default async function HubPage(props: { params: Params }) {
           }
           className="text-brand hover:underline"
         >
-          {family.kind === "deposit"
-            ? "Savings growth calculator →"
-            : family.kind === "card"
-              ? "Credit-card cost calculator →"
-              : "Loan repayment calculator →"}
+          {
+            {
+              deposit: "Savings growth calculator →",
+              card: "Credit-card cost calculator →",
+              insurance: "Insurance needs calculator →",
+              investment: "Investment growth calculator →",
+              payments: "Remittance cost calculator →",
+              loan: "Loan repayment calculator →",
+            }[family.kind]
+          }
         </Link>
       </div>
 

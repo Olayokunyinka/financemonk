@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "stanbic-nigerian-equity-fund",
+    "name": "Stanbic IBTC Nigerian Equity Fund",
+    "providerSlug": "stanbic-asset-mgmt",
+    "summary": "Open-ended equity fund investing in listed Nigerian companies.",
+    "features": ["Equity growth", "Professionally managed", "Quarterly statements"],
+    "minAmount": 5000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Stanbic IBTC AM", "url": "https://www.stanbicibtcassetmanagement.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.2, "reviewCount": 88,
+    "terms": { "returnPa": 22, "risk": "High", "minInvestment": 5000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "arm-aggressive-growth-fund",
+    "name": "ARM Aggressive Growth Fund",
+    "providerSlug": "arm-investment",
+    "summary": "Equity-focused fund targeting long-term capital growth.",
+    "features": ["Capital growth", "Diversified equities"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM", "url": "https://www.arm.com.ng" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.0, "reviewCount": 64,
+    "terms": { "returnPa": 24, "risk": "High", "minInvestment": 10000, "mgmtFee": 1.75 }
+  },
+  {
+    "slug": "united-capital-balanced-fund",
+    "name": "United Capital Balanced Fund",
+    "providerSlug": "united-capital-asset",
+    "summary": "Mix of equities and fixed income for balanced risk.",
+    "features": ["Balanced risk", "Equities + bonds"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "United Capital", "url": "https://www.unitedcapitalplcgroup.com" }],
+    "lastVerifiedAt": "2026-06-06",
+    "ratingAggregate": 3.9, "reviewCount": 37,
+    "terms": { "returnPa": 18, "risk": "Medium", "minInvestment": 10000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "cordros-dollar-fund",
+    "name": "Cordros Dollar Fund",
+    "providerSlug": "cordros-asset",
+    "summary": "USD-denominated fund investing in eurobonds.",
+    "features": ["USD returns", "Eurobond exposure"],
+    "minAmount": 100000,
+    "eligibility": ["Valid ID", "BVN", "Domiciliary account"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Cordros", "url": "https://www.cordros.com" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 4.1, "reviewCount": 29,
+    "terms": { "returnPa": 8, "risk": "Medium", "minInvestment": 100000, "mgmtFee": 1.5 }
+  }
+]

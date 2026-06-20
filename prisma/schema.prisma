@@ -31,19 +31,39 @@ enum ProviderType {
 // Product families. Broad on purpose so later phases (savings, cards,
 // insurance, investment) need no migration — only seed data.
 enum ProductType {
+  // Lending
   PERSONAL_LOAN
   BUSINESS_LOAN
   PAYDAY_LOAN
+  ASSET_FINANCE
+  MORTGAGE
+  TRADE_FINANCE
+  // Deposits
   SAVINGS
   CURRENT_ACCOUNT
   FIXED_DEPOSIT
+  DOMICILIARY
+  // Cards
   CREDIT_CARD
   DEBIT_CARD
+  PREPAID_CARD
+  VIRTUAL_CARD
+  // Insurance
   HEALTH_INSURANCE
   AUTO_INSURANCE
   LIFE_INSURANCE
+  TRAVEL_INSURANCE
+  BUSINESS_INSURANCE
+  AGRIC_INSURANCE
+  // Investment
   MUTUAL_FUND
   MONEY_MARKET
+  FIXED_INCOME
+  PENSION
+  // Payments / remittance
+  MONEY_TRANSFER
+  FX
+  REMITTANCE
   OTHER
 }
 
@@ -180,6 +200,12 @@ model Product {
 
   eligibility  String[] @default([])
   requiredDocs String[] @default([])
+
+  // Family-specific comparable fields that don't fit the shared scalar columns
+  // (e.g. insurance sumAssured/claimRatio/excess, investment riskRating/return/
+  // minInvestment, payments fxMargin/transferFee/speed). Rendered via the
+  // per-family registry in src/lib/families.
+  terms Json @default("{}")
 
   // --- Trust / freshness -------------------------------------------------
   verificationBadge VerificationBadge @default(UNVERIFIED)

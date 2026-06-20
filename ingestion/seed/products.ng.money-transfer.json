@@ -1,0 +1,55 @@
+[
+  {
+    "slug": "flutterwave-send",
+    "name": "Flutterwave Transfer",
+    "providerSlug": "flutterwave",
+    "summary": "Send money to any Nigerian bank account instantly via Flutterwave.",
+    "features": ["Instant to any bank", "API & app", "Bulk payouts"],
+    "eligibility": ["Verified account", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "Flutterwave", "url": "https://flutterwave.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.2, "reviewCount": 184,
+    "terms": { "transferFee": "₦10–₦50 flat", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "paystack-transfer",
+    "name": "Paystack Transfers",
+    "providerSlug": "paystack",
+    "summary": "Fast bank transfers and payouts for businesses.",
+    "features": ["Instant payouts", "Developer-friendly"],
+    "eligibility": ["Business account", "BVN"],
+    "requiredDocs": ["BVN", "CAC certificate"],
+    "sourceRefs": [{ "label": "Paystack", "url": "https://paystack.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "ratingAggregate": 4.1, "reviewCount": 142,
+    "terms": { "transferFee": "₦10 flat", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "access-bank-transfer",
+    "name": "Access Bank Transfer",
+    "providerSlug": "access-bank",
+    "summary": "Instant NIP transfers via app and USSD.",
+    "features": ["App & USSD", "Instant NIP"],
+    "eligibility": ["Access account"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "Access Bank", "url": "https://www.accessbankplc.com" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 3.9, "reviewCount": 96,
+    "terms": { "transferFee": "₦10–₦50 (NIP)", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "chipper-transfer",
+    "name": "Chipper Cash Transfer",
+    "providerSlug": "chipper-cash",
+    "summary": "Free peer-to-peer transfers within Nigeria.",
+    "features": ["Free P2P", "App-based"],
+    "eligibility": ["Verified account", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "Chipper Cash", "url": "https://chippercash.com" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 3.8, "reviewCount": 121,
+    "terms": { "transferFee": "Free (P2P)", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  }
+]

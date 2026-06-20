@@ -18,5 +18,23 @@
   { "name": "Carbon (One Finance & Investments)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/104" },
   { "name": "Page Financials", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/105" },
   { "name": "Lendigo Nigeria", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Finance Company", "licenceNo": "CBN/FC/201" },
-  { "name": "Specta (Sterling)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank Product", "licenceNo": "CBN/CB/008-P" }
+  { "name": "Specta (Sterling)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Commercial Bank Product", "licenceNo": "CBN/CB/008-P" },
+
+  { "name": "Leadway Assurance", "country": "ng", "regulator": "NAICOM", "category": "Insurer", "licenceNo": "NAICOM/INS/001" },
+  { "name": "AXA Mansard Insurance", "country": "ng", "regulator": "NAICOM", "category": "Insurer", "licenceNo": "NAICOM/INS/002" },
+  { "name": "AIICO Insurance", "country": "ng", "regulator": "NAICOM", "category": "Insurer", "licenceNo": "NAICOM/INS/003" },
+  { "name": "Cornerstone Insurance", "country": "ng", "regulator": "NAICOM", "category": "Insurer", "licenceNo": "NAICOM/INS/004" },
+  { "name": "Hygeia HMO", "country": "ng", "regulator": "NAICOM", "category": "HMO", "licenceNo": "NAICOM/HMO/010" },
+
+  { "name": "Stanbic IBTC Asset Management", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/101" },
+  { "name": "ARM Investment Managers", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/102" },
+  { "name": "United Capital Asset Management", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/103" },
+  { "name": "Cordros Asset Management", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/104" },
+  { "name": "Stanbic IBTC Pension Managers", "country": "ng", "regulator": "PenCom", "category": "Pension Fund Administrator", "licenceNo": "PENCOM/PFA/201" },
+  { "name": "ARM Pension Managers", "country": "ng", "regulator": "PenCom", "category": "Pension Fund Administrator", "licenceNo": "PENCOM/PFA/202" },
+
+  { "name": "Flutterwave", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Provider", "licenceNo": "CBN/PSP/301" },
+  { "name": "Paystack", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Provider", "licenceNo": "CBN/PSP/302" },
+  { "name": "LemFi", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/303" },
+  { "name": "Chipper Cash", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/304" }
 ]

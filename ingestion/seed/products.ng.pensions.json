@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "stanbic-rsa-fund-ii",
+    "name": "Stanbic IBTC RSA Fund II",
+    "providerSlug": "stanbic-pension",
+    "summary": "Default retirement savings account fund for contributors under 50.",
+    "features": ["Balanced allocation", "Regulated by PenCom", "Portable"],
+    "minAmount": 0,
+    "eligibility": ["Employed/self-employed", "RSA holder"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Stanbic IBTC Pension", "url": "https://stanbicibtcpension.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.2, "reviewCount": 156,
+    "terms": { "returnPa": 16, "risk": "Medium", "minInvestment": 0, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "stanbic-rsa-fund-iii",
+    "name": "Stanbic IBTC RSA Fund III",
+    "providerSlug": "stanbic-pension",
+    "summary": "More conservative fund for contributors aged 50 and above.",
+    "features": ["Conservative allocation", "Pre-retirement"],
+    "minAmount": 0,
+    "eligibility": ["Age 50+", "RSA holder"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Stanbic IBTC Pension", "url": "https://stanbicibtcpension.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "ratingAggregate": 4.1, "reviewCount": 64,
+    "terms": { "returnPa": 14, "risk": "Low", "minInvestment": 0, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "arm-rsa-fund-ii",
+    "name": "ARM RSA Fund II",
+    "providerSlug": "arm-pension",
+    "summary": "Default RSA fund with a balanced growth allocation.",
+    "features": ["Balanced growth", "PenCom regulated"],
+    "minAmount": 0,
+    "eligibility": ["Employed/self-employed", "RSA holder"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM Pension", "url": "https://www.armpension.com" }],
+    "lastVerifiedAt": "2026-06-08",
+    "ratingAggregate": 4.0, "reviewCount": 71,
+    "terms": { "returnPa": 15.5, "risk": "Medium", "minInvestment": 0, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "arm-micro-pension",
+    "name": "ARM Micro Pension",
+    "providerSlug": "arm-pension",
+    "summary": "Flexible pension for self-employed and informal-sector workers.",
+    "features": ["For self-employed", "Flexible contributions"],
+    "minAmount": 0,
+    "eligibility": ["Self-employed", "Informal sector"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM Pension", "url": "https://www.armpension.com" }],
+    "lastVerifiedAt": "2026-06-08",
+    "ratingAggregate": 3.9, "reviewCount": 33,
+    "terms": { "returnPa": 15, "risk": "Medium", "minInvestment": 0, "mgmtFee": 1.5 }
+  }
+]

@@ -110,5 +110,109 @@
       { "label": "Credit-card cost calculator", "href": "/calculators/credit-card-cost" },
       { "label": "How we compare", "href": "/methodology" }
     ]
+  },
+  {
+    "country": "ng", "productType": "HEALTH_INSURANCE",
+    "title": "Best health insurance (HMO) plans in Nigeria (2026)",
+    "intro": "Health insurance in Nigeria is mostly sold by HMOs and composite insurers, and plans vary widely on what matters: the annual cover limit, the hospital network, whether out-patient, dental, optical and maternity are included, and how reliably claims are paid. A cheap premium with a tiny limit or a thin network can cost you when you actually need care, so we show the premium, cover limit, any excess and the insurer's claims-paid ratio side by side. We list only insurers and HMOs licensed by NAICOM. Compare the all-in value, check the network and exclusions, and confirm the exact terms with the provider — figures are indicative and change.",
+    "faq": [
+      { "question": "What should I look at beyond the premium?", "answer": "The annual cover limit, the hospital network near you, what's included (out-patient, dental, optical, maternity), the excess/co-pay, and the insurer's claims-paid ratio. A low premium with a low limit or weak network is often false economy." },
+      { "question": "What does claims-paid ratio mean?", "answer": "The share of valid claims the insurer actually pays. Higher is better — it's a practical signal you'll be covered when you need it." },
+      { "question": "Are these premiums guaranteed?", "answer": "No — premiums are indicative, depend on age/plan/group, and change. Each plan shows when we last verified it; confirm with the provider." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Life insurance in Nigeria", "href": "/ng/life-insurance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "LIFE_INSURANCE",
+    "title": "Best life insurance in Nigeria (2026)",
+    "intro": "Life insurance pays a lump sum to your family if you die during the cover period — term life is cheap and pure protection, while whole-life adds a savings/cash-value element at a higher premium. The figures that matter are the cover (sum assured) relative to the premium, the term, and the insurer's claims-paid record. We show premium-from, cover, claims ratio and any conditions side by side, for NAICOM-licensed insurers only. Use our insurance-needs calculator to size your cover, compare the value, and confirm exact terms with the insurer — figures are indicative and change.",
+    "faq": [
+      { "question": "Term life or whole life?", "answer": "Term life is cheaper and covers a set period — best for pure protection while you have dependants or debts. Whole life costs more but lasts for life and builds cash value. Match it to your goal." },
+      { "question": "How much cover do I need?", "answer": "A common rule is enough to replace several years of income plus clear outstanding debts. Our insurance-needs calculator gives a quick estimate." },
+      { "question": "Are premiums guaranteed?", "answer": "No — they depend on age, health and cover, and are indicative. Each policy shows when we last verified it; confirm with the insurer." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Health insurance in Nigeria", "href": "/ng/health-insurance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "MUTUAL_FUND",
+    "title": "Best mutual funds in Nigeria (2026)",
+    "intro": "Mutual funds let you invest in a professionally managed, diversified portfolio with a low minimum — from equity funds chasing growth to balanced and dollar funds. Returns are not guaranteed and past performance doesn't predict the future, so weigh the fund's risk level, its track record, the management fee and the minimum investment, not just the headline return. We show recent return, risk, minimum and fee side by side, for SEC-registered fund managers only. Use the investment-growth calculator to project outcomes, and confirm exact terms with the manager — figures are indicative and returns can fall as well as rise.",
+    "faq": [
+      { "question": "Are returns guaranteed?", "answer": "No. Mutual-fund returns vary with the market and can be negative. Treat past performance as context, not a promise, and match the fund's risk level to your horizon." },
+      { "question": "What fees should I check?", "answer": "The annual management fee is the main one — it compounds over time. Compare it against the fund's risk and track record." },
+      { "question": "How were these ranked?", "answer": "By default by customer rating, sponsored rows labelled. Re-sort as needed. Ranking is separate from the SEC-registration check." }
+    ],
+    "relatedSlugs": [
+      { "label": "Investment growth calculator", "href": "/calculators/investment-growth" },
+      { "label": "Money market funds in Nigeria", "href": "/ng/money-market-funds" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "MONEY_MARKET",
+    "title": "Best money market funds in Nigeria (2026)",
+    "intro": "Money market funds invest in short-term, low-risk instruments like treasury bills and commercial paper, aiming to preserve capital while paying more than a regular savings account — with daily or near-daily access to your cash. They're a popular place to park naira. The numbers to compare are the recent yield, the management fee and the minimum investment; risk is low but not zero. We show yield, risk, minimum and fee side by side, for SEC-registered managers only. Confirm exact terms with the manager — yields are indicative and move with interest rates.",
+    "faq": [
+      { "question": "Is a money market fund the same as a savings account?", "answer": "No — it's an investment, not a deposit, so it isn't a bank account and returns aren't fixed. But it's low-risk and usually pays more than savings, with easy access." },
+      { "question": "Can I lose money?", "answer": "Losses are rare for money market funds but not impossible; they're low-risk, not no-risk. Yields also move with interest rates." },
+      { "question": "Are yields guaranteed?", "answer": "No — they're indicative and change. Each fund shows when we last verified it; confirm with the manager." }
+    ],
+    "relatedSlugs": [
+      { "label": "Investment growth calculator", "href": "/calculators/investment-growth" },
+      { "label": "Mutual funds in Nigeria", "href": "/ng/mutual-funds" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "PENSION",
+    "title": "Best pension funds (PFAs) in Nigeria (2026)",
+    "intro": "Your pension is run by a Pension Fund Administrator (PFA) under the contributory scheme, and you're free to choose or switch yours. Returns differ between PFAs and between the multi-fund types (Fund I–IV, by age/risk appetite), and fees and service quality matter over decades. We show recent return, risk/fund type and the management fee side by side, for PFAs licensed by PenCom only. Use the investment-growth calculator to project your retirement pot, compare PFAs on long-run return and service, and confirm details with the PFA — figures are indicative.",
+    "faq": [
+      { "question": "Can I change my PFA?", "answer": "Yes — under PenCom rules you can transfer your Retirement Savings Account between PFAs (typically once a year). Long-run return and service quality are the things to compare." },
+      { "question": "What are Fund I–IV?", "answer": "The multi-fund structure: more aggressive funds for younger contributors, more conservative ones as you approach retirement. Your age determines the default, and you can opt within limits." },
+      { "question": "Are returns guaranteed?", "answer": "No — pension returns vary by PFA and fund and are indicative. Confirm with the PFA." }
+    ],
+    "relatedSlugs": [
+      { "label": "Investment growth calculator", "href": "/calculators/investment-growth" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "MONEY_TRANSFER",
+    "title": "Best ways to send money within Nigeria (2026)",
+    "intro": "Most local transfers in Nigeria run on instant NIP rails through banks and fintechs, so the differences come down to the per-transfer fee, reliability and limits rather than speed. Some apps offer free peer-to-peer transfers; banks charge a small NIP fee. We show the transfer fee, speed and coverage side by side, for CBN-licensed providers only. Compare the real per-transfer cost for how you actually send, and confirm current fees with the provider — figures are indicative and change.",
+    "faq": [
+      { "question": "Why are some transfers free?", "answer": "Some fintechs subsidise peer-to-peer transfers within their own network. Bank transfers via NIP usually carry a small regulated fee. Check the fee for the destination you actually use." },
+      { "question": "How fast are transfers?", "answer": "Local NIP transfers are typically instant. Delays usually come from limits, downtime or compliance checks rather than the rail itself." },
+      { "question": "Are fees guaranteed?", "answer": "No — fees are indicative and can change. Each provider shows when we last verified it." }
+    ],
+    "relatedSlugs": [
+      { "label": "Remittance cost calculator", "href": "/calculators/remittance-cost" },
+      { "label": "Remittance to Nigeria", "href": "/ng/remittance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "REMITTANCE",
+    "title": "Cheapest ways to send money to Nigeria (2026)",
+    "intro": "Sending money to Nigeria from abroad, the headline transfer fee is rarely the real cost — the FX margin (the gap between the rate you get and the mid-market rate) usually matters more. Diaspora-focused apps now offer low or zero fees and tighter margins on the major UK, US, Canada and Europe corridors. We show the fee, FX margin, speed and supported corridors side by side, for CBN-licensed IMTOs and payment providers only. Use our remittance-cost calculator to see what actually arrives, and confirm live rates with the provider — figures are indicative and move constantly.",
+    "faq": [
+      { "question": "Why compare FX margin, not just the fee?", "answer": "A 'zero-fee' transfer can still be expensive if the exchange rate is poor. The FX margin is often the bigger cost — our calculator shows the amount that actually arrives after both." },
+      { "question": "Which corridors are covered?", "answer": "The major diaspora corridors into Nigeria (UK, US, Canada, Europe). Each provider lists the corridors it supports." },
+      { "question": "Are rates guaranteed?", "answer": "No — fees and FX margins move constantly. Each provider shows when we last verified it; always confirm the live quote before sending." }
+    ],
+    "relatedSlugs": [
+      { "label": "Remittance cost calculator", "href": "/calculators/remittance-cost" },
+      { "label": "Send money within Nigeria", "href": "/ng/money-transfer" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
   }
 ]

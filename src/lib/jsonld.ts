@@ -5,7 +5,8 @@
 // AggregateRating, FAQPage, ItemList and BreadcrumbList.
 
 import { SITE } from "@/lib/site";
-import type { Country, Family } from "@/lib/taxonomy";
+import type { Country, Family, FamilyKind } from "@/lib/taxonomy";
+import { schemaTypeFor } from "@/lib/families/registry";
 
 type AnyProduct = {
   slug: string;
@@ -33,16 +34,11 @@ export function absoluteUrl(path: string): string {
 // amount); deposit families fall back to FinancialProduct.
 export function productJsonLd(
   product: AnyProduct,
-  opts: { kind: "loan" | "deposit" | "card"; country: Country },
+  opts: { kind: FamilyKind; country: Country },
 ) {
   const apr = product.aprMin ?? product.aprMax ?? null;
   const credit = opts.kind === "loan" || opts.kind === "card";
-  const schemaType =
-    opts.kind === "card"
-      ? "CreditCard"
-      : opts.kind === "loan"
-        ? "LoanOrCredit"
-        : "FinancialProduct";
+  const schemaType = schemaTypeFor(opts.kind);
 
   const base: Record<string, unknown> = {
     "@context": "https://schema.org",

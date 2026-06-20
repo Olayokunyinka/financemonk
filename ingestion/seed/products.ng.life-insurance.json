@@ -1,0 +1,55 @@
+[
+  {
+    "slug": "leadway-term-life",
+    "name": "Leadway Term Life",
+    "providerSlug": "leadway-assurance",
+    "summary": "Affordable term life cover that pays a lump sum to your family.",
+    "features": ["High cover for low premium", "Flexible term", "Fast claims"],
+    "eligibility": ["Age 18-60", "Medical for high cover"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "Leadway", "url": "https://www.leadway.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "sponsored": true,
+    "ratingAggregate": 4.3, "reviewCount": 121,
+    "terms": { "premiumFrom": 30000, "sumAssured": 10000000, "claimRatio": 94, "excess": 0 }
+  },
+  {
+    "slug": "aiico-whole-life",
+    "name": "AIICO Whole Life",
+    "providerSlug": "aiico-insurance",
+    "summary": "Lifelong cover with a savings element.",
+    "features": ["Lifelong cover", "Cash value", "Loan against policy"],
+    "eligibility": ["Age 18-65"],
+    "requiredDocs": ["Valid ID", "Medical report"],
+    "sourceRefs": [{ "label": "AIICO", "url": "https://www.aiicoplc.com" }],
+    "lastVerifiedAt": "2026-06-05",
+    "ratingAggregate": 4.0, "reviewCount": 58,
+    "terms": { "premiumFrom": 80000, "sumAssured": 8000000, "claimRatio": 90, "excess": 0 }
+  },
+  {
+    "slug": "axa-mansard-term-life",
+    "name": "AXA Mansard Term Life",
+    "providerSlug": "axa-mansard",
+    "summary": "Straightforward term cover with online application.",
+    "features": ["Online application", "Flexible term"],
+    "eligibility": ["Age 18-60"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "AXA Mansard", "url": "https://www.axamansard.com" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.1, "reviewCount": 47,
+    "terms": { "premiumFrom": 35000, "sumAssured": 7500000, "claimRatio": 91, "excess": 0 }
+  },
+  {
+    "slug": "cornerstone-family-life",
+    "name": "Cornerstone Family Life Plan",
+    "providerSlug": "cornerstone-insurance",
+    "summary": "Life cover designed for breadwinners with dependants.",
+    "features": ["Dependant cover", "Optional riders"],
+    "eligibility": ["Age 18-60"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "Cornerstone", "url": "https://cornerstone.com.ng" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 3.8, "reviewCount": 26,
+    "terms": { "premiumFrom": 45000, "sumAssured": 6000000, "claimRatio": 87, "excess": 0 }
+  }
+]

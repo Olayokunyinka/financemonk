@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "hygeia-medicare-plan",
+    "name": "Hygeia Medicare Plan",
+    "providerSlug": "hygeia-hmo",
+    "summary": "Comprehensive HMO plan with a wide hospital network and dental cover.",
+    "features": ["Wide hospital network", "Dental & optical", "No claim forms"],
+    "eligibility": ["Age 0-65", "Nigeria resident"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Hygeia HMO", "url": "https://www.hygeiahmo.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "sponsored": true,
+    "ratingAggregate": 4.3, "reviewCount": 164,
+    "terms": { "premiumFrom": 120000, "sumAssured": 5000000, "claimRatio": 92, "excess": 0 }
+  },
+  {
+    "slug": "axa-mansard-health-classic",
+    "name": "AXA Mansard Health Classic",
+    "providerSlug": "axa-mansard",
+    "summary": "Mid-tier health plan covering in- and out-patient care.",
+    "features": ["In & out-patient", "Maternity add-on", "Telemedicine"],
+    "eligibility": ["Age 0-65"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "AXA Mansard", "url": "https://www.axamansard.com" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.1, "reviewCount": 98,
+    "terms": { "premiumFrom": 95000, "sumAssured": 3000000, "claimRatio": 90, "excess": 0 }
+  },
+  {
+    "slug": "leadway-health-premium",
+    "name": "Leadway Health Premium",
+    "providerSlug": "leadway-assurance",
+    "summary": "Premium plan with higher limits and evacuation cover.",
+    "features": ["High limits", "Medical evacuation", "Wide network"],
+    "eligibility": ["Age 0-70"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Leadway", "url": "https://www.leadway.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.2, "reviewCount": 72,
+    "terms": { "premiumFrom": 250000, "sumAssured": 10000000, "claimRatio": 93, "excess": 0 }
+  },
+  {
+    "slug": "aiico-health-essential",
+    "name": "AIICO Health Essential",
+    "providerSlug": "aiico-insurance",
+    "summary": "Affordable essential cover for individuals and families.",
+    "features": ["Affordable", "Primary care focus"],
+    "eligibility": ["Age 0-60"],
+    "requiredDocs": ["Valid ID"],
+    "sourceRefs": [{ "label": "AIICO", "url": "https://www.aiicoplc.com" }],
+    "lastVerifiedAt": "2026-06-05",
+    "ratingAggregate": 3.8, "reviewCount": 41,
+    "terms": { "premiumFrom": 60000, "sumAssured": 1500000, "claimRatio": 86, "excess": 5000 }
+  },
+  {
+    "slug": "cornerstone-family-health",
+    "name": "Cornerstone Family Health",
+    "providerSlug": "cornerstone-insurance",
+    "summary": "Family health plan with maternity and paediatric cover.",
+    "features": ["Family cover", "Maternity", "Paediatrics"],
+    "eligibility": ["Families", "Age 0-65"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Cornerstone", "url": "https://cornerstone.com.ng" }],
+    "lastVerifiedAt": "2026-06-04",
+    "ratingAggregate": 3.9, "reviewCount": 33,
+    "terms": { "premiumFrom": 180000, "sumAssured": 4000000, "claimRatio": 88, "excess": 0 }
+  }
+]
