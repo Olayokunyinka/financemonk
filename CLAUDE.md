@@ -47,7 +47,9 @@ multi-country/family so new slices are seed-data drops, not code.
 
 - `npm run dev` — dev server (http://localhost:3000)
 - `npm run db:migrate` — create/apply a migration
-- `npm run seed` — load SEED data (Nigeria personal loans)
+- `npm run seed` — load SEED data (NG/KE/ZA slices)
+- `npm run ingest` — run ingestion adapters (offline fixtures) → QA queue at
+  `/admin/ingestion`; `-- --live` to fetch real sources, `-- --adapter=<id>`
 - `npm run build` / `npm run start` — production build / serve
 - `npm run scrape:example -- <url>` — example single-provider scraper (offline
   demo if no URL)

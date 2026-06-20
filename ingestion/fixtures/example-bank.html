@@ -1,0 +1,44 @@
+<!--
+  SEED/DEMO fixture: a provider rate page in the shape adapters parse offline.
+  Used by ingestion/adapters/example-bank.ts. In a real adapter, --live would
+  fetch the provider's actual rate page instead of reading this file.
+
+  Note: GTBank Quick Credit's interest here (15%) differs from the seeded value
+  so the QA queue shows a CHANGED diff; "GTBank FlexiCash" is NEW.
+-->
+<html>
+  <body>
+    <main>
+      <section class="product" data-slug="gtbank-quick-credit">
+        <h2 class="name">GTBank Quick Credit</h2>
+        <p class="summary">Low-interest instant loan for GTBank customers via the *737# code or app.</p>
+        <table class="terms">
+          <tr><th>Interest</th><td>15%</td></tr>
+          <tr><th>Management fee</th><td>0%</td></tr>
+          <tr><th>Amount</th><td>₦5,000 - ₦5,000,000</td></tr>
+          <tr><th>Tenure</th><td>6 - 12 months</td></tr>
+        </table>
+        <ul class="features">
+          <li>1.25% monthly interest</li>
+          <li>No paperwork</li>
+          <li>Repay over 12 months</li>
+        </ul>
+      </section>
+
+      <section class="product" data-slug="gtbank-flexicash">
+        <h2 class="name">GTBank FlexiCash</h2>
+        <p class="summary">Flexible top-up credit line for salary customers, drawn on demand.</p>
+        <table class="terms">
+          <tr><th>Interest</th><td>18% - 22%</td></tr>
+          <tr><th>Management fee</th><td>1%</td></tr>
+          <tr><th>Amount</th><td>₦20,000 - ₦2,000,000</td></tr>
+          <tr><th>Tenure</th><td>1 - 6 months</td></tr>
+        </table>
+        <ul class="features">
+          <li>Draw on demand</li>
+          <li>Salary earners</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

@@ -130,6 +130,16 @@ Resend email sign-in (so `AUTH_DEV_LOGIN` can be off in prod); added slices
 drops; CPA payout/commission tracking with an admin `/admin/revenue` view.
 Signing actual referral deals is a commercial/BD step outside the codebase.
 
+**M6 — ingestion pipeline** (`ingestion/`): adapters (`adapters/*.ts`, HTML via
+Cheerio + PDF via `pdf-parse`) implement one `Adapter` interface; `run.ts`
+(`npm run ingest`) normalises (`normalize.ts`), diffs each draft against the live
+`Product`, and stages `ProductDraft` rows under an `IngestionRun`. Offline
+against `ingestion/fixtures/` by default; `--live` fetches real URLs respecting
+`robots.txt`. Admins review diffs and publish at `/admin/ingestion`
+(`src/lib/ingestion.ts` `publishDraft` — upsert with **preserve-on-missing**,
+fresh `lastVerifiedAt` + source, `recomputeProviderBadges`). Nothing is public
+until approved. Next: M7 scheduling/freshness, M8 editorial CMS, M9 SEO.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows

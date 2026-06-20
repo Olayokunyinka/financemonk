@@ -47,6 +47,12 @@ export function AuthNav() {
           >
             Revenue
           </Link>
+          <Link
+            href="/admin/ingestion"
+            className="hidden text-sm text-brand hover:underline sm:inline"
+          >
+            Ingestion
+          </Link>
         </>
       ) : null}
       <span className="hidden text-sm text-muted-foreground sm:inline">
