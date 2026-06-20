@@ -167,6 +167,13 @@ as seed/taxonomy drops + hubs. New **credit-card cost calculator**
 (`/calculators/credit-card-cost`); business loans reuse the loan calculator.
 Cards show purchase APR + credit limit + a "what a balance costs" illustration.
 
+**M17 — use-case landing pages:** `src/lib/usecases.ts` defines attribute-filtered
+SEO pages (no-collateral / instant loans, high-yield savings, SME loans,
+low-interest cards) served at `/best/{slug}` — each a programmatic hub with a
+unique intro, the thin-content noindex rule, ItemList/Breadcrumb JSON-LD, and the
+shared `<ComparisonTable>`. Linked from each slice's hub ("Popular searches") and
+the sitemap.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows

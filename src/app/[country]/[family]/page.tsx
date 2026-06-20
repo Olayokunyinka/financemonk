@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCountry, getFamily, calculatorFor } from "@/lib/taxonomy";
+import { USE_CASES } from "@/lib/usecases";
 import {
   getHub,
   getHubProducts,
@@ -72,6 +73,9 @@ export default async function HubPage(props: { params: Params }) {
   const related =
     (hub?.relatedSlugs as { label: string; href: string }[] | undefined) ?? [];
   const indexable = hubIsIndexable(hub, products.length);
+  const useCases = USE_CASES.filter(
+    (u) => u.country === country.code && u.productType === family.type,
+  );
 
   const crumbs = [
     { name: "Home", href: "/" },
@@ -155,6 +159,25 @@ export default async function HubPage(props: { params: Params }) {
       ) : null}
 
       {/* Related links (internal-linking mesh). */}
+      {/* Use-case landing pages for this slice (internal-link mesh). */}
+      {useCases.length > 0 ? (
+        <section className="mt-12">
+          <h2 className="text-xl font-semibold">Popular searches</h2>
+          <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+            {useCases.map((u) => (
+              <li key={u.slug}>
+                <Link
+                  href={`/best/${u.slug}`}
+                  className="rounded-full border border-border px-3 py-1 hover:border-brand hover:text-brand"
+                >
+                  {u.title.replace(/ \(2026\)$/, "")}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {related.length > 0 ? (
         <section className="mt-12">
           <h2 className="text-xl font-semibold">Related</h2>

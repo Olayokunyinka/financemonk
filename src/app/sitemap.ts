@@ -50,6 +50,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  // Use-case landing pages (indexable ones only).
+  const { USE_CASES } = await import("@/lib/usecases");
+  const useCaseEntries: MetadataRoute.Sitemap = [];
+  for (const uc of USE_CASES) {
+    const all = await getHubProducts(uc.country, uc.productType);
+    const count = all.filter(uc.predicate).length;
+    if (!hubIsIndexable({ intro: uc.intro }, count)) continue;
+    useCaseEntries.push({
+      url: `${SITE.url}/best/${uc.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    });
+  }
+
   // Products (live only).
   const products = await prisma.product.findMany({
     where: { live: true },
@@ -62,5 +77,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...hubEntries, ...calcEntries, ...productEntries];
+  return [
+    ...staticEntries,
+    ...hubEntries,
+    ...calcEntries,
+    ...useCaseEntries,
+    ...productEntries,
+  ];
 }
