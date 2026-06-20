@@ -61,7 +61,9 @@ export default async function DashboardPage(props: {
     include: { product: { select: { name: true, providerId: true } } },
     orderBy: { createdAt: "desc" },
   });
-  const leadCount = leads.length;
+  const commissions = await prisma.commission.findMany({
+    where: { providerId: { in: providers.map((p) => p.id) } },
+  });
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
@@ -80,6 +82,20 @@ export default async function DashboardPage(props: {
         const avg =
           provider.products.reduce((s, p) => s + p.ratingAggregate, 0) /
           (provider.products.length || 1);
+        const provLeads = leads.filter((l) =>
+          provider.products.some((p) => p.id === l.productId),
+        );
+        const provCommissions = commissions.filter(
+          (c) => c.providerId === provider.id,
+        );
+        const referralCurrency =
+          provCommissions[0]?.currency ??
+          provider.products[0]?.currency ??
+          "NGN";
+        const referralBilled = provCommissions.reduce(
+          (s, c) => s + c.amount,
+          0,
+        );
         return (
           <section key={provider.id} className="mt-8">
             <div className="flex flex-wrap items-center gap-2">
@@ -92,13 +108,17 @@ export default async function DashboardPage(props: {
             </div>
 
             {/* Overview stats */}
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            <div className="mt-3 grid gap-3 sm:grid-cols-4">
               <Stat label="Products" value={String(provider.products.length)} />
               <Stat
                 label="Avg. rating"
                 value={avg > 0 ? avg.toFixed(1) : "—"}
               />
-              <Stat label="Applications" value={String(leadCount)} />
+              <Stat label="Applications" value={String(provLeads.length)} />
+              <Stat
+                label="Referral billed"
+                value={formatCurrency(referralBilled, referralCurrency)}
+              />
             </div>
 
             {/* Products */}

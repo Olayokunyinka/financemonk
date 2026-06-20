@@ -81,12 +81,17 @@ export async function confirmCurrent(productId: string) {
 }
 
 // Provider updates the status of an application/lead (CPA reconciliation basis).
+// When a lead is marked CONVERTED and the product has a CPA payout, we record a
+// Commission (the platform's earnings). Reverting the status removes it.
 export async function updateLeadStatus(leadId: string, status: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not signed in");
   const lead = await prisma.lead.findUnique({
     where: { id: leadId },
-    include: { provider: { select: { claimedBy: true } } },
+    include: {
+      provider: { select: { claimedBy: true } },
+      product: { select: { cpaPayout: true, currency: true } },
+    },
   });
   if (!lead) throw new Error("Not found");
   const owns = lead.provider.claimedBy === session.user.id;
@@ -96,7 +101,27 @@ export async function updateLeadStatus(leadId: string, status: string) {
     ? (status as LeadStatus)
     : LeadStatus.NEW;
   await prisma.lead.update({ where: { id: leadId }, data: { status: next } });
+
+  if (next === LeadStatus.CONVERTED && lead.product.cpaPayout != null) {
+    // One commission per lead.
+    await prisma.commission.upsert({
+      where: { leadId },
+      create: {
+        leadId,
+        productId: lead.productId,
+        providerId: lead.providerId,
+        amount: lead.product.cpaPayout,
+        currency: lead.product.currency,
+      },
+      update: { amount: lead.product.cpaPayout },
+    });
+  } else {
+    // Status moved away from CONVERTED — drop any commission.
+    await prisma.commission.deleteMany({ where: { leadId } });
+  }
+
   revalidatePath("/dashboard");
+  revalidatePath("/admin/revenue");
 }
 
 export async function respondToReview(reviewId: string, formData: FormData) {

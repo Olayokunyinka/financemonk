@@ -109,6 +109,7 @@ async function main() {
   console.log("⚠  Seeding SEED (demonstration) data: Nigeria · personal loans");
 
   // --- Reset (child -> parent order) ---------------------------------------
+  await prisma.commission.deleteMany();
   await prisma.lead.deleteMany();
   await prisma.review.deleteMany();
   await prisma.claim.deleteMany();
@@ -196,6 +197,13 @@ async function main() {
     { file: "products.za.savings-accounts.json", country: "za", productType: "SAVINGS" },
   ];
 
+  // Default CPA payout per converted application (demo deal terms), only for
+  // licensed providers (you only sign referral deals with licensed institutions).
+  const payoutTable: Record<string, Record<string, number>> = {
+    PERSONAL_LOAN: { ng: 5000, ke: 1500, za: 500 },
+    SAVINGS: { ng: 2000, ke: 600, za: 150 },
+  };
+
   let productCount = 0;
   let goldCount = 0;
   for (const slice of slices) {
@@ -251,6 +259,9 @@ async function main() {
           ratingAggregate: rating,
           reviewCount: reviews,
           live: true,
+          cpaPayout: provider.licensed
+            ? (payoutTable[slice.productType]?.[slice.country] ?? null)
+            : null,
         },
       });
       productCount++;

@@ -34,12 +34,20 @@ export function AuthNav() {
         Dashboard
       </Link>
       {isAdmin ? (
-        <Link
-          href="/admin/reviews"
-          className="hidden items-center gap-1 text-sm text-brand hover:underline sm:inline-flex"
-        >
-          <ShieldCheck className="h-4 w-4" /> Moderation
-        </Link>
+        <>
+          <Link
+            href="/admin/reviews"
+            className="hidden items-center gap-1 text-sm text-brand hover:underline sm:inline-flex"
+          >
+            <ShieldCheck className="h-4 w-4" /> Moderation
+          </Link>
+          <Link
+            href="/admin/revenue"
+            className="hidden text-sm text-brand hover:underline sm:inline"
+          >
+            Revenue
+          </Link>
+        </>
       ) : null}
       <span className="hidden text-sm text-muted-foreground sm:inline">
         {user.name ?? user.email}

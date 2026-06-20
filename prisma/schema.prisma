@@ -97,6 +97,11 @@ enum LeadStatus {
   REJECTED
 }
 
+enum CommissionStatus {
+  PENDING
+  PAID
+}
+
 // ---------------------------------------------------------------------------
 // Provider — a licensed (or not) institution offering products.
 // ---------------------------------------------------------------------------
@@ -183,6 +188,11 @@ model Product {
   // --- Listing / monetisation state -------------------------------------
   live      Boolean @default(true) // counts toward thin-content threshold
   sponsored Boolean @default(false) // featured row — MUST be labelled in UI
+
+  // CPA deal: what the provider pays us per funded/converted application, in the
+  // product's currency. Set by an admin once a referral deal is signed. Only
+  // billed when CPA_ENABLED. Null = no deal yet.
+  cpaPayout Float?
 
   reviews Review[]
   leads   Lead[]
@@ -378,7 +388,29 @@ model Lead {
   status     LeadStatus @default(NEW)
   cpaEventAt DateTime?
 
+  commission Commission?
+
   createdAt DateTime @default(now())
 
   @@index([providerId, status])
+}
+
+// ---------------------------------------------------------------------------
+// Commission — a CPA payout we earn when a lead converts (provider marks it
+// funded/converted). One per lead. Basis for revenue reporting + reconciliation.
+// ---------------------------------------------------------------------------
+
+model Commission {
+  id         String           @id @default(cuid())
+  leadId     String           @unique
+  lead       Lead             @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  productId  String
+  providerId String
+  amount     Float
+  currency   String
+  status     CommissionStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+
+  @@index([providerId])
 }

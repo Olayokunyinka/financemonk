@@ -64,6 +64,9 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 - **Claim** — provider claim (method, status, evidence).
 - **Lead** — application captured at Apply; `cpaEventAt`. Recorded even when CPA
   is off.
+- **Commission** — one per Lead, created when a provider marks a lead CONVERTED
+  and the product has a `cpaPayout` (deal rate set per product by an admin).
+  Amount + currency snapshot, status PENDING/PAID. Powers `/admin/revenue`.
 
 ## Finance & SEO guardrails (HARD — never weaken)
 
@@ -121,6 +124,12 @@ AdSense, advanced analytics, mobile apps, email campaigns.
    or document → staff queue), verification vs register (gold only if
    licensed+claimed), admin `/admin/claims`, provider `/dashboard` (edit terms,
    confirm-current, respond to reviews).
+**Phase 1 progress:** real named editorial identity (env-overridable); Google +
+Resend email sign-in (so `AUTH_DEV_LOGIN` can be off in prod); added slices
+(Kenya personal loans, Nigeria & South Africa savings) as pure seed/taxonomy
+drops; CPA payout/commission tracking with an admin `/admin/revenue` view.
+Signing actual referral deals is a commercial/BD step outside the codebase.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows
