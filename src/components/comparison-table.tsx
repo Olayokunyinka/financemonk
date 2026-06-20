@@ -147,7 +147,7 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex flex-col gap-2">
-                    <ButtonLink href={`/product/${r.slug}#apply`} size="sm" variant="accent">
+                    <ButtonLink href={`/apply/${r.slug}`} size="sm" variant="accent">
                       Apply
                     </ButtonLink>
                     <ButtonLink href={`/product/${r.slug}`} size="sm" variant="outline">
@@ -198,7 +198,7 @@ export function ComparisonTable({ rows }: { rows: ProductRow[] }) {
               <LastVerified date={r.lastVerifiedISO} />
             </div>
             <div className="mt-3 flex gap-2">
-              <ButtonLink href={`/product/${r.slug}#apply`} size="sm" variant="accent" className="flex-1">
+              <ButtonLink href={`/apply/${r.slug}`} size="sm" variant="accent" className="flex-1">
                 Apply
               </ButtonLink>
               <ButtonLink href={`/product/${r.slug}`} size="sm" variant="outline" className="flex-1">

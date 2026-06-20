@@ -120,9 +120,12 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 4. **Provider side** ✅ — claim flow (`/claim` search → domain-email auto-verify
    or document → staff queue), verification vs register (gold only if
    licensed+claimed), admin `/admin/claims`, provider `/dashboard` (edit terms,
-   confirm-current, respond to reviews, applications placeholder). *(current)*
-5. **Monetisation gate + ship** — Apply/referral + CPA event (CPA_ENABLED),
-   sponsored placement, finalise scraper, deploy to Vercel.
+   confirm-current, respond to reviews).
+5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
+   always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
+   warning in code). Leads surface in the dashboard with status. Sponsored rows
+   labelled throughout. Vercel deploy steps in README. *(current — Phase 0
+   feature-complete)*
 
 ## Conventions
 

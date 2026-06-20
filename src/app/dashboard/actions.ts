@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { DisclaimerState } from "@/generated/prisma/enums";
+import { DisclaimerState, LeadStatus } from "@/generated/prisma/enums";
 
 // Ensure the signed-in user controls the product (claimed its provider) or is an
 // admin. Returns the product slug for revalidation.
@@ -77,6 +77,25 @@ export async function confirmCurrent(productId: string) {
   });
   revalidatePath(`/product/${slug}`);
   revalidatePath("/ng/personal-loans");
+  revalidatePath("/dashboard");
+}
+
+// Provider updates the status of an application/lead (CPA reconciliation basis).
+export async function updateLeadStatus(leadId: string, status: string) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not signed in");
+  const lead = await prisma.lead.findUnique({
+    where: { id: leadId },
+    include: { provider: { select: { claimedBy: true } } },
+  });
+  if (!lead) throw new Error("Not found");
+  const owns = lead.provider.claimedBy === session.user.id;
+  if (!owns && session.user.role !== "ADMIN") throw new Error("Not authorised");
+
+  const next = (Object.values(LeadStatus) as string[]).includes(status)
+    ? (status as LeadStatus)
+    : LeadStatus.NEW;
+  await prisma.lead.update({ where: { id: leadId }, data: { status: next } });
   revalidatePath("/dashboard");
 }
 

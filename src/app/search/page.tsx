@@ -238,7 +238,7 @@ export default async function SearchPage(props: { searchParams: SearchParams }) 
                 </dl>
                 <div className="mt-3 flex items-center gap-2">
                   <ButtonLink
-                    href={`/product/${r.slug}#apply`}
+                    href={`/apply/${r.slug}`}
                     size="sm"
                     variant="accent"
                   >

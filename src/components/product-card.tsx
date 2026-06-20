@@ -70,7 +70,7 @@ export function ProductCard({ product }: { product: CardProduct }) {
           <LastVerified date={product.lastVerifiedAt} />
           <div className="flex gap-2">
             <ButtonLink
-              href={`/product/${product.slug}#apply`}
+              href={`/apply/${product.slug}`}
               size="sm"
               variant="accent"
               className="flex-1"

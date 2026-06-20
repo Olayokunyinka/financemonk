@@ -128,7 +128,7 @@ export default async function LoanCalculatorPage(props: {
               </dl>
               <div className="mt-3 flex items-center gap-2">
                 <ButtonLink
-                  href={`/product/${r.slug}#apply`}
+                  href={`/apply/${r.slug}`}
                   size="sm"
                   variant="accent"
                 >

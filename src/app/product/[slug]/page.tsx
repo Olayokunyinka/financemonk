@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, FileText, CheckCircle2 } from "lucide-react";
+import { FileText, CheckCircle2 } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import {
   getProductBySlug,
@@ -30,7 +30,7 @@ import { Disclaimer, LastVerified } from "@/components/disclaimer";
 import { VerifiedBadge } from "@/components/verified-badge";
 import { RatingStars } from "@/components/rating-stars";
 import { ProductCard } from "@/components/product-card";
-import { Button, ButtonLink } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export const revalidate = 3600; // ISR
@@ -249,43 +249,18 @@ export default async function ProductPage(props: { params: Params }) {
         className="mt-8 rounded-xl border border-accent/40 bg-accent/5 p-5"
       >
         <h2 className="text-lg font-semibold">Apply for {product.name}</h2>
-        {CPA_ENABLED ? (
-          <>
-            <p className="mt-1 text-sm text-muted-foreground">
-              We&apos;ll capture a few details and hand off to the provider.
-            </p>
-            <ButtonLink
-              href={`/apply/${product.slug}`}
-              className="mt-3"
-              variant="accent"
-            >
-              Start application
-            </ButtonLink>
-          </>
-        ) : (
-          <>
-            <p className="mt-1 text-sm text-muted-foreground">
-              You&apos;ll continue on the provider&apos;s own website. (Our
-              guided referral flow is not enabled in this country yet.)
-            </p>
-            {product.provider.website ? (
-              <ButtonLink
-                href={product.provider.website}
-                className="mt-3"
-                variant="accent"
-                target="_blank"
-                rel="nofollow noopener"
-              >
-                Apply with {product.provider.name}
-                <ExternalLink className="h-4 w-4" />
-              </ButtonLink>
-            ) : (
-              <Button className="mt-3" variant="accent" disabled>
-                Provider site unavailable
-              </Button>
-            )}
-          </>
-        )}
+        <p className="mt-1 text-sm text-muted-foreground">
+          {CPA_ENABLED
+            ? "Answer a few quick questions and we'll hand your application to the provider."
+            : "Start an enquiry. Guided referral isn't enabled for this country yet, so you'll be directed to the provider's own site."}
+        </p>
+        <ButtonLink
+          href={`/apply/${product.slug}`}
+          className="mt-3"
+          variant="accent"
+        >
+          {CPA_ENABLED ? "Start application" : "Start enquiry"}
+        </ButtonLink>
       </section>
 
       {/* Reviews */}

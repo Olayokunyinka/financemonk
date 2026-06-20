@@ -5,11 +5,16 @@ import { LayoutDashboard, CheckCircle2 } from "lucide-react";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { getProvidersClaimedBy } from "@/lib/providers";
-import { formatApr, formatDate, type FeeItem } from "@/lib/format";
+import { formatApr, formatDate, formatCurrency, type FeeItem } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 import { RatingStars } from "@/components/rating-stars";
 import { LastVerified } from "@/components/disclaimer";
-import { updateProduct, confirmCurrent, respondToReview } from "./actions";
+import {
+  updateProduct,
+  confirmCurrent,
+  respondToReview,
+  updateLeadStatus,
+} from "./actions";
 
 export const metadata: Metadata = {
   title: "Provider dashboard",
@@ -51,9 +56,12 @@ export default async function DashboardPage(props: {
     where: { productId: { in: productIds }, status: "PUBLISHED" },
     orderBy: { createdAt: "desc" },
   });
-  const leadCount = await prisma.lead.count({
+  const leads = await prisma.lead.findMany({
     where: { providerId: { in: providers.map((p) => p.id) } },
+    include: { product: { select: { name: true, providerId: true } } },
+    orderBy: { createdAt: "desc" },
   });
+  const leadCount = leads.length;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
@@ -273,13 +281,63 @@ export default async function DashboardPage(props: {
               )}
             </div>
 
-            {/* Applications / leads (Milestone 5) */}
+            {/* Applications / leads */}
             <h3 className="mt-6 font-semibold">Applications</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {leadCount === 0
-                ? "No applications yet. The Apply/referral flow is enabled in Milestone 5."
-                : `${leadCount} application(s).`}
-            </p>
+            <div className="mt-2 space-y-2">
+              {leads.filter((l) =>
+                provider.products.some((p) => p.id === l.productId),
+              ).length === 0 ? (
+                <p className="text-sm text-muted-foreground">
+                  No applications yet.
+                </p>
+              ) : (
+                leads
+                  .filter((l) =>
+                    provider.products.some((p) => p.id === l.productId),
+                  )
+                  .map((l) => (
+                    <div
+                      key={l.id}
+                      className="flex flex-wrap items-center gap-3 rounded-lg border border-border px-3 py-2 text-sm"
+                    >
+                      <span className="font-medium">{l.fullName}</span>
+                      <span className="text-muted-foreground">
+                        {l.product.name}
+                      </span>
+                      {l.amount ? (
+                        <span className="text-muted-foreground">
+                          {formatCurrency(l.amount)}
+                        </span>
+                      ) : null}
+                      <Badge
+                        variant={
+                          l.status === "CONVERTED"
+                            ? "brand"
+                            : l.status === "REJECTED"
+                              ? "outline"
+                              : "neutral"
+                        }
+                      >
+                        {l.status}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(l.createdAt)}
+                      </span>
+                      <form
+                        action={updateLeadStatus.bind(null, l.id, "CONVERTED")}
+                        className="ml-auto"
+                      >
+                        <button
+                          type="submit"
+                          className="rounded-lg border border-border px-2 py-1 text-xs hover:bg-muted"
+                        >
+                          Mark converted
+                        </button>
+                      </form>
+                    </div>
+                  ))
+              )}
+            </div>
           </section>
         );
       })}

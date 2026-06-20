@@ -139,7 +139,7 @@ export default async function ComparePage(props: {
               {rows.map((r) => (
                 <Cell key={r.slug}>
                   <ButtonLink
-                    href={`/product/${r.slug}#apply`}
+                    href={`/apply/${r.slug}`}
                     size="sm"
                     variant="accent"
                   >

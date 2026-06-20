@@ -197,6 +197,52 @@ page and the product's star rating updates.
 > Only providers on the CBN licence register can ever show the gold badge, even
 > after claiming — try claiming `QuickNaira` to see it stays unverified.
 
+## What to look at (Milestone 5 — apply / referral)
+
+- On any product or comparison row, click **Apply**. You'll reach
+  `/apply/[product]` — a short application form (amount, income, contact,
+  consent).
+- **The monetisation gate:** `CPA_ENABLED` in `.env` is **OFF by default**. With
+  it off, the form records the enquiry but clearly says it won't be sent to the
+  provider and points you to the provider's own site. Set `CPA_ENABLED="true"`
+  (and restart `npm run dev`) to see the full referral behaviour — the
+  application is marked handed-off and a CPA event is recorded.
+  > ⚠️ Paid referral/intermediation of financial products may require a
+  > financial-services licence per country — clear it legally before enabling.
+- **Applications appear in the provider dashboard** (`/dashboard`) under the
+  claimed provider, where you can mark them converted.
+
+---
+
+## Deploy to Vercel
+
+1. **Push to GitHub.** Create a repo and push this project.
+2. **Database (Neon).** If you haven't already, create a Neon project (see
+   "Database setup" above) and copy its connection string.
+3. **Prepare the database** (run locally, pointed at Neon — replace the URL):
+   ```bash
+   DATABASE_URL="<your-neon-url>" npx prisma migrate deploy
+   DATABASE_URL="<your-neon-url>" npm run seed
+   ```
+4. **Import to Vercel.** Go to https://vercel.com → **Add New → Project** →
+   import your GitHub repo. Framework is auto-detected (Next.js).
+5. **Set Environment Variables** in Vercel (Project → Settings → Environment
+   Variables):
+   - `DATABASE_URL` — your Neon connection string
+   - `AUTH_SECRET` — run `openssl rand -base64 33` for a value
+   - `NEXT_PUBLIC_SITE_URL` — your production URL (e.g. `https://yourapp.vercel.app`)
+   - `ADMIN_EMAILS` — your email (for moderation access)
+   - `AUTH_DEV_LOGIN` — `false` in production (then add Google creds below so you
+     can still sign in)
+   - `CPA_ENABLED` — `false` (until licensing is cleared)
+   - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` — for production sign-in (see
+     "Enabling Google sign-in" above; add the Vercel callback URL
+     `https://yourapp.vercel.app/api/auth/callback/google`)
+6. **Deploy.** Vercel runs `npm install` (which runs `prisma generate` via
+   `postinstall`) then `npm run build`. Your site goes live.
+7. After deploy, update the Google redirect URI and `NEXT_PUBLIC_SITE_URL` to the
+   final domain if it changed.
+
 ---
 
 ## Other commands
