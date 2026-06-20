@@ -6,6 +6,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { getProvidersClaimedBy } from "@/lib/providers";
 import { formatApr, formatDate, formatCurrency, type FeeItem } from "@/lib/format";
+import { freshnessOf } from "@/lib/freshness";
 import { Badge } from "@/components/ui/badge";
 import { RatingStars } from "@/components/rating-stars";
 import { LastVerified } from "@/components/disclaimer";
@@ -122,7 +123,20 @@ export default async function DashboardPage(props: {
             </div>
 
             {/* Products */}
-            <h3 className="mt-6 font-semibold">Products</h3>
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-2">
+              <h3 className="font-semibold">Products</h3>
+              {(() => {
+                const stale = provider.products.filter(
+                  (p) => freshnessOf(p.lastVerifiedAt).status !== "fresh",
+                ).length;
+                return stale > 0 ? (
+                  <span className="text-xs text-gold">
+                    {stale} product{stale === 1 ? "" : "s"} need re-confirming —
+                    open one and click “Confirm current”.
+                  </span>
+                ) : null;
+              })()}
+            </div>
             <div className="mt-2 space-y-3">
               {provider.products.map((p) => {
                 const fee = (p.fees as FeeItem[])?.[0];

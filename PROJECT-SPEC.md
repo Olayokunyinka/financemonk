@@ -138,7 +138,17 @@ against `ingestion/fixtures/` by default; `--live` fetches real URLs respecting
 `robots.txt`. Admins review diffs and publish at `/admin/ingestion`
 (`src/lib/ingestion.ts` `publishDraft` — upsert with **preserve-on-missing**,
 fresh `lastVerifiedAt` + source, `recomputeProviderBadges`). Nothing is public
-until approved. Next: M7 scheduling/freshness, M8 editorial CMS, M9 SEO.
+until approved. Next: M8 editorial CMS, M9 SEO.
+
+**M7 — rate-freshness service:** `src/lib/freshness.ts` turns a product's
+`lastVerifiedAt` into fresh/ageing/stale (thresholds 45/90 days, env-overridable
+via `NEXT_PUBLIC_*`); `<LastVerified>` flags stale figures everywhere. Admin
+freshness dashboard `/admin/freshness` (counts + oldest-first "needs
+re-checking" + "mark re-checked"); provider dashboard nudges stale products to
+"confirm current". Scheduled refresh: `runIngestion()` is shared by the CLI and
+a `GET /api/cron/refresh` route (nodejs runtime, `CRON_SECRET`-gated, stages
+drafts — never auto-publishes); `vercel.json` runs it daily. `pdf-parse`/
+`pdfjs-dist` are `serverExternalPackages` so the worker resolves in the route.
 
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal

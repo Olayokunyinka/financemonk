@@ -1,12 +1,11 @@
 import { Info, Clock } from "lucide-react";
-import { formatDate, daysSince } from "@/lib/format";
+import { formatDate } from "@/lib/format";
+import { freshnessOf } from "@/lib/freshness";
 
 // HARD GUARDRAIL: every product and every comparison row must show this
 // "indicative — confirm with provider" disclaimer together with the
 // last-verified date. This component is the single implementation so it can
-// never be omitted by accident.
-
-const STALE_DAYS = 90;
+// never be omitted by accident. Staleness uses the shared freshness rules (M7).
 
 export function LastVerified({
   date,
@@ -15,21 +14,21 @@ export function LastVerified({
   date: Date | string;
   className?: string;
 }) {
-  const stale = daysSince(date) > STALE_DAYS;
+  const { status, days } = freshnessOf(date);
   return (
     <span
       className={`inline-flex items-center gap-1 text-xs ${
-        stale ? "text-gold" : "text-muted-foreground"
+        status === "stale" ? "text-gold" : "text-muted-foreground"
       } ${className}`}
       title={
-        stale
-          ? "These figures may be out of date — we are re-checking them."
-          : "Date these figures were last checked."
+        status === "stale"
+          ? `Last checked ${days} days ago — we are re-checking these figures.`
+          : `Date these figures were last checked (${days} days ago).`
       }
     >
       <Clock className="h-3 w-3" aria-hidden />
       Last verified: {formatDate(date)}
-      {stale ? " (re-checking)" : ""}
+      {status === "stale" ? " (re-checking)" : ""}
     </span>
   );
 }

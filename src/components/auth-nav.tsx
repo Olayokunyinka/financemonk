@@ -53,6 +53,12 @@ export function AuthNav() {
           >
             Ingestion
           </Link>
+          <Link
+            href="/admin/freshness"
+            className="hidden text-sm text-brand hover:underline sm:inline"
+          >
+            Freshness
+          </Link>
         </>
       ) : null}
       <span className="hidden text-sm text-muted-foreground sm:inline">
