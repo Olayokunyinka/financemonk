@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/format";
 import { RatingStars } from "@/components/rating-stars";
 import { Badge } from "@/components/ui/badge";
 import { approveReview, rejectReview } from "./actions";
+import { SPAM_THRESHOLD } from "@/lib/moderation";
 
 export const metadata: Metadata = {
   title: "Moderation queue",
@@ -36,7 +37,7 @@ export default async function ModerationPage() {
   const pending = await prisma.review.findMany({
     where: { status: "PENDING" },
     include: { product: { select: { slug: true, name: true } } },
-    orderBy: { createdAt: "asc" },
+    orderBy: [{ spamScore: "desc" }, { createdAt: "asc" }], // riskiest first
   });
 
   const recent = await prisma.review.findMany({
@@ -86,6 +87,24 @@ export default async function ModerationPage() {
                 </Badge>
                 <span>{formatDate(r.createdAt)}</span>
               </div>
+              {r.spamScore >= SPAM_THRESHOLD || r.flags.length > 0 ? (
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <Badge
+                    variant={r.spamScore >= SPAM_THRESHOLD ? "gold" : "neutral"}
+                  >
+                    Risk {r.spamScore}
+                  </Badge>
+                  {r.flags.map((f) => (
+                    <span
+                      key={f}
+                      className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+
               <div className="mt-2 font-medium">{r.title}</div>
               <p className="mt-1 text-sm text-muted-foreground">{r.body}</p>
 

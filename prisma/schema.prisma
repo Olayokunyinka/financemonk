@@ -349,9 +349,36 @@ model Review {
   ownerResponse    String?
   ownerRespondedAt DateTime?
 
+  // Fraud heuristics (M14): score 0-100 + reason flags, computed at submit.
+  spamScore Int      @default(0)
+  flags     String[] @default([])
+
+  reports Report[]
+
   createdAt DateTime @default(now())
 
   @@index([productId, status])
+}
+
+enum ReportStatus {
+  OPEN
+  ACTIONED
+  DISMISSED
+}
+
+// User/visitor report on a review (notice-and-takedown). Admins action or
+// dismiss in /admin/reports.
+model Report {
+  id            String       @id @default(cuid())
+  reviewId      String
+  review        Review       @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reason        String
+  detail        String?
+  reporterEmail String?
+  status        ReportStatus @default(OPEN)
+  createdAt     DateTime     @default(now())
+
+  @@index([status])
 }
 
 // ---------------------------------------------------------------------------

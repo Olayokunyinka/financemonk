@@ -32,6 +32,7 @@ import { Disclaimer, LastVerified } from "@/components/disclaimer";
 import { VerifiedBadge } from "@/components/verified-badge";
 import { RatingStars } from "@/components/rating-stars";
 import { ProductCard } from "@/components/product-card";
+import { ReportReview } from "@/components/report-review";
 import { ButtonLink } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -344,8 +345,11 @@ export default async function ProductPage(props: { params: Params }) {
                 </div>
                 <div className="mt-2 font-medium">{r.title}</div>
                 <p className="mt-1 text-sm text-muted-foreground">{r.body}</p>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  {r.authorName ?? "Anonymous"}
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <span className="text-xs text-muted-foreground">
+                    {r.authorName ?? "Anonymous"}
+                  </span>
+                  <ReportReview reviewId={r.id} />
                 </div>
                 {r.ownerResponse ? (
                   <div className="mt-3 rounded-lg border-l-2 border-brand bg-muted/50 p-3 text-sm">

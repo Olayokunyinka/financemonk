@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { ReviewerType } from "@/generated/prisma/enums";
+import { scoreReview } from "@/lib/moderation";
 
 function clampRating(v: FormDataEntryValue | null): number | null {
   const n = Number(v);
@@ -40,6 +41,22 @@ export async function submitReview(slug: string, formData: FormData) {
       ? ReviewerType.VERIFIED_CUSTOMER
       : ReviewerType.CUSTOMER;
 
+  // Fraud heuristics: velocity (last 24h) + duplicate-text detection.
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const [recentByUser, duplicate] = await Promise.all([
+    prisma.review.count({
+      where: { userId: session.user.id, createdAt: { gte: since } },
+    }),
+    prisma.review.findFirst({
+      where: { userId: session.user.id, body },
+      select: { id: true },
+    }),
+  ]);
+  const { score, flags } = scoreReview(
+    { title, body, overall },
+    { recentByUser, duplicateByUser: !!duplicate },
+  );
+
   await prisma.review.create({
     data: {
       productId: product.id,
@@ -53,6 +70,8 @@ export async function submitReview(slug: string, formData: FormData) {
       title,
       body,
       reviewerType,
+      spamScore: score,
+      flags,
       // status defaults to PENDING (moderation queue).
     },
   });

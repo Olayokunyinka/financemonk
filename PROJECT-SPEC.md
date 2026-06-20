@@ -150,6 +150,15 @@ a `GET /api/cron/refresh` route (nodejs runtime, `CRON_SECRET`-gated, stages
 drafts — never auto-publishes); `vercel.json` runs it daily. `pdf-parse`/
 `pdfjs-dist` are `serverExternalPackages` so the worker resolves in the route.
 
+**M14 — trust/moderation hardening:** `src/lib/moderation.ts` scores each review
+0–100 + flags (duplicate text, velocity, links, very short, all-caps, extreme
+rating) at submit; the moderation queue sorts riskiest-first and shows flags.
+Public notice-and-takedown: `<ReportReview>` (client) → `reportReview` server
+action → `Report` rows; admin `/admin/reports` takes a review down (REJECTED +
+aggregate recompute) or dismisses. Admin surfaces: `/admin/reviews`,
+`/admin/claims`, `/admin/revenue`, `/admin/ingestion`, `/admin/freshness`,
+`/admin/reports`.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows
