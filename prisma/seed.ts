@@ -193,6 +193,8 @@ async function main() {
   const slices: { file: string; country: string; productType: keyof typeof ProductType }[] = [
     { file: "products.ng.personal-loans.json", country: "ng", productType: "PERSONAL_LOAN" },
     { file: "products.ng.savings-accounts.json", country: "ng", productType: "SAVINGS" },
+    { file: "products.ng.business-loans.json", country: "ng", productType: "BUSINESS_LOAN" },
+    { file: "products.ng.credit-cards.json", country: "ng", productType: "CREDIT_CARD" },
     { file: "products.ke.personal-loans.json", country: "ke", productType: "PERSONAL_LOAN" },
     { file: "products.za.savings-accounts.json", country: "za", productType: "SAVINGS" },
   ];
@@ -202,6 +204,8 @@ async function main() {
   const payoutTable: Record<string, Record<string, number>> = {
     PERSONAL_LOAN: { ng: 5000, ke: 1500, za: 500 },
     SAVINGS: { ng: 2000, ke: 600, za: 150 },
+    BUSINESS_LOAN: { ng: 12000, ke: 4000, za: 1200 },
+    CREDIT_CARD: { ng: 4000, ke: 1200, za: 400 },
   };
 
   let productCount = 0;

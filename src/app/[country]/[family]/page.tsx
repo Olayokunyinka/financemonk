@@ -108,15 +108,17 @@ export default async function HubPage(props: { params: Params }) {
         </Link>
         <Link
           href={
-            family.lending
-              ? calculatorFor(family)
-              : `${calculatorFor(family)}?country=${country.code}`
+            family.kind === "deposit"
+              ? `${calculatorFor(family)}?country=${country.code}`
+              : calculatorFor(family)
           }
           className="text-brand hover:underline"
         >
-          {family.lending
-            ? "Loan repayment calculator →"
-            : "Savings growth calculator →"}
+          {family.kind === "deposit"
+            ? "Savings growth calculator →"
+            : family.kind === "card"
+              ? "Credit-card cost calculator →"
+              : "Loan repayment calculator →"}
         </Link>
       </div>
 

@@ -72,12 +72,17 @@ export default async function ProductPage(props: { params: Params }) {
     ? await getAlternatives(product.country, product.productType, product.slug, 4)
     : [];
 
-  const lending = family?.lending ?? true;
+  const kind = family?.kind ?? "loan";
+  const lending = kind === "loan";
   const fees = (product.fees as FeeItem[]) ?? [];
   const sources =
     (product.sourceRefs as { label: string; url: string }[]) ?? [];
   const example = representativeExample(product);
   const savingsExample = representativeSavingsExample(product);
+  // Card cost illustration: interest on a carried balance for one month.
+  const cardApr = product.aprMin ?? product.aprMax ?? 0;
+  const cardBalance = Math.min(100000, product.maxAmount ?? 100000);
+  const cardMonthlyInterest = (cardBalance * cardApr) / 100 / 12;
 
   const hubHref = family ? `/${country.code}/${family.slug}` : "/";
   const crumbs = [
@@ -93,7 +98,7 @@ export default async function ProductPage(props: { params: Params }) {
         data={[
           breadcrumbJsonLd(crumbs),
           productJsonLd(product, {
-            lending: family?.lending ?? true,
+            kind,
             country,
           }),
           reviewsJsonLd(product, reviews),
@@ -173,20 +178,36 @@ export default async function ProductPage(props: { params: Params }) {
         <div className="mt-3 overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <tbody className="divide-y divide-border">
-              <Row label={lending ? "Interest / APR (p.a.)" : "Interest (p.a.)"}>
-                {lending
-                  ? formatApr(product.aprMin, product.aprMax)
-                  : formatPercent(product.interestRate)}
+              <Row
+                label={
+                  kind === "card"
+                    ? "Purchase APR (p.a.)"
+                    : kind === "deposit"
+                      ? "Interest (p.a.)"
+                      : "Interest / APR (p.a.)"
+                }
+              >
+                {kind === "deposit"
+                  ? formatPercent(product.interestRate)
+                  : formatApr(product.aprMin, product.aprMax)}
               </Row>
               <Row label="Fees">{feesSummary(fees)}</Row>
-              <Row label={lending ? "Amount" : "Min. balance"}>
+              <Row
+                label={
+                  kind === "card"
+                    ? "Credit limit"
+                    : kind === "deposit"
+                      ? "Min. balance"
+                      : "Amount"
+                }
+              >
                 {formatAmountRange(
                   product.minAmount,
                   product.maxAmount,
                   country.currencySymbol,
                 )}
               </Row>
-              {lending ? (
+              {kind === "loan" ? (
                 <Row label="Tenure">
                   {formatTenure(
                     product.minTenureMonths,
@@ -230,7 +251,37 @@ export default async function ProductPage(props: { params: Params }) {
 
       {/* Total-cost / growth illustration */}
       <section className="mt-8 rounded-xl border border-border bg-muted/30 p-5">
-        {lending ? (
+        {kind === "card" ? (
+          <>
+            <h2 className="text-lg font-semibold">What a balance costs</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Representative example (interest on a carried balance — pay in full
+              within the interest-free period to avoid it):
+            </p>
+            <p className="mt-3 text-sm">
+              Carry{" "}
+              <strong>{formatCurrency(cardBalance, product.currency)}</strong>{" "}
+              for a month at{" "}
+              <strong>{formatApr(product.aprMin, product.aprMax)}</strong> →
+              about{" "}
+              <strong>
+                {formatCurrency(cardMonthlyInterest, product.currency)}
+              </strong>{" "}
+              in interest that month.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Illustrative only — actual charges depend on the card&apos;s terms,
+              fees and how you repay.{" "}
+              <Link
+                href="/calculators/credit-card-cost"
+                className="text-brand hover:underline"
+              >
+                Try the calculator
+              </Link>
+              .
+            </p>
+          </>
+        ) : lending ? (
           <>
             <h2 className="text-lg font-semibold">What you&apos;d actually pay</h2>
             <p className="mt-1 text-sm text-muted-foreground">

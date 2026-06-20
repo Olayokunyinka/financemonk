@@ -43,6 +43,10 @@ export function currencyOf(countryCode: string): string {
   return COUNTRIES[countryCode]?.currency ?? "NGN";
 }
 
+// Product "kind" drives rate wording, the product-page illustration, the
+// schema.org type and which calculator the family funnels into.
+export type FamilyKind = "loan" | "deposit" | "card";
+
 export type Family = {
   slug: string; // used in URLs
   type: ProductType;
@@ -50,8 +54,7 @@ export type Family = {
   label: string;
   // Capitalised for headings.
   labelTitle: string;
-  // Whether this family is a lending product (affects rate wording + calculator).
-  lending: boolean;
+  kind: FamilyKind;
 };
 
 export const FAMILIES: Record<string, Family> = {
@@ -60,24 +63,42 @@ export const FAMILIES: Record<string, Family> = {
     type: ProductType.PERSONAL_LOAN,
     label: "personal loans",
     labelTitle: "Personal Loans",
-    lending: true,
+    kind: "loan",
   },
   "savings-accounts": {
     slug: "savings-accounts",
     type: ProductType.SAVINGS,
     label: "savings accounts",
     labelTitle: "Savings Accounts",
-    lending: false,
+    kind: "deposit",
   },
-  // Later phases (content drops, no code change):
-  // "business-loans": { slug: "business-loans", type: ProductType.BUSINESS_LOAN, label: "business loans", labelTitle: "Business Loans", lending: true },
+  "business-loans": {
+    slug: "business-loans",
+    type: ProductType.BUSINESS_LOAN,
+    label: "business loans",
+    labelTitle: "Business Loans",
+    kind: "loan",
+  },
+  "credit-cards": {
+    slug: "credit-cards",
+    type: ProductType.CREDIT_CARD,
+    label: "credit cards",
+    labelTitle: "Credit Cards",
+    kind: "card",
+  },
 };
 
 // The calculator a family funnels into.
 export function calculatorFor(family: Family): string {
-  return family.lending
-    ? "/calculators/loan-repayment"
-    : "/calculators/savings-growth";
+  switch (family.kind) {
+    case "deposit":
+      return "/calculators/savings-growth";
+    case "card":
+      return "/calculators/credit-card-cost";
+    case "loan":
+    default:
+      return "/calculators/loan-repayment";
+  }
 }
 
 export function getCountry(code: string): Country | undefined {

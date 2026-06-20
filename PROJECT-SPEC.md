@@ -159,6 +159,14 @@ aggregate recompute) or dismisses. Admin surfaces: `/admin/reviews`,
 `/admin/claims`, `/admin/revenue`, `/admin/ingestion`, `/admin/freshness`,
 `/admin/reports`.
 
+**M15–M16 — more families:** `Family.kind` ('loan' | 'deposit' | 'card')
+replaces the old `lending` boolean and drives rate wording, the product-page
+illustration, the schema.org type (LoanOrCredit / FinancialProduct / CreditCard)
+and `calculatorFor()`. Added **business loans** and **credit cards** (Nigeria)
+as seed/taxonomy drops + hubs. New **credit-card cost calculator**
+(`/calculators/credit-card-cost`); business loans reuse the loan calculator.
+Cards show purchase APR + credit limit + a "what a balance costs" illustration.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows

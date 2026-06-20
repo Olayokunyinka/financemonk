@@ -79,5 +79,36 @@
       { "label": "Savings growth calculator", "href": "/calculators/savings-growth?country=za" },
       { "label": "How we compare", "href": "/methodology" }
     ]
+  },
+  {
+    "country": "ng",
+    "productType": "BUSINESS_LOAN",
+    "title": "Best business loans in Nigeria (2026)",
+    "intro": "Business loans in Nigeria run from quick unsecured working-capital facilities to multi-million-naira term loans, asset finance and trade finance. The right option depends on what you're funding (cash-flow gaps, equipment, expansion or imports), how much security you can offer, and your turnover history. Bank SME loans carry the lowest rates but ask for CAC registration, a business account and bank statements; finance companies and microfinance lenders are faster but pricier. We convert every product to a comparable annual basis and show fees alongside the rate, and we list only providers licensed by the Central Bank of Nigeria. Sort by interest, fees or amount, and confirm exact terms with the provider before applying — figures are indicative and change often.",
+    "faq": [
+      { "question": "What do I need to apply for a business loan in Nigeria?", "answer": "Most lenders require CAC registration, a business bank account, and 6–12 months of bank statements; larger facilities also ask for financial statements and a business plan. Each product lists its required documents." },
+      { "question": "Secured or unsecured?", "answer": "Smaller working-capital loans may be unsecured; larger term loans, asset finance and trade finance are usually secured against the asset or supported by your turnover. Secured facilities generally carry lower rates." },
+      { "question": "Are these rates guaranteed?", "answer": "No. Business-loan pricing is risk-based and negotiable, so figures are indicative and can change. Each product shows when we last verified it; confirm with the provider." }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "Best personal loans in Nigeria", "href": "/ng/personal-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng",
+    "productType": "CREDIT_CARD",
+    "title": "Best credit cards in Nigeria (2026)",
+    "intro": "Credit cards in Nigeria range from low-fee classic cards to premium cards with airport-lounge access, travel insurance and dollar-spend options. The figures that matter most are the purchase APR (what you pay if you carry a balance), the annual fee, and the interest-free period — pay your statement in full within it and you pay no purchase interest at all. We show the purchase APR on a comparable annual basis next to the annual fee and credit limit, and we list only cards from CBN-licensed banks. Sort by APR or fees, and confirm exact terms with the issuer — figures are indicative and change.",
+    "faq": [
+      { "question": "How do I avoid paying interest on a credit card?", "answer": "Pay your full statement balance within the interest-free period (often up to 45 days). You then pay no purchase interest — only the annual fee, if any. Carrying a balance is what triggers the purchase APR." },
+      { "question": "What does the purchase APR mean?", "answer": "It's the annual interest rate charged on balances you don't pay off in full. Our credit-card cost calculator shows how long a balance takes to clear and the total interest at a given APR and monthly payment." },
+      { "question": "Are these rates and fees guaranteed?", "answer": "No — they're indicative and can change, and your limit/APR depend on the issuer's assessment. Each card shows when we last verified it; confirm with the bank." }
+    ],
+    "relatedSlugs": [
+      { "label": "Credit-card cost calculator", "href": "/calculators/credit-card-cost" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
   }
 ]

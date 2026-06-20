@@ -33,18 +33,30 @@ export function absoluteUrl(path: string): string {
 // amount); deposit families fall back to FinancialProduct.
 export function productJsonLd(
   product: AnyProduct,
-  opts: { lending: boolean; country: Country },
+  opts: { kind: "loan" | "deposit" | "card"; country: Country },
 ) {
   const apr = product.aprMin ?? product.aprMax ?? null;
+  const credit = opts.kind === "loan" || opts.kind === "card";
+  const schemaType =
+    opts.kind === "card"
+      ? "CreditCard"
+      : opts.kind === "loan"
+        ? "LoanOrCredit"
+        : "FinancialProduct";
 
   const base: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": opts.lending ? "LoanOrCredit" : "FinancialProduct",
+    "@type": schemaType,
     "@id": absoluteUrl(`/product/${product.slug}`),
     name: product.name,
     url: absoluteUrl(`/product/${product.slug}`),
     description: product.summary ?? product.name,
-    category: opts.lending ? "Personal loan" : "Financial product",
+    category:
+      opts.kind === "card"
+        ? "Credit card"
+        : opts.kind === "loan"
+          ? "Loan"
+          : "Financial product",
     areaServed: { "@type": "Country", name: opts.country.name },
     provider: {
       "@type": "BankOrCreditUnion",
@@ -53,7 +65,7 @@ export function productJsonLd(
     },
   };
 
-  if (opts.lending) {
+  if (credit) {
     if (apr != null) base.annualPercentageRate = apr;
     if (product.maxAmount != null || product.minAmount != null) {
       base.amount = {
