@@ -27,6 +27,12 @@ export function AuthNav() {
 
   return (
     <div className="flex items-center gap-3">
+      <Link
+        href="/dashboard"
+        className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline"
+      >
+        Dashboard
+      </Link>
       {isAdmin ? (
         <Link
           href="/admin/reviews"

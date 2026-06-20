@@ -116,9 +116,11 @@ AdSense, advanced analytics, mobile apps, email campaigns.
 3. **Accounts & reviews** ✅ — Auth.js (Google env-gated + dev email login),
    user/business role toggle, auth-gated write-a-review with sub-ratings +
    verified-customer flag, admin moderation queue, aggregate recompute on
-   publish. *(current)*
-4. **Provider side** — claim flow, verification vs register (gold badge),
-   provider dashboard (edit products, confirm-current, respond to reviews, leads).
+   publish.
+4. **Provider side** ✅ — claim flow (`/claim` search → domain-email auto-verify
+   or document → staff queue), verification vs register (gold only if
+   licensed+claimed), admin `/admin/claims`, provider `/dashboard` (edit terms,
+   confirm-current, respond to reviews, applications placeholder). *(current)*
 5. **Monetisation gate + ship** — Apply/referral + CPA event (CPA_ENABLED),
    sponsored placement, finalise scraper, deploy to Vercel.
 
@@ -146,6 +148,15 @@ AdSense, advanced analytics, mobile apps, email campaigns.
   approves → `PUBLISHED`; `recomputeProductRating` (`src/lib/ratings.ts`)
   refreshes the product aggregate from PUBLISHED reviews and `revalidatePath`
   refreshes the (ISR) product page.
+- **Claims** (`src/lib/providers.ts`): domain-email match (email domain ==
+  provider website domain) auto-approves; otherwise document → `/admin/claims`.
+  `applyApprovedClaim` sets `claimed`/`claimedBy`, promotes the user to
+  BUSINESS, and `recomputeProviderBadges` flips products to gold for licensed
+  providers. The gold rule still lives in `resolveBadge` + this recompute.
+- **Dashboard** (`/dashboard`, `dashboard/actions.ts`): owner-or-admin checks
+  via `assertOwnsProduct`; edits stamp `lastVerifiedAt` + `PROVIDER_CONFIRMED`;
+  `confirmCurrent` refreshes freshness; `respondToReview` writes `ownerResponse`
+  (shown on the product page). All revalidate the affected product + hub.
 - Plain serializable data crosses into client components via `src/lib/rows.ts`.
 - Money/percent/date formatting in `src/lib/format.ts`; loan maths in
   `src/lib/loan.ts`.

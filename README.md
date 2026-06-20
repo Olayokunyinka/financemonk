@@ -175,6 +175,28 @@ page and the product's star rating updates.
 6. Restart `npm run dev`. A **Continue with Google** button now appears on
    `/signin`.
 
+## What to look at (Milestone 4 — provider side)
+
+**Claim a listing → instant gold badge:**
+1. Sign in (any email), then open **Claim this listing** on a product page (or go
+   to `/claim`).
+2. Search a provider that is licensed but unclaimed, e.g. **Guaranty Trust Bank**
+   → **This is mine**.
+3. Verify with a work email on the provider's domain — e.g. `manager@gtbank.com`
+   (the page tells you the exact domain) → **Verify by email**. You're approved
+   instantly and the provider's products now show the gold **Verified** badge.
+   (Emails on other domains, or document uploads, go to an admin queue at
+   `/admin/claims` instead.)
+
+**Provider dashboard (`/dashboard`):**
+- See your products, **edit terms** (rate, fee, amounts, tenure, eligibility) —
+  saving stamps a fresh "last verified" date.
+- **Confirm current** refreshes the last-verified date without changing figures.
+- **Respond** to reviews — your response appears publicly under the review.
+
+> Only providers on the CBN licence register can ever show the gold badge, even
+> after claiming — try claiming `QuickNaira` to see it stays unverified.
+
 ---
 
 ## Other commands

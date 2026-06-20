@@ -134,7 +134,7 @@ export default async function ProductPage(props: { params: Params }) {
             Apply / Get this product
           </ButtonLink>
           <Link
-            href="#"
+            href="/claim"
             className="text-xs text-muted-foreground hover:text-foreground"
           >
             Claim this listing
@@ -321,6 +321,16 @@ export default async function ProductPage(props: { params: Params }) {
                 <div className="mt-2 text-xs text-muted-foreground">
                   {r.authorName ?? "Anonymous"}
                 </div>
+                {r.ownerResponse ? (
+                  <div className="mt-3 rounded-lg border-l-2 border-brand bg-muted/50 p-3 text-sm">
+                    <div className="font-medium text-brand">
+                      Response from {product.provider.name}
+                    </div>
+                    <p className="mt-1 text-muted-foreground">
+                      {r.ownerResponse}
+                    </p>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
