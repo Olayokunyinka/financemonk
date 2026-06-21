@@ -95,7 +95,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.uid = (user as { id?: string }).id;
-        token.role = (user as { role?: string }).role ?? UserRole.USER;
+        token.role = (user as { role?: UserRole }).role ?? UserRole.USER;
       }
       // Admins are granted by email allowlist (overrides stored role).
       if (

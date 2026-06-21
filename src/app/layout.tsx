@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { JsonLd } from "@/components/json-ld";
-import { organisationJsonLd } from "@/lib/jsonld";
-import { CompareBar } from "@/components/compare/compare-tray";
 import { Providers } from "@/components/providers";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -25,6 +20,12 @@ export const metadata: Metadata = {
   openGraph: { siteName: SITE.name, type: "website" },
 };
 
+// Root layout carries only the document shell + session context. The public
+// chrome (TopNav + SiteFooter) lives in the (site) route-group layout, and the
+// admin shell in /admin/layout — this structural split is what enforces the
+// "admin never overlaps the public UI" guardrail (Nav-Footer-Global-Standard §7).
+// SessionProvider stays here so both the public island and the admin shell can
+// read auth state.
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -34,13 +35,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <JsonLd data={organisationJsonLd()} />
-        <Providers>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <CompareBar />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
