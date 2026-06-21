@@ -35,5 +35,15 @@ export function normalizeDraft(raw: RawProductDraft): {
     issues.push("No rate found (interest/APR)");
   }
 
+  // Indicative figures (scraped market/benchmark data) must be re-verified by a
+  // human before publish. Surface it loudly in the QA queue with attribution.
+  if (v.indicative) {
+    const src = v.sourceLabel ? ` Source: ${v.sourceLabel}.` : "";
+    const when = v.lastVerifiedAt ? ` Fetched ${v.lastVerifiedAt}.` : "";
+    issues.push(
+      `INDICATIVE — verify against source before publishing.${src}${when}`,
+    );
+  }
+
   return { value: v, issues };
 }

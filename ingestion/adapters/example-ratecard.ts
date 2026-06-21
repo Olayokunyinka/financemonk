@@ -8,6 +8,7 @@ import { join } from "node:path";
 import type { Adapter, RawProductDraft, FeeItem } from "./types";
 import { extractPdfText } from "../lib/pdf";
 import { parsePercentRange, parseRange, politeFetch } from "../lib/parse";
+import { liveAllowed } from "../lib/source";
 
 const FIXTURE = join(process.cwd(), "ingestion", "fixtures", "example-ratecard.pdf");
 const LIVE_URL = "https://renmoney.com/rates.pdf"; // illustrative
@@ -67,8 +68,13 @@ export const exampleRatecardAdapter: Adapter = {
   country: "ng",
   productType: "PERSONAL_LOAN",
   label: "Example Rate Card (PDF)",
+  tos: {
+    status: "pending-review",
+    checkedAt: "2026-06-21",
+    notes: "Illustrative demo source (renmoney.com URL is a placeholder, not cleared).",
+  },
   async run({ live }) {
-    if (live) {
+    if (liveAllowed(exampleRatecardAdapter, live)) {
       const res = await politeFetch(LIVE_URL);
       if (!res) return [];
       const buf = Buffer.from(await res.arrayBuffer());

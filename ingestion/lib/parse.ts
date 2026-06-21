@@ -54,7 +54,20 @@ export async function isAllowedByRobots(targetUrl: string): Promise<boolean> {
   }
 }
 
-// Fetch a URL only if robots.txt permits. Returns null if blocked/failed.
+// Per-host rate limiting: keep at least MIN_HOST_INTERVAL_MS between requests to
+// the same origin so a live run stays a polite crawler, not a hammer.
+const MIN_HOST_INTERVAL_MS = 1500;
+const lastHitByHost = new Map<string, number>();
+
+async function throttleHost(origin: string): Promise<void> {
+  const last = lastHitByHost.get(origin) ?? 0;
+  const wait = last + MIN_HOST_INTERVAL_MS - Date.now();
+  if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+  lastHitByHost.set(origin, Date.now());
+}
+
+// Fetch a URL only if robots.txt permits, rate-limited per host. Returns null if
+// blocked/failed. Adapters layer their own ToS gate on top of this.
 export async function politeFetch(
   url: string,
 ): Promise<{ text: () => Promise<string>; arrayBuffer: () => Promise<ArrayBuffer> } | null> {
@@ -62,7 +75,11 @@ export async function politeFetch(
     console.warn(`  ✗ Blocked by robots.txt: ${url}`);
     return null;
   }
-  const res = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+  await throttleHost(new URL(url).origin);
+  const res = await fetch(url, {
+    headers: { "User-Agent": USER_AGENT },
+    signal: AbortSignal.timeout(20_000),
+  });
   if (!res.ok) {
     console.warn(`  ✗ Fetch ${url} -> HTTP ${res.status}`);
     return null;

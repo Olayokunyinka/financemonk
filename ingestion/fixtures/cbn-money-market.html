@@ -1,0 +1,27 @@
+<!--
+  Offline fixture mirroring the shape of the CBN "Money Market Indicators" page
+  (https://www.cbn.gov.ng/rates/mnymktind.html) — a label/rate grid. Used by
+  ingestion/adapters/cbn-money-market.ts for offline tests. The live adapter
+  matches indicator rows by their label text (not brittle nth-child), so this
+  fixture only needs the same labels + a numeric % cell, not the exact markup.
+
+  Values here are illustrative and INDICATIVE; the adapter flags them as such.
+-->
+<html>
+  <body>
+    <h1>Money Market Indicators (figures in % per annum)</h1>
+    <table id="MoneyMarketGrid" class="grid">
+      <tr><th>Indicator</th><th>Rate (%)</th><th>Date</th></tr>
+      <tr><td>Monetary Policy Rate (MPR)</td><td>27.50</td><td>20-Jun-2026</td></tr>
+      <tr><td>Inter-Bank Call Rate</td><td>26.10</td><td>20-Jun-2026</td></tr>
+      <tr><td>Treasury Bill Rate</td><td>21.45</td><td>20-Jun-2026</td></tr>
+      <tr><td>Savings Deposit Rate</td><td>6.80</td><td>20-Jun-2026</td></tr>
+      <tr><td>1 Month Deposit Rate</td><td>11.20</td><td>20-Jun-2026</td></tr>
+      <tr><td>3 Months Deposit Rate</td><td>13.05</td><td>20-Jun-2026</td></tr>
+      <tr><td>6 Months Deposit Rate</td><td>14.40</td><td>20-Jun-2026</td></tr>
+      <tr><td>12 Months Deposit Rate</td><td>15.75</td><td>20-Jun-2026</td></tr>
+      <tr><td>Prime Lending Rate</td><td>18.90</td><td>20-Jun-2026</td></tr>
+      <tr><td>Maximum Lending Rate</td><td>30.25</td><td>20-Jun-2026</td></tr>
+    </table>
+  </body>
+</html>

@@ -9,6 +9,7 @@ import { join } from "node:path";
 import * as cheerio from "cheerio";
 import type { Adapter, RawProductDraft, FeeItem } from "./types";
 import { parsePercentRange, parseRange, politeFetch } from "../lib/parse";
+import { liveAllowed } from "../lib/source";
 
 const FIXTURE = join(process.cwd(), "ingestion", "fixtures", "example-bank.html");
 const LIVE_URL = "https://www.gtbank.com/personal-banking/loans"; // illustrative
@@ -73,8 +74,13 @@ export const exampleBankAdapter: Adapter = {
   country: "ng",
   productType: "PERSONAL_LOAN",
   label: "Example Bank (HTML rate page)",
+  tos: {
+    status: "pending-review",
+    checkedAt: "2026-06-21",
+    notes: "Illustrative demo source (gtbank.com URL is a placeholder, not cleared).",
+  },
   async run({ live }) {
-    if (live) {
+    if (liveAllowed(exampleBankAdapter, live)) {
       const res = await politeFetch(LIVE_URL);
       if (!res) return [];
       return parseHtml(await res.text(), LIVE_URL);
