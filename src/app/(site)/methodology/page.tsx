@@ -6,7 +6,7 @@ import { HUB_MIN_PRODUCTS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "How we compare — methodology, data sources & editorial standards",
   description:
-    "How FinCompare Africa ranks financial products, where our data comes from, how often we update it, and who is editorially responsible.",
+    "How FinanceMonk ranks financial products, where our data comes from, how often we update it, and who is editorially responsible.",
   alternates: { canonical: "/methodology" },
 };
 

@@ -178,9 +178,9 @@ export async function SiteFooter() {
             <Image
               src="/logo.png"
               alt={SITE.name}
-              width={120}
-              height={29}
-              className="h-6 w-auto"
+              width={1217}
+              height={390}
+              className="h-8 w-auto"
             />
             <span>
               © {new Date().getFullYear()} {SITE.name}

@@ -5,8 +5,8 @@
 // footer, the methodology page, and Organisation JSON-LD.
 
 export const SITE = {
-  name: "Financecompary",
-  shortName: "Financecompary",
+  name: "FinanceMonk",
+  shortName: "FinanceMonk",
   tagline: "Compare financial products across Africa",
   description:
     "Independent, structured comparison of financial products across Africa — rates, fees and terms you can actually compare, with reviews and licence-checked providers.",
