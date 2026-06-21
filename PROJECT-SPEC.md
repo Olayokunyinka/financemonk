@@ -182,6 +182,16 @@ Sitemap includes country pages. A repeatable **COUNTRY-LAUNCH.md** checklist
 captures the legal/data/code/SEO steps (each country resets the legal gate). The
 engine is already country-agnostic, so a new country is taxonomy + seed only.
 
+**Full scope (C1–C2):** all **54 African countries** are registered in
+`COUNTRIES` (currency/symbol/locale/regulator; regulator names flagged to VERIFY
+before launch). Registering a country creates **no public page** until a slice
+has real data (thin-content gate), so the directory grows as data lands. CPA is
+gated **per country**: `isCpaEnabled(country)` (`src/lib/site.ts`) reads
+`CPA_ENABLED_COUNTRIES` (ISO-2 allowlist; empty = off everywhere) so referral
+switches on country-by-country after legal clearance. Real data + licence
+registers + editorial + per-country legal are the ongoing (non-code) Phase-D
+work in `COUNTRY-LAUNCH.md`.
+
 5. **Monetisation gate + ship** ✅ — Apply flow (`/apply/[slug]`) captures a Lead
    always; CPA event + hand-off only when `CPA_ENABLED` (default OFF, legal
    warning in code). Leads surface in the dashboard with status. Sponsored rows

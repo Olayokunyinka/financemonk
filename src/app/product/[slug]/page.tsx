@@ -9,7 +9,7 @@ import {
   getPublishedReviews,
 } from "@/lib/queries";
 import { familyByType, getCountry, COUNTRIES } from "@/lib/taxonomy";
-import { CPA_ENABLED } from "@/lib/site";
+import { isCpaEnabled } from "@/lib/site";
 import {
   productJsonLd,
   reviewsJsonLd,
@@ -71,6 +71,7 @@ export default async function ProductPage(props: { params: Params }) {
 
   const kind = family?.kind ?? "loan";
   const lending = kind === "loan";
+  const CPA_ENABLED = isCpaEnabled(product.country);
   // Comparable terms for this family, from the registry (drives the Terms table).
   const termMetrics = buildMetrics(kind, {
     aprMin: product.aprMin,

@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { CPA_ENABLED } from "@/lib/site";
+import { isCpaEnabled } from "@/lib/site";
 import { LeadStatus } from "@/generated/prisma/enums";
 
 function num(v: FormDataEntryValue | null): number | null {
@@ -25,9 +25,10 @@ function num(v: FormDataEntryValue | null): number | null {
 export async function submitApplication(slug: string, formData: FormData) {
   const product = await prisma.product.findUnique({
     where: { slug },
-    select: { id: true, providerId: true },
+    select: { id: true, providerId: true, country: true },
   });
   if (!product) redirect("/");
+  const cpaOn = isCpaEnabled(product.country);
 
   const fullName = String(formData.get("fullName") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
@@ -47,8 +48,8 @@ export async function submitApplication(slug: string, formData: FormData) {
       amount: num(formData.get("amount")),
       income: num(formData.get("income")),
       consent,
-      status: CPA_ENABLED ? LeadStatus.HANDED_OFF : LeadStatus.NEW,
-      cpaEventAt: CPA_ENABLED ? new Date() : null,
+      status: cpaOn ? LeadStatus.HANDED_OFF : LeadStatus.NEW,
+      cpaEventAt: cpaOn ? new Date() : null,
     },
   });
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckCircle2, AlertCircle, ExternalLink, Info } from "lucide-react";
 import { getProductBySlug } from "@/lib/queries";
-import { CPA_ENABLED } from "@/lib/site";
+import { isCpaEnabled } from "@/lib/site";
 import { submitApplication } from "./actions";
 import { ButtonLink } from "@/components/ui/button";
 import { Disclaimer } from "@/components/disclaimer";
@@ -24,6 +24,7 @@ export default async function ApplyPage(props: {
   const { submitted, error } = await props.searchParams;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
+  const CPA_ENABLED = isCpaEnabled(product.country);
 
   if (submitted) {
     return (

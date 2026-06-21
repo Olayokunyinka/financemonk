@@ -31,8 +31,22 @@ export const SITE = {
 // this many live products AND a unique editorial intro. Configurable via env.
 export const HUB_MIN_PRODUCTS = Number(process.env.HUB_MIN_PRODUCTS ?? "5");
 
-// Apply -> referral (CPA) monetisation gate. Default OFF.
+// Apply -> referral (CPA) monetisation gate. Default OFF everywhere.
 // WARNING: enabling paid referral / intermediation of financial products may
-// require a financial-services licence per country and MUST be cleared legally
-// first (see PRD §11). This flag only wires the gate; it is not legal advice.
+// require a financial-services licence PER COUNTRY and MUST be cleared legally
+// first (see PRD §11). This only wires the gate; it is not legal advice.
+//
+// CPA is now gated PER COUNTRY: only countries whose codes are listed in
+// CPA_ENABLED_COUNTRIES (comma-separated ISO-2, e.g. "ng,ke") have referral
+// switched on, after their legal clearance. Empty = off everywhere (safe).
+// CPA_ENABLED kept as a legacy global master for back-compat.
 export const CPA_ENABLED = process.env.CPA_ENABLED === "true";
+
+const CPA_COUNTRIES = (process.env.CPA_ENABLED_COUNTRIES ?? "")
+  .split(",")
+  .map((s) => s.trim().toLowerCase())
+  .filter(Boolean);
+
+export function isCpaEnabled(country: string): boolean {
+  return CPA_ENABLED || CPA_COUNTRIES.includes(country.toLowerCase());
+}

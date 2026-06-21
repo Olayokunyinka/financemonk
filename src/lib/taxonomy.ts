@@ -15,31 +15,75 @@ export type Country = {
   regulator: string; // licence register source of truth
 };
 
+// All 54 African countries. Registering a country here makes the engine ready
+// for it; public pages only appear once a slice has real data (thin-content
+// rule), so empty countries create no thin pages. `regulator` is the headline
+// central bank — VERIFY the correct per-product regulator (insurance/securities
+// often differ) and currency before launching a given country (see
+// COUNTRY-LAUNCH.md).
+const C = (
+  code: string,
+  name: string,
+  currency: string,
+  currencySymbol: string,
+  regulator: string,
+): Country => ({ code, name, currency, currencySymbol, locale: `en-${code.toUpperCase()}`, regulator });
+
 export const COUNTRIES: Record<string, Country> = {
-  ng: {
-    code: "ng",
-    name: "Nigeria",
-    currency: "NGN",
-    currencySymbol: "₦",
-    locale: "en-NG",
-    regulator: "Central Bank of Nigeria",
-  },
-  ke: {
-    code: "ke",
-    name: "Kenya",
-    currency: "KES",
-    currencySymbol: "KSh",
-    locale: "en-KE",
-    regulator: "Central Bank of Kenya",
-  },
-  za: {
-    code: "za",
-    name: "South Africa",
-    currency: "ZAR",
-    currencySymbol: "R",
-    locale: "en-ZA",
-    regulator: "Prudential Authority (SARB)",
-  },
+  dz: C("dz", "Algeria", "DZD", "دج", "Bank of Algeria"),
+  ao: C("ao", "Angola", "AOA", "Kz", "Banco Nacional de Angola"),
+  bj: C("bj", "Benin", "XOF", "CFA", "BCEAO"),
+  bw: C("bw", "Botswana", "BWP", "P", "Bank of Botswana"),
+  bf: C("bf", "Burkina Faso", "XOF", "CFA", "BCEAO"),
+  bi: C("bi", "Burundi", "BIF", "FBu", "Bank of the Republic of Burundi"),
+  cv: C("cv", "Cabo Verde", "CVE", "$", "Banco de Cabo Verde"),
+  cm: C("cm", "Cameroon", "XAF", "FCFA", "BEAC"),
+  cf: C("cf", "Central African Republic", "XAF", "FCFA", "BEAC"),
+  td: C("td", "Chad", "XAF", "FCFA", "BEAC"),
+  km: C("km", "Comoros", "KMF", "CF", "Central Bank of the Comoros"),
+  cg: C("cg", "Congo (Republic)", "XAF", "FCFA", "BEAC"),
+  cd: C("cd", "DR Congo", "CDF", "FC", "Central Bank of the Congo"),
+  ci: C("ci", "Côte d'Ivoire", "XOF", "CFA", "BCEAO"),
+  dj: C("dj", "Djibouti", "DJF", "Fdj", "Central Bank of Djibouti"),
+  eg: C("eg", "Egypt", "EGP", "E£", "Central Bank of Egypt"),
+  gq: C("gq", "Equatorial Guinea", "XAF", "FCFA", "BEAC"),
+  er: C("er", "Eritrea", "ERN", "Nfk", "Bank of Eritrea"),
+  sz: C("sz", "Eswatini", "SZL", "E", "Central Bank of Eswatini"),
+  et: C("et", "Ethiopia", "ETB", "Br", "National Bank of Ethiopia"),
+  ga: C("ga", "Gabon", "XAF", "FCFA", "BEAC"),
+  gm: C("gm", "Gambia", "GMD", "D", "Central Bank of The Gambia"),
+  gh: C("gh", "Ghana", "GHS", "GH₵", "Bank of Ghana"),
+  gn: C("gn", "Guinea", "GNF", "FG", "Central Bank of the Republic of Guinea"),
+  gw: C("gw", "Guinea-Bissau", "XOF", "CFA", "BCEAO"),
+  ke: C("ke", "Kenya", "KES", "KSh", "Central Bank of Kenya"),
+  ls: C("ls", "Lesotho", "LSL", "L", "Central Bank of Lesotho"),
+  lr: C("lr", "Liberia", "LRD", "L$", "Central Bank of Liberia"),
+  ly: C("ly", "Libya", "LYD", "ل.د", "Central Bank of Libya"),
+  mg: C("mg", "Madagascar", "MGA", "Ar", "Central Bank of Madagascar"),
+  mw: C("mw", "Malawi", "MWK", "MK", "Reserve Bank of Malawi"),
+  ml: C("ml", "Mali", "XOF", "CFA", "BCEAO"),
+  mr: C("mr", "Mauritania", "MRU", "UM", "Central Bank of Mauritania"),
+  mu: C("mu", "Mauritius", "MUR", "₨", "Bank of Mauritius"),
+  ma: C("ma", "Morocco", "MAD", "DH", "Bank Al-Maghrib"),
+  mz: C("mz", "Mozambique", "MZN", "MT", "Bank of Mozambique"),
+  na: C("na", "Namibia", "NAD", "N$", "Bank of Namibia"),
+  ne: C("ne", "Niger", "XOF", "CFA", "BCEAO"),
+  ng: C("ng", "Nigeria", "NGN", "₦", "Central Bank of Nigeria"),
+  rw: C("rw", "Rwanda", "RWF", "FRw", "National Bank of Rwanda"),
+  st: C("st", "São Tomé and Príncipe", "STN", "Db", "Central Bank of São Tomé and Príncipe"),
+  sn: C("sn", "Senegal", "XOF", "CFA", "BCEAO"),
+  sc: C("sc", "Seychelles", "SCR", "₨", "Central Bank of Seychelles"),
+  sl: C("sl", "Sierra Leone", "SLE", "Le", "Bank of Sierra Leone"),
+  so: C("so", "Somalia", "SOS", "Sh", "Central Bank of Somalia"),
+  za: C("za", "South Africa", "ZAR", "R", "Prudential Authority (SARB)"),
+  ss: C("ss", "South Sudan", "SSP", "£", "Bank of South Sudan"),
+  sd: C("sd", "Sudan", "SDG", "ج.س", "Central Bank of Sudan"),
+  tz: C("tz", "Tanzania", "TZS", "TSh", "Bank of Tanzania"),
+  tg: C("tg", "Togo", "XOF", "CFA", "BCEAO"),
+  tn: C("tn", "Tunisia", "TND", "DT", "Central Bank of Tunisia"),
+  ug: C("ug", "Uganda", "UGX", "USh", "Bank of Uganda"),
+  zm: C("zm", "Zambia", "ZMW", "ZK", "Bank of Zambia"),
+  zw: C("zw", "Zimbabwe", "ZWG", "Z$", "Reserve Bank of Zimbabwe"),
 };
 
 // Convenience lookups (used by the seed script + formatting).
