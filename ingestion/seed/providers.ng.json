@@ -143,5 +143,34 @@
   { "slug": "paystack", "name": "Paystack", "type": "FINTECH", "country": "ng", "website": "https://paystack.com", "about": "CBN-licensed payment processor.", "claimed": true },
   { "slug": "lemfi", "name": "LemFi", "type": "FINTECH", "country": "ng", "website": "https://www.lemfi.com", "about": "Cross-border remittance provider for the diaspora.", "claimed": false },
   { "slug": "chipper-cash", "name": "Chipper Cash", "type": "FINTECH", "country": "ng", "website": "https://chippercash.com", "about": "App-based transfers and cross-border remittance.", "claimed": false },
-  { "slug": "quickfx-bureau", "name": "QuickFX Bureau", "type": "OTHER", "country": "ng", "website": "https://example.com/quickfx", "about": "SEED unlicensed example for payments — never receives the gold badge.", "claimed": false }
+  { "slug": "quickfx-bureau", "name": "QuickFX Bureau", "type": "OTHER", "country": "ng", "website": "https://example.com/quickfx", "about": "SEED unlicensed example for payments — never receives the gold badge.", "claimed": false },
+
+  { "slug": "zenith-bank", "name": "Zenith Bank Plc", "type": "BANK", "country": "ng", "website": "https://www.zenithbank.com", "about": "Tier-1 Nigerian commercial bank offering retail and corporate banking, cards, mortgages and trade finance.", "claimed": true },
+  { "slug": "first-bank", "name": "First Bank of Nigeria", "type": "BANK", "country": "ng", "website": "https://www.firstbanknigeria.com", "about": "Nigeria's oldest commercial bank, with a full retail and SME product range.", "claimed": true },
+  { "slug": "wema-bank", "name": "Wema Bank", "type": "BANK", "country": "ng", "website": "https://www.wemabank.com", "about": "Commercial bank behind the digital bank ALAT, offering savings, cards and loans.", "claimed": true },
+  { "slug": "fcmb", "name": "First City Monument Bank", "type": "BANK", "country": "ng", "website": "https://www.fcmb.com", "about": "Commercial bank offering personal and SME lending, accounts and cards.", "claimed": false },
+  { "slug": "union-bank", "name": "Union Bank of Nigeria", "type": "BANK", "country": "ng", "website": "https://www.unionbankng.com", "about": "Long-established commercial bank with retail and trade-finance products.", "claimed": false },
+  { "slug": "polaris-bank", "name": "Polaris Bank", "type": "BANK", "country": "ng", "website": "https://www.polarisbanklimited.com", "about": "Commercial bank with digital-first retail accounts and cards.", "claimed": false },
+  { "slug": "providus-bank", "name": "Providus Bank", "type": "BANK", "country": "ng", "website": "https://www.providusbank.com", "about": "Commercial bank focused on private and SME banking, accounts and FX.", "claimed": false },
+
+  { "slug": "custodian-insurance", "name": "Custodian and Allied Insurance", "type": "INSURER", "country": "ng", "website": "https://www.custodianplc.com.ng", "about": "Composite insurer offering general, motor, life and business cover, regulated by NAICOM.", "claimed": true },
+  { "slug": "nem-insurance", "name": "NEM Insurance", "type": "INSURER", "country": "ng", "website": "https://www.nem-insurance.com", "about": "General insurer well known for motor and business insurance, regulated by NAICOM.", "claimed": true },
+  { "slug": "mutual-benefits", "name": "Mutual Benefits Assurance", "type": "INSURER", "country": "ng", "website": "https://mutualng.com", "about": "Composite insurer offering motor, life, travel and agric cover.", "claimed": false },
+  { "slug": "sovereign-trust", "name": "Sovereign Trust Insurance", "type": "INSURER", "country": "ng", "website": "https://stiplc.com", "about": "General insurer providing motor, marine, business and agric cover.", "claimed": false },
+  { "slug": "allianz-nigeria", "name": "Allianz Nigeria Insurance", "type": "INSURER", "country": "ng", "website": "https://www.allianz.com.ng", "about": "Subsidiary of Allianz offering motor, travel, life and business insurance.", "claimed": true },
+  { "slug": "linkage-assurance", "name": "Linkage Assurance", "type": "INSURER", "country": "ng", "website": "https://linkageassurance.com", "about": "General insurer specialising in motor, agric and SME business cover.", "claimed": false },
+  { "slug": "leadway-pensure", "name": "Leadway Pensure PFA", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.leadway-pensure.com", "about": "Pension fund administrator regulated by PenCom.", "claimed": false },
+
+  { "slug": "fbnquest-am", "name": "FBNQuest Asset Management", "type": "FUND_MANAGER", "country": "ng", "website": "https://fbnquest.com", "about": "SEC-registered asset manager running mutual, money-market and fixed-income funds.", "claimed": true },
+  { "slug": "meristem-wealth", "name": "Meristem Wealth Management", "type": "FUND_MANAGER", "country": "ng", "website": "https://meristemng.com", "about": "SEC-registered wealth and asset manager.", "claimed": false },
+  { "slug": "chapel-hill-denham", "name": "Chapel Hill Denham", "type": "FUND_MANAGER", "country": "ng", "website": "https://www.chapelhilldenham.com", "about": "Investment bank and asset manager running fixed-income and infrastructure funds.", "claimed": false },
+
+  { "slug": "moniepoint", "name": "Moniepoint Microfinance Bank", "type": "MICROFINANCE", "country": "ng", "website": "https://moniepoint.com", "about": "CBN-licensed microfinance bank offering business accounts, transfers and cards.", "claimed": true },
+  { "slug": "opay", "name": "OPay (Paycom)", "type": "FINTECH", "country": "ng", "website": "https://opayweb.com", "about": "CBN-licensed payment service bank for wallets, transfers and virtual cards.", "claimed": false },
+  { "slug": "palmpay", "name": "PalmPay", "type": "FINTECH", "country": "ng", "website": "https://www.palmpay.com", "about": "CBN-licensed fintech for wallets, transfers and bill payments.", "claimed": false },
+  { "slug": "sendwave", "name": "Sendwave", "type": "FINTECH", "country": "ng", "website": "https://www.sendwave.com", "about": "Diaspora remittance app sending money to Nigeria with no transfer fee on many corridors.", "claimed": false },
+  { "slug": "worldremit", "name": "WorldRemit", "type": "FINTECH", "country": "ng", "website": "https://www.worldremit.com", "about": "International money-transfer operator (IMTO) approved to pay out in Nigeria.", "claimed": false },
+  { "slug": "western-union", "name": "Western Union", "type": "FINTECH", "country": "ng", "website": "https://www.westernunion.com", "about": "Global IMTO with bank and cash payout in Nigeria.", "claimed": false },
+  { "slug": "moneygram", "name": "MoneyGram", "type": "FINTECH", "country": "ng", "website": "https://www.moneygram.com", "about": "Global IMTO offering payout to Nigerian bank accounts and wallets.", "claimed": false },
+  { "slug": "grey-finance", "name": "Grey", "type": "OTHER", "country": "ng", "website": "https://grey.co", "about": "SEED example of an unlicensed-in-Nigeria diaspora app — shown to demonstrate the licensing filter (no gold badge).", "claimed": false }
 ]

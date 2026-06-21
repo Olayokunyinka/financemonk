@@ -64,5 +64,57 @@
     "lastVerifiedAt": "2026-06-04",
     "ratingAggregate": 3.9, "reviewCount": 33,
     "terms": { "premiumFrom": 180000, "sumAssured": 4000000, "claimRatio": 88, "excess": 0 }
+  },
+  {
+    "slug": "reliance-hmo-classic",
+    "name": "Reliance HMO Classic",
+    "providerSlug": "axa-mansard",
+    "summary": "Digital-first health plan with telemedicine and a wide hospital network.",
+    "features": ["Telemedicine first", "Wide network", "App-managed claims"],
+    "eligibility": ["Age 0-65", "Nigeria resident"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "AXA Mansard Health", "url": "https://www.axamansard.com" }],
+    "lastVerifiedAt": "2026-06-09",
+    "ratingAggregate": 4.0, "reviewCount": 116,
+    "terms": { "premiumFrom": 84000, "sumAssured": 3500000, "claimRatio": 90, "excess": 0 }
+  },
+  {
+    "slug": "custodian-health-shield",
+    "name": "Custodian Health Shield",
+    "providerSlug": "custodian-insurance",
+    "summary": "Comprehensive health cover with chronic-care management.",
+    "features": ["Chronic-care cover", "Surgery & admission", "Nationwide hospitals"],
+    "eligibility": ["Age 0-65"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Custodian", "url": "https://www.custodianplc.com.ng" }],
+    "lastVerifiedAt": "2026-06-08",
+    "ratingAggregate": 3.9, "reviewCount": 38,
+    "terms": { "premiumFrom": 140000, "sumAssured": 6000000, "claimRatio": 89, "excess": 0 }
+  },
+  {
+    "slug": "leadway-health-family-plus",
+    "name": "Leadway Health Family Plus",
+    "providerSlug": "leadway-assurance",
+    "summary": "Family HMO plan with maternity, dental and optical cover.",
+    "features": ["Family cover", "Maternity", "Dental & optical"],
+    "eligibility": ["Families", "Age 0-70"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Leadway Health", "url": "https://www.leadway.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.3, "reviewCount": 95,
+    "terms": { "premiumFrom": 320000, "sumAssured": 12000000, "claimRatio": 93, "excess": 0 }
+  },
+  {
+    "slug": "allianz-health-secure",
+    "name": "Allianz Health Secure",
+    "providerSlug": "allianz-nigeria",
+    "summary": "Mid-tier individual plan with international referral options.",
+    "features": ["International referral", "In & out-patient", "Telemedicine"],
+    "eligibility": ["Age 0-65"],
+    "requiredDocs": ["Valid ID", "Passport photo"],
+    "sourceRefs": [{ "label": "Allianz Nigeria", "url": "https://www.allianz.com.ng" }],
+    "lastVerifiedAt": "2026-06-07",
+    "ratingAggregate": 4.1, "reviewCount": 52,
+    "terms": { "premiumFrom": 160000, "sumAssured": 5000000, "claimRatio": 91, "excess": 0 }
   }
 ]

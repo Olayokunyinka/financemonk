@@ -51,5 +51,57 @@
     "lastVerifiedAt": "2026-06-04",
     "ratingAggregate": 3.8, "reviewCount": 121,
     "terms": { "transferFee": "Free (P2P)", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "opay-transfer",
+    "name": "OPay Transfer",
+    "providerSlug": "opay",
+    "summary": "Free wallet-to-wallet and low-cost bank transfers via the OPay app.",
+    "features": ["Free to OPay users", "Low bank-transfer fee", "USSD & app"],
+    "eligibility": ["OPay wallet", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "OPay", "url": "https://opayweb.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.0, "reviewCount": 173,
+    "terms": { "transferFee": "Free (OPay) / ₦10–₦50", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "palmpay-transfer",
+    "name": "PalmPay Transfer",
+    "providerSlug": "palmpay",
+    "summary": "Free transfers to PalmPay users and competitive bank-transfer fees.",
+    "features": ["Free to PalmPay users", "Cashback offers", "App-based"],
+    "eligibility": ["PalmPay wallet", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "PalmPay", "url": "https://www.palmpay.com" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 3.9, "reviewCount": 151,
+    "terms": { "transferFee": "Free (PalmPay) / ₦10–₦50", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "moniepoint-transfer",
+    "name": "Moniepoint Transfer",
+    "providerSlug": "moniepoint",
+    "summary": "Reliable instant transfers for businesses and personal accounts.",
+    "features": ["High reliability", "Business & personal", "POS network"],
+    "eligibility": ["Moniepoint account", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "Moniepoint", "url": "https://moniepoint.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.2, "reviewCount": 198,
+    "terms": { "transferFee": "₦10–₦50 (NIP)", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
+  },
+  {
+    "slug": "kuda-transfer",
+    "name": "Kuda Transfer",
+    "providerSlug": "kuda",
+    "summary": "Free monthly transfers then a flat fee, via the Kuda app.",
+    "features": ["25 free transfers/month", "App-based", "No maintenance fee"],
+    "eligibility": ["Kuda account", "BVN"],
+    "requiredDocs": ["BVN"],
+    "sourceRefs": [{ "label": "Kuda", "url": "https://kuda.com" }],
+    "lastVerifiedAt": "2026-06-06",
+    "ratingAggregate": 4.0, "reviewCount": 167,
+    "terms": { "transferFee": "Free (first 25/mo) then ₦10", "fxMargin": 0, "speed": "Instant", "corridors": "Domestic (Nigeria)" }
   }
 ]

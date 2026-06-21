@@ -55,5 +55,61 @@
     "lastVerifiedAt": "2026-06-06",
     "ratingAggregate": 3.9, "reviewCount": 51,
     "terms": { "returnPa": 18, "risk": "Low", "minInvestment": 10000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "fbnquest-money-market-fund",
+    "name": "FBNQuest Money Market Fund",
+    "providerSlug": "fbnquest-am",
+    "summary": "Short-term naira fund investing in treasury bills and bank placements.",
+    "features": ["Daily liquidity", "Low risk", "No entry fee"],
+    "minAmount": 50000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "FBNQuest", "url": "https://fbnquest.com" }],
+    "lastVerifiedAt": "2026-06-09",
+    "ratingAggregate": 4.0, "reviewCount": 67,
+    "terms": { "returnPa": 18.8, "risk": "Low", "minInvestment": 50000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "meristem-money-market-fund",
+    "name": "Meristem Money Market Fund",
+    "providerSlug": "meristem-wealth",
+    "summary": "Capital-stable fund for parking idle cash at competitive yields.",
+    "features": ["Capital preservation", "Easy access"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Meristem", "url": "https://meristemng.com" }],
+    "lastVerifiedAt": "2026-06-07",
+    "ratingAggregate": 3.9, "reviewCount": 48,
+    "terms": { "returnPa": 19.5, "risk": "Low", "minInvestment": 10000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "chapel-hill-money-market-fund",
+    "name": "Chapel Hill Denham Money Market Fund",
+    "providerSlug": "chapel-hill-denham",
+    "summary": "Institutional-grade money-market fund with strong governance.",
+    "features": ["Institutional grade", "Daily liquidity"],
+    "minAmount": 100000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Chapel Hill Denham", "url": "https://www.chapelhilldenham.com" }],
+    "lastVerifiedAt": "2026-06-05",
+    "ratingAggregate": 4.1, "reviewCount": 34,
+    "terms": { "returnPa": 19, "risk": "Low", "minInvestment": 100000, "mgmtFee": 1.0 }
+  },
+  {
+    "slug": "arm-money-market-naira-plus",
+    "name": "ARM Money Market Naira Plus",
+    "providerSlug": "arm-investment",
+    "summary": "Enhanced money-market fund targeting yields above treasury bills.",
+    "features": ["Enhanced yield", "Short duration"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM", "url": "https://www.arm.com.ng" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.0, "reviewCount": 58,
+    "terms": { "returnPa": 19.4, "risk": "Low", "minInvestment": 10000, "mgmtFee": 1.0 }
   }
 ]

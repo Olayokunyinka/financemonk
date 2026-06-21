@@ -55,5 +55,61 @@
     "lastVerifiedAt": "2026-06-04",
     "ratingAggregate": 4.1, "reviewCount": 29,
     "terms": { "returnPa": 8, "risk": "Medium", "minInvestment": 100000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "fbnquest-balanced-fund",
+    "name": "FBNQuest Balanced Fund",
+    "providerSlug": "fbnquest-am",
+    "summary": "Diversified fund mixing equities, bonds and money-market instruments.",
+    "features": ["Balanced risk", "Diversified", "Quarterly statements"],
+    "minAmount": 50000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "FBNQuest", "url": "https://fbnquest.com" }],
+    "lastVerifiedAt": "2026-06-09",
+    "ratingAggregate": 4.0, "reviewCount": 61,
+    "terms": { "returnPa": 17, "risk": "Medium", "minInvestment": 50000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "meristem-equity-market-fund",
+    "name": "Meristem Equity Market Fund",
+    "providerSlug": "meristem-wealth",
+    "summary": "Equity fund tracking top-performing listed Nigerian companies.",
+    "features": ["Equity growth", "Active management"],
+    "minAmount": 20000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Meristem", "url": "https://meristemng.com" }],
+    "lastVerifiedAt": "2026-06-07",
+    "ratingAggregate": 3.9, "reviewCount": 44,
+    "terms": { "returnPa": 21, "risk": "High", "minInvestment": 20000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "stanbic-balanced-fund",
+    "name": "Stanbic IBTC Balanced Fund",
+    "providerSlug": "stanbic-asset-mgmt",
+    "summary": "Blend of equities and fixed income for moderate growth.",
+    "features": ["Balanced", "Professionally managed"],
+    "minAmount": 5000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "Stanbic IBTC AM", "url": "https://www.stanbicibtcassetmanagement.com" }],
+    "lastVerifiedAt": "2026-06-12",
+    "ratingAggregate": 4.2, "reviewCount": 103,
+    "terms": { "returnPa": 19, "risk": "Medium", "minInvestment": 5000, "mgmtFee": 1.5 }
+  },
+  {
+    "slug": "arm-ethical-fund",
+    "name": "ARM Ethical Fund",
+    "providerSlug": "arm-investment",
+    "summary": "Shariah-compliant fund avoiding interest-bearing and prohibited sectors.",
+    "features": ["Ethical/Shariah", "Equity & sukuk"],
+    "minAmount": 10000,
+    "eligibility": ["Valid ID", "BVN"],
+    "requiredDocs": ["BVN", "Valid ID"],
+    "sourceRefs": [{ "label": "ARM", "url": "https://www.arm.com.ng" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.1, "reviewCount": 39,
+    "terms": { "returnPa": 16, "risk": "Medium", "minInvestment": 10000, "mgmtFee": 1.5 }
   }
 ]

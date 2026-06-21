@@ -51,5 +51,70 @@
     "lastVerifiedAt": "2026-06-04",
     "ratingAggregate": 3.8, "reviewCount": 26,
     "terms": { "premiumFrom": 45000, "sumAssured": 6000000, "claimRatio": 87, "excess": 0 }
+  },
+  {
+    "slug": "custodian-term-life",
+    "name": "Custodian Term Assurance",
+    "providerSlug": "custodian-insurance",
+    "summary": "Low-cost term life paying a lump sum to your beneficiaries.",
+    "features": ["Low premium", "Cover up to ₦20m", "Optional critical-illness rider"],
+    "eligibility": ["Age 18-60", "Medical for high cover"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "Custodian", "url": "https://www.custodianplc.com.ng" }],
+    "lastVerifiedAt": "2026-06-09",
+    "ratingAggregate": 4.0, "reviewCount": 54,
+    "terms": { "premiumFrom": 28000, "sumAssured": 20000000, "claimRatio": 92, "excess": 0 }
+  },
+  {
+    "slug": "mutual-benefits-life",
+    "name": "Mutual Benefits Life Plan",
+    "providerSlug": "mutual-benefits",
+    "summary": "Endowment-style life cover combining protection and savings.",
+    "features": ["Maturity payout", "Protection + savings", "Flexible premiums"],
+    "eligibility": ["Age 18-60"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "Mutual Benefits", "url": "https://mutualng.com" }],
+    "lastVerifiedAt": "2026-06-03",
+    "ratingAggregate": 3.7, "reviewCount": 31,
+    "terms": { "premiumFrom": 60000, "sumAssured": 5000000, "claimRatio": 85, "excess": 0 }
+  },
+  {
+    "slug": "allianz-life-protect",
+    "name": "Allianz Life Protect",
+    "providerSlug": "allianz-nigeria",
+    "summary": "Term life with global underwriting standards and quick claims.",
+    "features": ["Cover up to ₦25m", "Terminal-illness benefit", "Online quote"],
+    "eligibility": ["Age 18-65", "Medical for high cover"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "Allianz Nigeria", "url": "https://www.allianz.com.ng" }],
+    "lastVerifiedAt": "2026-06-08",
+    "ratingAggregate": 4.2, "reviewCount": 63,
+    "terms": { "premiumFrom": 40000, "sumAssured": 25000000, "claimRatio": 93, "excess": 0 }
+  },
+  {
+    "slug": "leadway-education-endowment",
+    "name": "Leadway Education Endowment",
+    "providerSlug": "leadway-assurance",
+    "summary": "Life-assured savings plan that guarantees school fees if a parent dies.",
+    "features": ["Education-focused", "Waiver of premium on death", "Guaranteed maturity"],
+    "eligibility": ["Parents/guardians", "Age 18-55"],
+    "requiredDocs": ["Valid ID", "Child's details"],
+    "sourceRefs": [{ "label": "Leadway", "url": "https://www.leadway.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.4, "reviewCount": 88,
+    "terms": { "premiumFrom": 75000, "sumAssured": 12000000, "claimRatio": 94, "excess": 0 }
+  },
+  {
+    "slug": "aiico-term-life-plus",
+    "name": "AIICO Term Life Plus",
+    "providerSlug": "aiico-insurance",
+    "summary": "Renewable term life with optional accident and disability riders.",
+    "features": ["Renewable term", "Accident rider", "Disability cover"],
+    "eligibility": ["Age 18-60"],
+    "requiredDocs": ["Valid ID", "Beneficiary details"],
+    "sourceRefs": [{ "label": "AIICO", "url": "https://www.aiicoplc.com" }],
+    "lastVerifiedAt": "2026-06-05",
+    "ratingAggregate": 3.9, "reviewCount": 44,
+    "terms": { "premiumFrom": 32000, "sumAssured": 9000000, "claimRatio": 89, "excess": 0 }
   }
 ]

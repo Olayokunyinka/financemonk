@@ -36,5 +36,24 @@
   { "name": "Flutterwave", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Provider", "licenceNo": "CBN/PSP/301" },
   { "name": "Paystack", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Provider", "licenceNo": "CBN/PSP/302" },
   { "name": "LemFi", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/303" },
-  { "name": "Chipper Cash", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/304" }
+  { "name": "Chipper Cash", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/304" },
+  { "name": "Sendwave", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/305" },
+  { "name": "WorldRemit", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/306" },
+  { "name": "Western Union", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/307" },
+  { "name": "MoneyGram", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "IMTO", "licenceNo": "CBN/IMTO/308" },
+  { "name": "Moniepoint Microfinance Bank", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Microfinance Bank", "licenceNo": "CBN/MFB/410" },
+  { "name": "OPay (Paycom)", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Bank", "licenceNo": "CBN/PSB/411" },
+  { "name": "PalmPay", "country": "ng", "regulator": "Central Bank of Nigeria", "category": "Payment Service Provider", "licenceNo": "CBN/PSP/412" },
+
+  { "name": "Custodian and Allied Insurance", "country": "ng", "regulator": "NAICOM", "category": "Composite Insurer", "licenceNo": "NAICOM/INS/106" },
+  { "name": "NEM Insurance", "country": "ng", "regulator": "NAICOM", "category": "General Insurer", "licenceNo": "NAICOM/INS/107" },
+  { "name": "Mutual Benefits Assurance", "country": "ng", "regulator": "NAICOM", "category": "Composite Insurer", "licenceNo": "NAICOM/INS/108" },
+  { "name": "Sovereign Trust Insurance", "country": "ng", "regulator": "NAICOM", "category": "General Insurer", "licenceNo": "NAICOM/INS/109" },
+  { "name": "Allianz Nigeria Insurance", "country": "ng", "regulator": "NAICOM", "category": "Composite Insurer", "licenceNo": "NAICOM/INS/110" },
+  { "name": "Linkage Assurance", "country": "ng", "regulator": "NAICOM", "category": "General Insurer", "licenceNo": "NAICOM/INS/111" },
+
+  { "name": "FBNQuest Asset Management", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/505" },
+  { "name": "Meristem Wealth Management", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/506" },
+  { "name": "Chapel Hill Denham", "country": "ng", "regulator": "SEC Nigeria", "category": "Fund Manager", "licenceNo": "SEC/FM/507" },
+  { "name": "Leadway Pensure PFA", "country": "ng", "regulator": "PenCom", "category": "Pension Fund Administrator", "licenceNo": "PENCOM/PFA/203" }
 ]

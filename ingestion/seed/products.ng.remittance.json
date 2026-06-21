@@ -51,5 +51,70 @@
     "lastVerifiedAt": "2026-05-28",
     "ratingAggregate": 2.2, "reviewCount": 38,
     "terms": { "transferFee": "High", "fxMargin": 6.0, "speed": "1-3 days", "corridors": "Various → NG" }
+  },
+  {
+    "slug": "sendwave-remittance",
+    "name": "Sendwave to Nigeria",
+    "providerSlug": "sendwave",
+    "summary": "Fee-free app transfers to Nigerian bank accounts from the US, UK and Canada.",
+    "features": ["No transfer fee", "Delivery in minutes", "App-based"],
+    "eligibility": ["Diaspora sender", "Recipient bank account"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "Sendwave", "url": "https://www.sendwave.com" }],
+    "lastVerifiedAt": "2026-06-11",
+    "ratingAggregate": 4.2, "reviewCount": 158,
+    "terms": { "transferFee": "Free", "fxMargin": 1.5, "speed": "Minutes", "corridors": "US, UK, CA → NG" }
+  },
+  {
+    "slug": "worldremit-remittance",
+    "name": "WorldRemit to Nigeria",
+    "providerSlug": "worldremit",
+    "summary": "Send to Nigerian bank accounts, wallets or cash pickup from 50+ countries.",
+    "features": ["Bank, wallet or cash", "50+ send countries", "Tracked transfers"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "WorldRemit", "url": "https://www.worldremit.com" }],
+    "lastVerifiedAt": "2026-06-10",
+    "ratingAggregate": 4.0, "reviewCount": 112,
+    "terms": { "transferFee": "From $0.99", "fxMargin": 2.2, "speed": "Minutes–hours", "corridors": "50+ countries → NG" }
+  },
+  {
+    "slug": "western-union-remittance",
+    "name": "Western Union to Nigeria",
+    "providerSlug": "western-union",
+    "summary": "Global transfers with bank deposit or cash payout across Nigeria.",
+    "features": ["Worldwide reach", "Cash or bank payout", "Agent network"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "Western Union", "url": "https://www.westernunion.com" }],
+    "lastVerifiedAt": "2026-06-09",
+    "ratingAggregate": 3.8, "reviewCount": 96,
+    "terms": { "transferFee": "Varies by corridor", "fxMargin": 3.0, "speed": "Minutes (cash)", "corridors": "Worldwide → NG" }
+  },
+  {
+    "slug": "moneygram-remittance",
+    "name": "MoneyGram to Nigeria",
+    "providerSlug": "moneygram",
+    "summary": "Send to Nigerian bank accounts and mobile wallets from the diaspora.",
+    "features": ["Bank & wallet payout", "Global agents", "Online or in person"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "MoneyGram", "url": "https://www.moneygram.com" }],
+    "lastVerifiedAt": "2026-06-08",
+    "ratingAggregate": 3.7, "reviewCount": 81,
+    "terms": { "transferFee": "Varies by corridor", "fxMargin": 3.2, "speed": "Minutes–same day", "corridors": "Worldwide → NG" }
+  },
+  {
+    "slug": "grey-remittance",
+    "name": "Grey Transfer to Nigeria",
+    "providerSlug": "grey-finance",
+    "summary": "SEED unlicensed-in-Nigeria example — listed to demonstrate the licensing filter.",
+    "features": ["Multi-currency accounts"],
+    "eligibility": ["Diaspora sender"],
+    "requiredDocs": ["Sender ID"],
+    "sourceRefs": [{ "label": "Grey", "url": "https://grey.co" }],
+    "lastVerifiedAt": "2026-06-02",
+    "ratingAggregate": 3.9, "reviewCount": 64,
+    "terms": { "transferFee": "Low", "fxMargin": 2.5, "speed": "Minutes", "corridors": "US, UK, CA → NG" }
   }
 ]

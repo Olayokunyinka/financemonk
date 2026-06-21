@@ -214,5 +214,229 @@
       { "label": "Send money within Nigeria", "href": "/ng/money-transfer" },
       { "label": "How we compare", "href": "/methodology" }
     ]
+  },
+  {
+    "country": "ng", "productType": "PAYDAY_LOAN",
+    "title": "Best payday & instant loans in Nigeria (2026)",
+    "intro": "Payday loans in Nigeria are short-term advances — usually one to three months — meant to bridge the gap to your next salary. They are fast and need no collateral, but they are also the most expensive way to borrow: lenders quote a small 'monthly' interest figure that compounds into a very high annual rate once management and processing fees are added. We list only products from CBN-licensed banks and microfinance lenders, convert every offer to a comparable basis, and show the fees beside the rate so you can see the true cost. Borrow only what you can repay on time, and confirm exact terms with the lender — figures here are indicative.",
+    "faq": [
+      { "question": "Are payday loans expensive?", "answer": "Yes. A 'small' monthly rate can translate into a very high annual cost once fees are included. Use them only for genuine short-term needs and repay on schedule." },
+      { "question": "Do I need collateral?", "answer": "No — these are unsecured advances based on your salary or transaction history. You'll usually need a BVN and an active account." }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "Personal loans in Nigeria", "href": "/ng/personal-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "ASSET_FINANCE",
+    "title": "Best asset & vehicle finance in Nigeria (2026)",
+    "intro": "Asset finance lets you acquire a vehicle, generator or equipment now and spread the cost over one to five years, with the asset itself serving as security. Banks typically require an equity contribution of 20–30% and bundle insurance into the facility. The headline interest rate is only part of the cost — management fees, insurance and the size of your down payment all change what you actually pay. We compare licensed banks side by side on rate, fees, amount and tenor so you can match the repayment to your cash flow. Confirm exact terms with the lender before you commit; figures here are indicative.",
+    "faq": [
+      { "question": "How much deposit do I need?", "answer": "Most lenders ask for a 20–30% equity contribution, with the financed asset used as collateral for the balance." },
+      { "question": "What can I finance?", "answer": "New and fairly used vehicles, plant and machinery, generators and business equipment are the most common." }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "Business loans in Nigeria", "href": "/ng/business-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "MORTGAGE",
+    "title": "Best mortgages & home loans in Nigeria (2026)",
+    "intro": "A mortgage spreads the cost of buying or building a home over as long as twenty years, with the property as security. In Nigeria you'll typically need an equity contribution of 20–30%, plus legal and valuation fees on top of the interest rate. Because the loan runs for so long, even a small rate difference changes the total cost by millions of naira, so it pays to compare carefully. We list home loans from CBN-licensed banks on rate, fees, amount and tenor, and flag which lenders are licence-checked and have claimed their listing. Always confirm the exact terms and total cost with the bank — figures here are indicative.",
+    "faq": [
+      { "question": "How much can I borrow?", "answer": "Usually up to 70–80% of the property value, subject to your income and the bank's affordability checks. You fund the rest as equity." },
+      { "question": "What fees should I expect?", "answer": "Beyond interest, budget for management, legal and valuation fees — typically a few percent of the loan — plus insurance." }
+    ],
+    "relatedSlugs": [
+      { "label": "Loan repayment calculator", "href": "/calculators/loan-repayment" },
+      { "label": "Personal loans in Nigeria", "href": "/ng/personal-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "TRADE_FINANCE",
+    "title": "Best trade finance in Nigeria (2026)",
+    "intro": "Trade finance helps importers and exporters bridge the gap between paying suppliers and receiving goods or payment. It covers letters of credit, bills for collection, guarantees and short-term import or export loans, usually priced per quarter and backed by trade documents such as a Form M or NXP. The true cost combines the facility rate, establishment fees and any FX margin. We compare trade-finance offers from CBN-licensed banks on rate, fees, amount and tenor so businesses can find the right structure. Terms are negotiated case by case — confirm with the bank's trade desk; figures here are indicative.",
+    "faq": [
+      { "question": "What documents do I need?", "answer": "Typically your CAC registration, a Form M or NXP, a proforma invoice and recent bank statements. Your bank's trade desk will confirm the full list." },
+      { "question": "Is it only for big companies?", "answer": "No — several banks offer SME-scale trade facilities, though amounts and pricing vary with your trade history and collateral." }
+    ],
+    "relatedSlugs": [
+      { "label": "Business loans in Nigeria", "href": "/ng/business-loans" },
+      { "label": "FX services in Nigeria", "href": "/ng/fx" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "CURRENT_ACCOUNT",
+    "title": "Best current accounts in Nigeria (2026)",
+    "intro": "A current account is your everyday transaction account for receiving salary, paying bills and spending with a card. The traditional banks offer cheque books and wide branch networks but charge account-maintenance fees, while digital banks increasingly offer zero maintenance fees and a set number of free transfers each month. The right account depends on how you bank — branch access, transfer costs, card delivery and app quality all matter more than headline marketing. We compare current accounts on fees, minimum balance and features so you can pick the cheapest fit. Confirm current charges with the bank — figures here are indicative.",
+    "faq": [
+      { "question": "Do current accounts pay interest?", "answer": "Generally no — they are built for transactions, not savings. For interest, pair one with a savings account or fixed deposit." },
+      { "question": "What fees apply?", "answer": "The main ones are account-maintenance and transfer fees. Several digital banks now waive maintenance and offer a number of free transfers monthly." }
+    ],
+    "relatedSlugs": [
+      { "label": "Savings accounts in Nigeria", "href": "/ng/savings-accounts" },
+      { "label": "Savings growth calculator", "href": "/calculators/savings-growth" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "FIXED_DEPOSIT",
+    "title": "Best fixed deposit rates in Nigeria (2026)",
+    "intro": "A fixed deposit locks your money for a set term — typically 30 to 365 days — in exchange for a guaranteed interest rate that's higher than an ordinary savings account. The trade-off is access: withdraw early and you forfeit much of the accrued interest. Rates vary widely between banks and are often negotiable on larger balances, so comparing pays off. We list fixed-deposit products from CBN-licensed banks and microfinance banks on rate, minimum amount and tenor so you can lock in the best return for cash you won't need soon. Rates move with the market — confirm the live rate with the bank; figures here are indicative.",
+    "faq": [
+      { "question": "Can I withdraw before maturity?", "answer": "Usually yes, but you'll pay a pre-liquidation penalty that wipes out much of the interest earned. Only fix money you can leave untouched." },
+      { "question": "Are the rates negotiable?", "answer": "Often, especially on larger balances. It's worth asking the bank for a quote rather than accepting the advertised rate." }
+    ],
+    "relatedSlugs": [
+      { "label": "Savings growth calculator", "href": "/calculators/savings-growth" },
+      { "label": "Savings accounts in Nigeria", "href": "/ng/savings-accounts" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "DOMICILIARY",
+    "title": "Best domiciliary (foreign currency) accounts in Nigeria (2026)",
+    "intro": "A domiciliary account lets you hold and transact in foreign currency — usually USD, GBP or EUR — to receive remittances, pay school fees abroad, fund online purchases or save against naira depreciation. Banks differ on maintenance and withdrawal charges, how easily you can receive foreign inflows, and whether a dollar card is included. We compare domiciliary accounts from CBN-licensed banks on fees, minimum balance and features so you can find the most flexible, lowest-cost option for your foreign-currency needs. Charges and FX rules change with CBN policy — confirm current terms with the bank; figures here are indicative.",
+    "faq": [
+      { "question": "What can I use it for?", "answer": "Receiving foreign transfers and export proceeds, paying tuition or suppliers abroad, funding a dollar card, and holding FX savings." },
+      { "question": "Are there withdrawal limits?", "answer": "Cash withdrawal limits and charges vary by bank and CBN policy. Check the current rules with your bank before relying on cash access." }
+    ],
+    "relatedSlugs": [
+      { "label": "FX services in Nigeria", "href": "/ng/fx" },
+      { "label": "Remittance to Nigeria", "href": "/ng/remittance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "DEBIT_CARD",
+    "title": "Best debit cards in Nigeria (2026)",
+    "intro": "A debit card spends money you already have, linked directly to your bank account for ATM withdrawals, POS payments and online purchases. The choices come down to network acceptance (Verve for local use, Visa or Mastercard for wider reach), issuance and annual maintenance fees, and whether the card supports international or USD spending. Digital banks increasingly offer free issuance and delivery. We compare debit cards from CBN-licensed banks on fees and features so you can pick the most useful, lowest-cost card for how you actually spend. Confirm current charges with the issuer — figures here are indicative.",
+    "faq": [
+      { "question": "Verve, Visa or Mastercard?", "answer": "Verve is cheapest for purely local use; Visa and Mastercard add wider acceptance and some international online capability, often at a higher fee." },
+      { "question": "Can I spend abroad?", "answer": "Naira debit cards have limited international use. For reliable foreign spending, consider a USD card linked to a domiciliary account." }
+    ],
+    "relatedSlugs": [
+      { "label": "Credit cards in Nigeria", "href": "/ng/credit-cards" },
+      { "label": "Virtual cards in Nigeria", "href": "/ng/virtual-cards" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "PREPAID_CARD",
+    "title": "Best prepaid cards in Nigeria (2026)",
+    "intro": "A prepaid card holds a balance you load in advance, so you can only spend what's on it — useful for budgeting, giving allowances, or paying online without exposing your main account. Most don't require a full bank account, and some come in USD for foreign online subscriptions. The things that differ are issuance and reload fees, whether the card is naira or dollar, and where it's accepted. We compare prepaid cards from CBN-licensed banks on fees and features so you can find a card that fits controlled or gift spending. Confirm current charges with the issuer — figures here are indicative.",
+    "faq": [
+      { "question": "How is a prepaid card different from debit?", "answer": "A debit card draws from your bank account; a prepaid card only spends the balance you've loaded onto it, which makes it good for budgeting and gifting." },
+      { "question": "Can I use one for online subscriptions?", "answer": "Yes — a USD prepaid card is a common way to pay for foreign streaming and software subscriptions without a domiciliary account." }
+    ],
+    "relatedSlugs": [
+      { "label": "Debit cards in Nigeria", "href": "/ng/debit-cards" },
+      { "label": "Virtual cards in Nigeria", "href": "/ng/virtual-cards" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "VIRTUAL_CARD",
+    "title": "Best virtual cards in Nigeria (2026)",
+    "intro": "A virtual card is a card number you create instantly in an app, with no physical plastic — ideal for safe online payments and foreign subscriptions because you can freeze or delete it the moment you're done. Banks and fintechs offer naira and USD versions; the differences are creation and transaction fees, how the card is funded, and whether it works for international merchants. We compare virtual cards from CBN-licensed banks and fintechs on fees and features so you can pick the safest, cheapest option for online spending. Card availability and USD funding shift with CBN policy — confirm current terms with the issuer; figures here are indicative.",
+    "faq": [
+      { "question": "Why use a virtual card?", "answer": "Security and control: you can generate it for a single purchase or subscription and freeze or delete it instantly, keeping your main card details private." },
+      { "question": "Do virtual dollar cards work for Netflix or AWS?", "answer": "Often yes, but USD virtual-card funding and limits change with CBN policy. Check the issuer's current support before relying on one." }
+    ],
+    "relatedSlugs": [
+      { "label": "Debit cards in Nigeria", "href": "/ng/debit-cards" },
+      { "label": "Prepaid cards in Nigeria", "href": "/ng/prepaid-cards" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "AUTO_INSURANCE",
+    "title": "Best car (motor) insurance in Nigeria (2026)",
+    "intro": "Motor insurance in Nigeria ranges from the statutory third-party minimum — which only covers damage and injury you cause to others — to comprehensive cover that also pays for your own vehicle against accident, fire and theft. The premium depends on the car's value, but the claims-paid ratio and the excess you bear on each claim matter just as much as the price. We compare NAICOM-licensed insurers on premium, sum insured, claims ratio and excess so you can judge cover, not just cost. Read the policy exclusions and confirm terms with the insurer — figures here are indicative.",
+    "faq": [
+      { "question": "Third-party or comprehensive?", "answer": "Third-party is the cheap legal minimum and only covers others. Comprehensive also covers your own car for accident, fire and theft — worth it for newer or financed vehicles." },
+      { "question": "Why does the claims ratio matter?", "answer": "It signals how reliably an insurer actually pays. A low premium is poor value if claims are routinely delayed or declined." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Health insurance in Nigeria", "href": "/ng/health-insurance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "TRAVEL_INSURANCE",
+    "title": "Best travel insurance in Nigeria (2026)",
+    "intro": "Travel insurance covers medical emergencies, evacuation, trip cancellation and lost baggage while you're abroad — and a Schengen- or visa-compliant policy is mandatory for many visa applications. Cover levels, the medical sum insured and what counts as an excludable pre-existing condition vary a lot between insurers, so the cheapest policy isn't always the one that pays when it matters. We compare NAICOM-licensed insurers on premium, sum insured and claims record so you can match the cover to your trip and visa requirements. Always read the policy wording and confirm with the insurer — figures here are indicative.",
+    "faq": [
+      { "question": "Do I need it for a visa?", "answer": "Yes for many — Schengen and several other visas require travel insurance with a minimum medical cover, usually around €30,000. Check your destination's rule." },
+      { "question": "What does it actually cover?", "answer": "Typically emergency medical treatment and evacuation, trip cancellation or delay, and lost or delayed baggage. Pre-existing conditions are often excluded unless declared." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Health insurance in Nigeria", "href": "/ng/health-insurance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "BUSINESS_INSURANCE",
+    "title": "Best business & SME insurance in Nigeria (2026)",
+    "intro": "Business insurance protects your premises, stock, equipment and people against fire, burglary, liability claims and business interruption — and some cover, such as group life for employees, is a legal requirement. Policies are usually bundled, so the right one depends on your assets and risks rather than headline price alone; the claims-paid ratio and the excess you carry are key. We compare NAICOM-licensed insurers on premium, sum insured, claims ratio and excess so SMEs can protect the business without overpaying. Have your assets professionally valued and confirm the policy scope with the insurer — figures here are indicative.",
+    "faq": [
+      { "question": "Is any business cover compulsory?", "answer": "Group life cover for employees is statutory for registered employers, and some sectors require specific liability cover. Check the rules for your industry." },
+      { "question": "What should an SME prioritise?", "answer": "Usually fire and special perils on premises and stock, public liability, and — if you have staff — group life. Bundle policies often cost less than buying each separately." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Business loans in Nigeria", "href": "/ng/business-loans" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "AGRIC_INSURANCE",
+    "title": "Best agricultural insurance in Nigeria (2026)",
+    "intro": "Agricultural insurance protects farmers against the losses that weather, pests, disease and other named perils inflict on crops and livestock. Policies range from named-peril and multi-peril crop cover to livestock and poultry mortality cover, and increasingly index-based products that pay out on measured rainfall rather than individual loss assessment. Premiums are modest relative to the sum insured, but payout terms and excesses differ, so the structure matters. We compare NAICOM-licensed insurers on premium, sum insured, claims ratio and excess so farmers and cooperatives can protect their season. Confirm the cover and exclusions with the insurer — figures here are indicative.",
+    "faq": [
+      { "question": "What perils are covered?", "answer": "Commonly drought, flood, storm, fire, pests and disease for crops, and death or disease for livestock and poultry. Index-based policies pay on measured weather data." },
+      { "question": "Can cooperatives get cover?", "answer": "Yes — several insurers price cover for farmer cooperatives and smallholder groups, which can be cheaper than buying individually." }
+    ],
+    "relatedSlugs": [
+      { "label": "Insurance needs calculator", "href": "/calculators/insurance-needs" },
+      { "label": "Business insurance in Nigeria", "href": "/ng/business-insurance" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "FIXED_INCOME",
+    "title": "Best fixed-income & bond funds in Nigeria (2026)",
+    "intro": "Fixed-income funds invest in government and corporate bonds and treasury bills to deliver steadier, more predictable returns than equity funds, with lower risk. Naira funds track local yields, while eurobond funds give USD-denominated returns for investors hedging against naira depreciation. The headline yield matters, but so do the management fee, the minimum investment and how the fund balances income against capital stability. We compare SEC-registered fund managers on return, risk, minimum investment and fee so you can park cash for income without taking equity risk. Returns are not guaranteed and move with rates — confirm with the manager; figures here are indicative.",
+    "faq": [
+      { "question": "How is this different from a money-market fund?", "answer": "Money-market funds hold very short-term instruments and aim purely for stability; fixed-income funds add longer bonds for higher yield, with slightly more price movement." },
+      { "question": "Naira or dollar fund?", "answer": "Naira funds offer higher headline yields; eurobond (USD) funds offer lower yields but hedge against naira depreciation. Many investors hold both." }
+    ],
+    "relatedSlugs": [
+      { "label": "Investment growth calculator", "href": "/calculators/investment-growth" },
+      { "label": "Money market funds in Nigeria", "href": "/ng/money-market-funds" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
+  },
+  {
+    "country": "ng", "productType": "FX",
+    "title": "Best FX & currency exchange services in Nigeria (2026)",
+    "intro": "Foreign-exchange services cover converting and sending currency for school fees, supplier payments, PTA/BTA travel allowances and business settlement. Banks handle SWIFT wires and trade FX from a domiciliary account, while fintechs offer multicurrency wallets with tighter margins on the major corridors. The real cost is the transfer fee plus the FX margin — the gap between your rate and the mid-market rate — which usually dwarfs the visible fee. We compare CBN-licensed banks and payment providers on fee, FX margin, speed and supported currencies so you keep more of your money. Rates move constantly with CBN policy — confirm the live quote; figures here are indicative.",
+    "faq": [
+      { "question": "Why is the FX margin so important?", "answer": "A low or zero transfer fee can hide a poor exchange rate. The FX margin is often the bigger cost, so always compare the rate you actually receive." },
+      { "question": "Bank or fintech for FX?", "answer": "Banks suit large, document-backed trade and SWIFT transfers; fintech multicurrency wallets often give tighter margins and faster delivery on everyday amounts." }
+    ],
+    "relatedSlugs": [
+      { "label": "Remittance cost calculator", "href": "/calculators/remittance-cost" },
+      { "label": "Domiciliary accounts in Nigeria", "href": "/ng/domiciliary-accounts" },
+      { "label": "How we compare", "href": "/methodology" }
+    ]
   }
 ]
