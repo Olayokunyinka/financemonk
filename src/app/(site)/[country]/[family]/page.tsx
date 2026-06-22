@@ -25,13 +25,18 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer } from "@/components/disclaimer";
 import { JsonLd } from "@/components/json-ld";
 
-export const revalidate = 3600; // ISR
+export const dynamic = 'force-dynamic';
 
-// Statically generate every published hub (those with editorial content).
 export async function generateStaticParams() {
-  const hubs = await listHubs();
-  return hubs.map((h) => ({ country: h.country.code, family: h.family.slug }));
+  try {
+    const hubs = await listHubs();
+    return hubs.map((h) => ({ country: h.country.code, family: h.family.slug }));
+  } catch {
+    return [];
+  }
 }
+
+export const dynamicParams = true;
 
 type Params = Promise<{ country: string; family: string }>;
 
