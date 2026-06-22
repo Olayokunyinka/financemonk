@@ -25,8 +25,13 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer } from "@/components/disclaimer";
 import { JsonLd } from "@/components/json-ld";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // ISR
 
+// Statically generate every published hub. The try/catch keeps the build green
+// if the DB is unreachable at build time: it returns no params, and with
+// dynamicParams below the hubs are generated on-demand on first request and
+// then ISR-cached — so we keep static/cacheable SEO pages either way (never
+// force-dynamic, which would server-render every hub on every request).
 export async function generateStaticParams() {
   try {
     const hubs = await listHubs();

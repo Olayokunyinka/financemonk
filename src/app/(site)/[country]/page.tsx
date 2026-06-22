@@ -11,11 +11,17 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const revalidate = 3600;
 
-// Static-generate a landing page per country that has published hubs.
+// Static-generate a landing page per country that has published hubs. try/catch
+// keeps the build green if the DB is unreachable at build time (on-demand ISR
+// fallback; see the hub page).
 export async function generateStaticParams() {
-  const hubs = await listHubs();
-  const codes = Array.from(new Set(hubs.map((h) => h.country.code)));
-  return codes.map((country) => ({ country }));
+  try {
+    const hubs = await listHubs();
+    const codes = Array.from(new Set(hubs.map((h) => h.country.code)));
+    return codes.map((country) => ({ country }));
+  } catch {
+    return [];
+  }
 }
 
 type Params = Promise<{ country: string }>;

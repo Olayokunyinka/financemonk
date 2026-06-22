@@ -36,9 +36,16 @@ import { Badge } from "@/components/ui/badge";
 
 export const revalidate = 3600; // ISR
 
+// Pre-render every product. try/catch keeps the build green if the DB is
+// unreachable at build time — pages then render on-demand and ISR-cache (see the
+// hub page for the same pattern). Keeps SEO pages static/cacheable, not dynamic.
 export async function generateStaticParams() {
-  const products = await prisma.product.findMany({ select: { slug: true } });
-  return products.map((p) => ({ slug: p.slug }));
+  try {
+    const products = await prisma.product.findMany({ select: { slug: true } });
+    return products.map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
 }
 
 type Params = Promise<{ slug: string }>;

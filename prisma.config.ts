@@ -9,6 +9,12 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Prisma CLI commands (migrate / db push) use this connection. On Supabase
+    // the runtime DATABASE_URL is the transaction pooler (pgbouncer, :6543),
+    // which CANNOT run migrations — use the direct/session connection (:5432)
+    // via DIRECT_URL for the CLI, falling back to DATABASE_URL for local setups
+    // that don't split the two. The app runtime keeps using DATABASE_URL (the
+    // pooler) via the pg adapter in src/lib/prisma.ts.
+    url: process.env["DIRECT_URL"] ?? process.env["DATABASE_URL"],
   },
 });
