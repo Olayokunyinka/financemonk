@@ -1,4 +1,4 @@
-# FinCompare Africa
+# FinanceMonk
 
 A pan-African financial **products** comparison directory — compare real rates,
 fees and terms, read reviews, and see which providers are licence-verified.
