@@ -1,45 +1,109 @@
 <!--
-  Offline fixture mirroring an Access Bank personal-lending rate page, in the
-  shape ingestion/adapters/access-bank-loans.ts parses. Product cards carry a
-  name + a labelled terms list. Used for offline tests; --live is gated OFF for
-  this source until its ToS is reviewed (tos.status = "pending-review").
-
-  Values are illustrative and INDICATIVE.
+  Offline fixture: real snapshot of the Access Bank "Salary Advance" pricing table
+  (https://www.accessbankplc.com/personal/borrowing/salary-advance), captured
+  2026-06-22 and trimmed to the rate table the adapter parses. Figures are
+  INDICATIVE. Refresh by re-running a --live fetch.
 -->
-<html>
-  <body>
-    <main>
-      <article class="product-card" data-slug="access-salary-advance">
-        <h3 class="product-name">Access Salary Advance</h3>
-        <p class="product-summary">Instant advance of up to 75% of your net monthly salary for Access Bank salary-account holders.</p>
-        <dl class="product-terms">
-          <dt>Interest</dt><dd>4% flat per month</dd>
-          <dt>Management fee</dt><dd>1%</dd>
-          <dt>Amount</dt><dd>₦10,000 - ₦5,000,000</dd>
-          <dt>Tenure</dt><dd>1 - 6 months</dd>
-        </dl>
-        <ul class="product-features">
-          <li>Salary-account holders</li>
-          <li>Instant disbursement</li>
-          <li>No collateral</li>
-        </ul>
-      </article>
+<html><body>
+<h1>Salary Advance</h1>
+<table class="global-table table table-striped table-responsive mt-5 mb-3">
+	<thead>
+		<tr>
+			<th><strong>Loan Type</strong></th>
+			<th><strong>Available to</strong></th>
+			<th><strong>Loan Amount&nbsp;</strong></th>
+			<th><strong>Repayment Plan</strong></th>
+			<th><strong>Pricing </strong></th>
+		</tr>
+	</thead>
+	<thead>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan="2">
+			<div><span style="font-size:10.4pt"><span style=""><span style="color:#3a3838"><span style="font-weight:bold">PayDay Loan</span></span></span></span></div>
 
-      <article class="product-card" data-slug="access-personal-loan">
-        <h3 class="product-name">Access Personal Loan</h3>
-        <p class="product-summary">Term loan for confirmed salary earners to cover personal projects, repaid by salary deduction.</p>
-        <dl class="product-terms">
-          <dt>Interest</dt><dd>24% - 28% per annum</dd>
-          <dt>Management fee</dt><dd>1%</dd>
-          <dt>Amount</dt><dd>₦300,000 - ₦20,000,000</dd>
-          <dt>Tenure</dt><dd>6 - 36 months</dd>
-        </dl>
-        <ul class="product-features">
-          <li>Confirmed salary earners</li>
-          <li>Up to 36 months</li>
-          <li>Repaid by salary deduction</li>
-        </ul>
-      </article>
-    </main>
-  </body>
-</html>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">(PDLP)</span></span></span></div>
+			</td>
+			<td>Salary account holders with Access Bank</td>
+			<td>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Up to 75% of </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">monthly salary, </span></span></span></div>
+
+			<div>&nbsp;</div>
+			</td>
+			<td>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Against next </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">salary payment or </span></span></span><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">30 days </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">(whichever comes </span></span></span><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">first) </span></span></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Interest Rate: </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">7% Flat</span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Management Fee: </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">1% </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Credit life insurance </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">0.5% </span></span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Other bank customers whose salaries are paid through Remita.</td>
+			<td>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Up to 50% of </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">monthly salary, </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">subject to a max. </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">of ₦500,000 </span></span></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">Against next </span></span></span><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">salary</span></span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">payment </span></span></span></span><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">or 30 days </span></span></span><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">(whichever </span></span></span></span><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">comes first).</span></span></span><br>
+			<br>
+			<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">Your repayment will</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">be</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">deducted from your next salary</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">and</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">taken from your other</span></span></span><br>
+			<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">bank</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">account</span></span></span></span><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838"> </span></span></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Interest Rate: </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">7% Flat</span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Management Fee: </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">1% </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Credit Life </span></span></span></div>
+
+			<div><span style="font-size:10.4pt"><span style="font-family:Arial"><span style="color:#3a3838">Insurance: 0.5% </span></span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td><strong>Small Ticket Personal Loan</strong><br>
+			(STPL)</td>
+			<td>Salary account holders with Access Bank who earn a minimum of ₦50,000</td>
+			<td>Up to 400% of monthly salary</td>
+			<td>365 days with repayment over twelve (12) monthly instalments</td>
+			<td>IInterest Rate: 7% Monthly&nbsp; Management Fee: 1% Credit Life Insurance: 1.2%<br>
+			&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Device Finance</strong><br>
+			&nbsp;</td>
+			<td><span style="font-size:10.5000pt"><span style="font-family:Calibri"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">New and Existing salary account </span></span></span></span><span style="font-size:10.5000pt"><span style="font-family:Calibri"><span style="color:#3a3838">holders</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:Calibri"><span style="color:#3a3838">with </span></span></span><span style="font-size:10.5000pt"><span style="font-family:Calibri"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt">Access </span></span></span></span><span style="font-size:10.5000pt"><span style="font-family:Calibri"><span style="color:#3a3838">Bank</span></span></span></td>
+			<td><span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">Up to 33% of annual salary, but</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">subject</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">to</span></span></span>&nbsp;<span style="font-size:10.5000pt"><span style="font-family:'Arial MT'"><span style="color:#3a3838">a </span></span></span><b><span style="font-size:10.5000pt"><span style="font-family:Arial"><span style="color:#3a3838">max. of</span></span></span></b><br>
+			<b><span style="font-size:10.5000pt"><span style="font-family:Arial"><span style="color:#3a3838"><span style="letter-spacing:-0.1000pt"><font face="Arial, Helvetica, sans-serif">₦2,000,000</font></span></span></span></span></b></td>
+			<td>Up to 365 days with repayment over twelve (12) monthly instalments</td>
+			<td>Interest Rate: 30% p.a. Management Fee: 1% Credit Life Insurance: 1%<br>
+			&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+</body></html>
