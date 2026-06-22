@@ -77,6 +77,34 @@ export async function getFeaturedProducts(limit = 4) {
   });
 }
 
+// Headline directory stats for the homepage trust bar. One cheap aggregate each;
+// only counts live/published data so the numbers match what users can browse.
+export async function getDirectoryStats() {
+  const [products, providers, licensedProviders, reviews] = await Promise.all([
+    prisma.product.count({ where: { live: true } }),
+    prisma.provider.count(),
+    prisma.provider.count({ where: { licensed: true } }),
+    prisma.review.count({ where: { status: "PUBLISHED" } }),
+  ]);
+  return { products, providers, licensedProviders, reviews };
+}
+
+// Live-product count per (country × productType), keyed `${country}:${type}`, so
+// the homepage can show real counts on each category/country/hub without an
+// N+1 of per-hub queries.
+export async function getLiveProductCounts(): Promise<Map<string, number>> {
+  const grouped = await prisma.product.groupBy({
+    by: ["country", "productType"],
+    where: { live: true },
+    _count: { _all: true },
+  });
+  const map = new Map<string, number>();
+  for (const g of grouped) {
+    map.set(`${g.country}:${g.productType}`, g._count._all);
+  }
+  return map;
+}
+
 export async function getPublishedReviews(productId: string) {
   return prisma.review.findMany({
     where: { productId, status: "PUBLISHED" },

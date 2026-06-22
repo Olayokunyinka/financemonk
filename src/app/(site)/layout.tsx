@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
-import { organisationJsonLd } from "@/lib/jsonld";
+import { organisationJsonLd, websiteJsonLd, personJsonLd } from "@/lib/jsonld";
 import { CompareBar } from "@/components/compare/compare-tray";
 
 // Public chrome for every crawlable/user-facing page. The TopNav and footer
@@ -13,7 +13,7 @@ export default function SiteLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <JsonLd data={organisationJsonLd()} />
+      <JsonLd data={[organisationJsonLd(), websiteJsonLd(), personJsonLd()]} />
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />

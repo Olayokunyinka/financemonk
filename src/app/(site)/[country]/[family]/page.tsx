@@ -20,6 +20,7 @@ import {
 } from "@/lib/jsonld";
 import { ComparisonTable } from "@/components/comparison-table";
 import { Faq } from "@/components/faq";
+import { ByLine } from "@/components/byline";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer } from "@/components/disclaimer";
 import { JsonLd } from "@/components/json-ld";
@@ -62,6 +63,15 @@ export async function generateMetadata(props: {
   for (const h of sameFamily) {
     languages[h.country.locale] = `/${h.country.code}/${h.family.slug}`;
   }
+  // x-default: every country variant must agree on the same fallback, so pick a
+  // deterministic one (prefer NG, else the lowest country code) rather than self.
+  if (sameFamily.length > 1) {
+    const sorted = [...sameFamily].sort((a, b) =>
+      a.country.code.localeCompare(b.country.code),
+    );
+    const def = sorted.find((h) => h.country.code === "ng") ?? sorted[0];
+    languages["x-default"] = `/${def.country.code}/${family.slug}`;
+  }
 
   return {
     title,
@@ -93,7 +103,7 @@ export default async function HubPage(props: { params: Params }) {
 
   const crumbs = [
     { name: "Home", href: "/" },
-    { name: country.name, href: `/${country.code}/${family.slug}` },
+    { name: country.name, href: `/${country.code}` },
     { name: family.labelTitle, href: `/${country.code}/${family.slug}` },
   ];
 
@@ -112,6 +122,8 @@ export default async function HubPage(props: { params: Params }) {
       <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
         {title}
       </h1>
+
+      <ByLine className="mt-3" />
 
       {/* Unique editorial intro (required for indexing). */}
       {hub?.intro ? (

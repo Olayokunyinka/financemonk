@@ -27,6 +27,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer, LastVerified } from "@/components/disclaimer";
 import { VerifiedBadge } from "@/components/verified-badge";
+import { ByLine } from "@/components/byline";
 import { RatingStars } from "@/components/rating-stars";
 import { ProductCard } from "@/components/product-card";
 import { ReportReview } from "@/components/report-review";
@@ -97,7 +98,7 @@ export default async function ProductPage(props: { params: Params }) {
   const hubHref = family ? `/${country.code}/${family.slug}` : "/";
   const crumbs = [
     { name: "Home", href: "/" },
-    { name: country.name, href: hubHref },
+    { name: country.name, href: `/${country.code}` },
     { name: family?.labelTitle ?? "Products", href: hubHref },
     { name: product.name, href: `/product/${product.slug}` },
   ];
@@ -161,6 +162,8 @@ export default async function ProductPage(props: { params: Params }) {
           </Link>
         </div>
       </div>
+
+      <ByLine className="mt-4" lastVerifiedAt={product.lastVerifiedAt} />
 
       {product.summary ? (
         <p className="mt-4 max-w-3xl text-muted-foreground">{product.summary}</p>

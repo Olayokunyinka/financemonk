@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  openGraph: { siteName: SITE.name, type: "website" },
+  openGraph: { siteName: SITE.name, type: "website", url: SITE.url },
+  twitter: { card: "summary_large_image", title: SITE.name, description: SITE.description },
 };
 
 // Root layout carries only the document shell + session context. The public

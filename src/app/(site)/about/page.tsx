@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,19 +29,57 @@ export default function AboutPage() {
           </span>
           , {SITE.editorial.responsibleTitle}. Read how we source and rank
           products in our{" "}
-          <a className="text-brand hover:underline" href="/methodology">
+          <Link className="text-brand hover:underline" href="/methodology">
             methodology
-          </a>
+          </Link>
           .
         </p>
         <p>
           Questions or corrections?{" "}
-          <a className="text-brand hover:underline" href="/contact">
+          <Link className="text-brand hover:underline" href="/contact">
             Contact us
-          </a>
+          </Link>
           .
         </p>
       </div>
+
+      {/* Author / editor entity (E-E-A-T). Anchor referenced by the byline and
+          the Person JSON-LD @id (see personJsonLd). */}
+      <section
+        id="editor"
+        className="mt-12 scroll-mt-24 rounded-2xl border border-border p-6"
+      >
+        <h2 className="text-xl font-semibold">
+          {SITE.editorial.responsibleName}
+        </h2>
+        <div className="mt-0.5 text-sm font-medium text-brand">
+          {SITE.editorial.responsibleTitle}
+        </div>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          {SITE.editorial.bio}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+          <a
+            className="text-brand hover:underline"
+            href={`mailto:${SITE.editorial.contactEmail}`}
+          >
+            {SITE.editorial.contactEmail}
+          </a>
+          {SITE.editorial.profileUrl ? (
+            <a
+              className="text-brand hover:underline"
+              href={SITE.editorial.profileUrl}
+              target="_blank"
+              rel="noopener"
+            >
+              Profile ↗
+            </a>
+          ) : null}
+          <Link className="text-brand hover:underline" href="/methodology#editorial">
+            Editorial standards →
+          </Link>
+        </div>
+      </section>
     </article>
   );
 }

@@ -14,8 +14,20 @@ export const SITE = {
   // in production (Vercel) so it points at the live domain.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
+  // Brand logo (in /public) — used for Organization JSON-LD + the OG image.
+  logo: { path: "/logo.png", width: 1217, height: 390 },
+
+  // Brand social / external profiles for schema.org `sameAs` (entity
+  // consolidation → knowledge panel). Comma-separated absolute URLs in env;
+  // empty means the field is simply omitted from the JSON-LD.
+  sameAs: (process.env.NEXT_PUBLIC_SITE_SAMEAS ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean),
+
   // Named editorial responsibility (required for YMYL/E-E-A-T). Real,
-  // accountable person; overridable via env for different deployments.
+  // accountable person; overridable via env for different deployments. The bio
+  // + profileUrl feed the Person JSON-LD (author entity) and the /about byline.
   editorial: {
     responsibleName:
       process.env.NEXT_PUBLIC_EDITORIAL_NAME ?? "Olayinka Olayokun",
@@ -24,6 +36,12 @@ export const SITE = {
       "Editor & Data Standards Lead",
     contactEmail:
       process.env.NEXT_PUBLIC_EDITORIAL_EMAIL ?? "mrolayokun@gmail.com",
+    bio:
+      process.env.NEXT_PUBLIC_EDITORIAL_BIO ??
+      "Sets the data standards behind every comparison on FinanceMonk — how product terms are sourced, normalised to a comparable basis, dated and verified against the licence registers. Accountable for editorial accuracy across the directory.",
+    // External author profile (e.g. LinkedIn) → Person.sameAs. Strengthens the
+    // author entity; omitted from schema when empty.
+    profileUrl: process.env.NEXT_PUBLIC_EDITORIAL_PROFILE_URL ?? "",
   },
 } as const;
 

@@ -46,9 +46,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const hub = await getHub(c.code, f.type);
     const products = await getHubProducts(c.code, f.type);
     if (!hubIsIndexable(hub, products.length)) continue;
+    // Real edit time, not now() — accurate dates feed the freshness/momentum
+    // signal. Fall back to the freshest product if the hub somehow has no stamp.
+    const freshestProduct = products.reduce<Date | null>(
+      (max, p) => (!max || p.lastVerifiedAt > max ? p.lastVerifiedAt : max),
+      null,
+    );
     hubEntries.push({
       url: `${SITE.url}/${c.code}/${f.slug}`,
-      lastModified: now,
+      lastModified: hub?.updatedAt ?? freshestProduct ?? now,
       changeFrequency: "daily",
       priority: 0.9,
     });

@@ -11,6 +11,7 @@ import {
   breadcrumbJsonLd,
 } from "@/lib/jsonld";
 import { ComparisonTable } from "@/components/comparison-table";
+import { ByLine } from "@/components/byline";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Disclaimer } from "@/components/disclaimer";
 import { JsonLd } from "@/components/json-ld";
@@ -58,7 +59,7 @@ export default async function UseCasePage(props: { params: Params }) {
   const hubHref = `/${country.code}/${family.slug}`;
   const crumbs = [
     { name: "Home", href: "/" },
-    { name: country.name, href: hubHref },
+    { name: country.name, href: `/${country.code}` },
     { name: family.labelTitle, href: hubHref },
     { name: uc.title, href: `/best/${uc.slug}` },
   ];
@@ -76,6 +77,7 @@ export default async function UseCasePage(props: { params: Params }) {
       <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
         {uc.title}
       </h1>
+      <ByLine className="mt-3" />
       <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
         {uc.intro}
       </p>
