@@ -1,0 +1,53 @@
+[
+  {
+    "id": 244,
+    "tyear": 2026,
+    "tmonth": 1,
+    "period": "January 2026",
+    "interBankCallRate": "23.00",
+    "mrr": "",
+    "mpr": "26.50",
+    "treasuryBill": "15.50",
+    "savingsDeposit": "7.20",
+    "oneMonthDeposit": "10.80",
+    "threeMonthsDeposit": "11.50",
+    "sixMonthsDeposit": "10.90",
+    "twelveMonthsDeposit": "11.40",
+    "primeLending": "19.10",
+    "maxLending": "34.90"
+  },
+  {
+    "id": 246,
+    "tyear": 2026,
+    "tmonth": 3,
+    "period": "March 2026",
+    "interBankCallRate": "22.00",
+    "mrr": "",
+    "mpr": "26.50",
+    "treasuryBill": "15.95",
+    "savingsDeposit": "7.17",
+    "oneMonthDeposit": "11.43",
+    "threeMonthsDeposit": "11.36",
+    "sixMonthsDeposit": "10.54",
+    "twelveMonthsDeposit": "10.92",
+    "primeLending": "19.29",
+    "maxLending": "35.17"
+  },
+  {
+    "id": 245,
+    "tyear": 2026,
+    "tmonth": 2,
+    "period": "February 2026",
+    "interBankCallRate": "22.50",
+    "mrr": "",
+    "mpr": "26.50",
+    "treasuryBill": "15.84",
+    "savingsDeposit": "7.36",
+    "oneMonthDeposit": "10.44",
+    "threeMonthsDeposit": "11.77",
+    "sixMonthsDeposit": "11.18",
+    "twelveMonthsDeposit": "12.38",
+    "primeLending": "19.29",
+    "maxLending": "35.17"
+  }
+]
