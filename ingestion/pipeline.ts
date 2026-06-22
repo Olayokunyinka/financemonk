@@ -9,8 +9,17 @@ import { normalizeDraft } from "./normalize";
 import type { Adapter, RawProductDraft } from "./adapters/types";
 import { exampleBankAdapter } from "./adapters/example-bank";
 import { exampleRatecardAdapter } from "./adapters/example-ratecard";
+import { cbnMoneyMarketAdapter } from "./adapters/cbn-money-market";
+import { accessBankLoansAdapter } from "./adapters/access-bank-loans";
 
-export const ADAPTERS: Adapter[] = [exampleBankAdapter, exampleRatecardAdapter];
+export const ADAPTERS: Adapter[] = [
+  // Demo/illustrative sources (placeholder URLs, ToS pending).
+  exampleBankAdapter,
+  exampleRatecardAdapter,
+  // Real Nigerian sources.
+  cbnMoneyMarketAdapter, // regulator aggregator — SAVINGS benchmarks (ToS approved)
+  accessBankLoansAdapter, // bank rate page — PERSONAL_LOAN (ToS pending review)
+];
 
 const CURRENCY: Record<string, string> = { ng: "NGN", ke: "KES", za: "ZAR" };
 

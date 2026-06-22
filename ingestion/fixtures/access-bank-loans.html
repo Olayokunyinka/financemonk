@@ -1,0 +1,45 @@
+<!--
+  Offline fixture mirroring an Access Bank personal-lending rate page, in the
+  shape ingestion/adapters/access-bank-loans.ts parses. Product cards carry a
+  name + a labelled terms list. Used for offline tests; --live is gated OFF for
+  this source until its ToS is reviewed (tos.status = "pending-review").
+
+  Values are illustrative and INDICATIVE.
+-->
+<html>
+  <body>
+    <main>
+      <article class="product-card" data-slug="access-salary-advance">
+        <h3 class="product-name">Access Salary Advance</h3>
+        <p class="product-summary">Instant advance of up to 75% of your net monthly salary for Access Bank salary-account holders.</p>
+        <dl class="product-terms">
+          <dt>Interest</dt><dd>4% flat per month</dd>
+          <dt>Management fee</dt><dd>1%</dd>
+          <dt>Amount</dt><dd>₦10,000 - ₦5,000,000</dd>
+          <dt>Tenure</dt><dd>1 - 6 months</dd>
+        </dl>
+        <ul class="product-features">
+          <li>Salary-account holders</li>
+          <li>Instant disbursement</li>
+          <li>No collateral</li>
+        </ul>
+      </article>
+
+      <article class="product-card" data-slug="access-personal-loan">
+        <h3 class="product-name">Access Personal Loan</h3>
+        <p class="product-summary">Term loan for confirmed salary earners to cover personal projects, repaid by salary deduction.</p>
+        <dl class="product-terms">
+          <dt>Interest</dt><dd>24% - 28% per annum</dd>
+          <dt>Management fee</dt><dd>1%</dd>
+          <dt>Amount</dt><dd>₦300,000 - ₦20,000,000</dd>
+          <dt>Tenure</dt><dd>6 - 36 months</dd>
+        </dl>
+        <ul class="product-features">
+          <li>Confirmed salary earners</li>
+          <li>Up to 36 months</li>
+          <li>Repaid by salary deduction</li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
